@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MarinerX</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0077b6;
+            color: white;
+            padding: 20px;
+        }
+        nav {
+            background-color: #005f8b;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #ff7b00;
+            color: white;
+        }
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: left;
+            padding: 20px;
+        }
+        .contact-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff7b00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #cc6200;
+        }
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact MarinerX</h1>
+        <p>Have questions or want to get involved? Reach out to us below!</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="beta-tester-info.html">Beta Testing</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <section class="content">
+        <h2>Get in Touch</h2>
+        <p>We’d love to hear from you! Whether you have questions about the Hull Dryer, are interested in beta testing, or just want to say hello, feel free to contact us.</p>
+        
+        <h3>Email</h3>
+        <p><a href="mailto:yourcompany@email.com">yourcompany@email.com</a></p>
+        
+        <h3>Send Us a Message</h3>
+        <form action="mailto:yourcompany@email.com" method="post" enctype="text/plain" class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required><br>
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 MarinerX. All rights reserved.</p>
+    </footer>
+</body>
+</html>

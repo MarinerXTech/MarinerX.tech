@@ -1,146 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarinerX Products</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0077b6;
-            color: white;
-            padding: 20px;
-        }
-        nav {
-            background-color: #005f8b;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 10px 15px;
-            transition: background 0.3s ease, color 0.3s ease;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background-color: #ff7b00;
-            color: white;
-        }
-        .content {
-            max-width: 800px;
-            margin: 40px auto;
-            text-align: center;
-            padding: 20px;
-        }
-        .cta-button {
-            background-color: #ff7b00;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .gallery img {
-            width: 180px;
-            height: auto;
-            border-radius: 5px;
-        }
-        .video {
-            margin-top: 20px;
-        }
-        video {
-            width: 320px;
-            height: auto;
-            border-radius: 5px;
-        }
-        .how-it-works {
-            text-align: center;
-            margin: 40px auto;
-            max-width: 800px;
-        }
-        .beta-release {
-            background-color: #f9f9f9;
-            padding: 20px;
-            margin-top: 30px;
-        }
-        footer {
-            margin-top: 30px;
-            padding: 10px;
-            font-size: 14px;
-            background-color: #f4f4f4;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarinerX Products</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0077b6;
+      color: white;
+      padding: 20px;
+    }
+    nav {
+      background-color: #005f8b;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      transition: background 0.3s ease, color 0.3s ease;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background-color: #ff7b00;
+      color: white;
+    }
+    .content {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+      padding: 20px;
+    }
+    .cta-button {
+      background-color: #ff7b00;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .gallery img {
+      width: 180px;
+      height: auto;
+      border-radius: 5px;
+    }
+    .video {
+      margin-top: 20px;
+    }
+    /* Responsive YouTube embed */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .how-it-works {
+      text-align: center;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+    .beta-release {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    footer {
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>MarinerX Products</h1>
-        <p>Innovative solutions for boaters.</p>
-    </header>
+  <header>
+    <h1>MarinerX Products</h1>
+    <p>Innovative solutions for boaters.</p>
+  </header>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="beta-tester-info.html">Beta Testing</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  
+  <section class="content">
+    <h2>MarinerX Hull Dryer</h2>
+    <p>The MarinerX Hull Dryer removes moisture from your boat’s hull, preventing damage and keeping your boat lightweight. The first version is designed for <strong>Beckson 6" inspection ports</strong> and is ideal for <strong>Sunfish sailboats</strong>. More variants will follow.</p>
+    <p><em>Looking for compatibility with a different inspection port? Let us know! We can design and print alternate 6" port interfaces.</em></p>
     
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="beta-tester-info.html">Beta Testing</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <h3>See the Hull Dryer in Action</h3>
+    <div class="gallery">
+      <img src="images/hull_dryer_2.jpg" alt="Hull Dryer Side View">
+      <img src="images/hull_dryer_3.jpg" alt="Hull Dryer Fan">
+      <img src="images/hull_dryer_1.jpg" alt="Hull Dryer Installed">
+    </div>
     
-    <section class="content">
-        <h2>MarinerX Hull Dryer</h2>
-        <p>The MarinerX Hull Dryer removes moisture from your boat’s hull, preventing damage and keeping your boat lightweight. The first version is designed for <strong>Beckson 6" inspection ports</strong> and is ideal for <strong>Sunfish sailboats</strong>. More variants will follow.</p>
-        <p><em>Looking for compatibility with a different inspection port? Let us know! We can design and print alternate 6" port interfaces.</em></p>
-        
-        <h3>See the Hull Dryer in Action</h3>
-        <div class="gallery">
-            <img src="images/hull_dryer_2.jpg" alt="Hull Dryer Side View">
-            <img src="images/hull_dryer_3.jpg" alt="Hull Dryer Fan">
-            <img src="images/hull_dryer_1.jpg" alt="Hull Dryer Installed">
-        </div>
-        
-        <div class="video">
-            <h3>Product Demonstration</h3>
-            <video controls>
-                <source src="videos/hull_dryer_demo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        
-        <section class="how-it-works">
-            <h2>How the MarinerX Hull Dryer Works</h2>
-            <p>1. <strong>Fits Standard Inspection Ports</strong> – The first model is designed to thread into a <strong>Beckson 6" inspection port</strong>. Future variants will be developed based on beta tester feedback.</p>
-            <p>2. <strong>Simple Activation</strong> – Just plug in the power connector, and the system begins drying. No switches or complex setup required.</p>
-            <p>3. <strong>Moisture Removal & Performance Boost</strong> – Actively removes trapped moisture to <strong>prevent damage and lighten your boat</strong> for improved handling.</p>
-        </section>
-        
-        <section class="beta-release">
-            <h2>🚀 Beta Release – Seeking Testers! 🚀</h2>
-            <p>We are in our beta release phase and looking for early adopters! Beta testers get a <strong>special reduced price</strong> to help us refine the product.</p>
-            <p>The first version is ideal for <strong>Sunfish sailboats</strong>, and we plan to expand to <strong>Laser, Opti, and other boats with similar inspection ports</strong>.</p>
-            <p>Interested? Send us a message!</p>
-            <p><a href="beta-tester-info.html" class="cta-button">Learn more about our Beta Testing Program</a></p>
-        </section>
+    <div class="video">
+      <h3>Product Demonstration</h3>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/NVr3YrbPimQ" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    
+    <section class="how-it-works">
+      <h2>How the MarinerX Hull Dryer Works</h2>
+      <p>1. <strong>Fits Standard Inspection Ports</strong> – The first model is designed to thread into a <strong>Beckson 6" inspection port</strong>. Future variants will be developed based on beta tester feedback.</p>
+      <p>2. <strong>Simple Activation</strong> – Just plug in the power connector, and the system begins drying. No switches or complex setup required.</p>
+      <p>3. <strong>Moisture Removal & Performance Boost</strong> – Actively removes trapped moisture to <strong>prevent damage and lighten your boat</strong> for improved handling.</p>
     </section>
     
-    <footer>
-        <p>&copy; 2025 MarinerX. All rights reserved.</p>
-    </footer>
+    <section class="beta-release">
+      <h2>🚀 Beta Release – Seeking Testers! 🚀</h2>
+      <p>We are in our beta release phase and looking for early adopters! Beta testers get a <strong>special reduced price</strong> to help us refine the product.</p>
+      <p>The first version is ideal for <strong>Sunfish sailboats</strong>, and we plan to expand to <strong>Laser, Opti, and other boats with similar inspection ports</strong>.</p>
+      <p>Interested? Send us a message!</p>
+      <p><a href="beta-tester-info.html" class="cta-button">Learn more about our Beta Testing Program</a></p>
+    </section>
+  </section>
+  
+  <footer>
+    <p>&copy; 2025 MarinerX. All rights reserved.</p>
+  </footer>
 </body>
 </html>

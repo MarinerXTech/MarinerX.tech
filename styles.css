@@ -169,7 +169,7 @@ body {
   
   .product-card img {
     width: 100%;
-    max-width: 240px;
+    max-width: 300px;
     border-radius: 5px;
     margin-bottom: 15px;
   }
@@ -188,7 +188,7 @@ body {
   }
   
   .product-gallery img {
-    width: 180px;
+    width: 300px;
     height: auto;
     border-radius: 5px;
   }

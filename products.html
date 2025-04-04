@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarinerX Products</title>
+  <title>Products - MarinerX</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <meta property="og:title" content="MarinerX Products" />
-  <meta property="og:description" content="Innovative products to improve your sailing experience." />
+  <meta property="og:description" content="Explore innovative sailing accessories designed by MarinerX." />
   <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
   <meta property="og:url" content="https://marinerx.tech/products.html" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -18,17 +18,9 @@
       font-family: "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
       background-color: #ffffff;
       color: #222;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    @media screen and (min-width: 768px) {
-      body {
-        font-size: 18px;
-      }
+      text-align: center;
     }
 
     .hero {
@@ -57,38 +49,21 @@
       color: #fff;
     }
 
-    .hero-content h1 {
-      font-size: 42px;
-      margin: 0;
-    }
-
-    .hero-content p {
-      font-size: 18px;
-      margin: 10px 0 0;
-    }
-
     nav {
       background-color: #005f8b;
       padding: 10px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
     .menu-toggle {
       display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
     }
 
     .nav-links {
       display: flex;
       gap: 20px;
-      transition: max-height 0.3s ease;
     }
 
     .nav-links a {
@@ -122,77 +97,45 @@
       }
 
       .nav-links a {
-        width: 100%;
         text-align: left;
         padding: 10px;
       }
     }
 
-    @media screen and (min-width: 601px) {
-      nav {
-        justify-content: center;
-      }
-    }
-
     .content {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 0 20px;
     }
 
-    .content > *:not(:last-child) {
-      margin-bottom: 1.5em;
-    }
-
-    .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .gallery img {
-      width: 180px;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    .video {
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
       margin-top: 40px;
     }
 
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .how-it-works {
-      text-align: left;
-      margin: 50px auto;
-      max-width: 800px;
-    }
-
-    .how-it-works p {
-      margin-bottom: 1em;
-    }
-
-    .beta-release {
+    .product-card {
       background-color: #f9f9f9;
-      padding: 30px 20px;
-      margin-top: 50px;
-      border-radius: 6px;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-card img {
+      width: 100%;
+      max-width: 240px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      margin: 0.5em 0 0.2em;
+    }
+
+    .product-card p {
+      font-size: 16px;
     }
 
     .cta-button {
@@ -201,14 +144,29 @@
       padding: 10px 20px;
       text-decoration: none;
       border-radius: 5px;
-      font-size: 18px;
+      font-size: 16px;
       display: inline-block;
-      margin-top: 20px;
-      transition: background 0.2s ease, transform 0.1s ease;
+      margin-top: 10px;
     }
 
-    .cta-button:active {
-      transform: scale(0.98);
+    .product-badge {
+      display: inline-block;
+      background-color: #ff7b00;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .product-badge.beta {
+      background-color: #0077b6;
+    }
+
+    .product-badge.soon {
+      background-color: #999;
     }
 
     footer {
@@ -219,12 +177,11 @@
     }
   </style>
 </head>
-
 <body>
   <div class="hero">
     <div class="hero-content">
-      <h1>MarinerX Products</h1>
-      <p>Innovative solutions for boaters.</p>
+      <h1>Our Products</h1>
+      <p>Reliable accessories for sailors who expect more from their gear.</p>
     </div>
   </div>
 
@@ -239,42 +196,51 @@
     </div>
   </nav>
 
-  <section class="content">
-    <h2>MarinerX Hull Dryer</h2>
-    <p>The MarinerX Hull Dryer removes moisture from your boat’s hull, preventing damage and keeping your boat lightweight. The first version is designed for <strong>Beckson 6" inspection ports</strong> and is ideal for <strong>Sunfish sailboats</strong>. More variants will follow.</p>
-    <p><em>Looking for compatibility with a different inspection port? Let us know! We can design and print alternate 6" port interfaces.</em></p>
+  <section class="content center-text">
+    <h2>Explore MarinerX Products</h2>
+    <p>Built with precision, tested by sailors, and ready for the water.</p>
 
-    <h3>See the Hull Dryer in Action</h3>
-    <div class="gallery">
-      <img src="images/hull_dryer_2.jpg" alt="Hull Dryer Side View" />
-      <img src="images/hull_dryer_3.jpg" alt="Hull Dryer Fan" />
-      <img src="images/hull_dryer_1.jpg" alt="Hull Dryer Installed" />
-    </div>
+    <div class="product-grid">
 
-    <div class="video">
-      <h3>Product Demonstration</h3>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/NVr3YrbPimQ"
-          title="Hull Dryer Demo Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="product-card">
+        <span class="product-badge beta">Beta</span>
+        <img src="images/hull_dryer_1.jpg" alt="Hull Dryer" />
+        <h3>Hull Dryer</h3>
+        <p>Removes moisture through your boat’s inspection port. Ideal for Sunfish.</p>
+        <a href="hull-dryer.html" class="cta-button">View Details</a>
       </div>
+
+      <div class="product-card">
+        <img src="images/sail_rings.jpg" alt="Sail Rings" />
+        <h3>Sail Rings</h3>
+        <p>Durable 3D-printed rings that snap on easily. Sold in white or teal.</p>
+        <a href="sail-rings.html" class="cta-button">View Details</a>
+      </div>
+
+      <div class="product-card">
+        <img src="images/rings_hanger_combo.jpg" alt="Sail Rings + Mainsheet Hanger" />
+        <h3>Sail Rings + Hanger</h3>
+        <p>Includes a hanger to keep your mainsheet rig tidy. Efficient and secure.</p>
+        <a href="sail-rings-hanger.html" class="cta-button">View Details</a>
+      </div>
+
+      <div class="product-card">
+        <span class="product-badge soon">Coming Soon</span>
+        <img src="images/mainsheet_clip.jpg" alt="Clip-on Mainsheet Hanger" />
+        <h3>Clip-On Mainsheet Hanger</h3>
+        <p>A compact clip to manage mainsheets from the boom.</p>
+        <a href="clipon-hanger.html" class="cta-button">Learn More</a>
+      </div>
+
+      <div class="product-card">
+        <span class="product-badge soon">Coming Soon</span>
+        <img src="images/spar_mount.jpg" alt="Spar Mount" />
+        <h3>Spar Mount</h3>
+        <p>Cradle mount that fits your mast hole to secure spars during transport.</p>
+        <a href="spar-mount.html" class="cta-button">Learn More</a>
+      </div>
+
     </div>
-
-    <section class="how-it-works">
-      <h2>How the MarinerX Hull Dryer Works</h2>
-      <p>1. <strong>Fits Standard Inspection Ports</strong> – The first model is designed to thread into a <strong>Beckson 6" inspection port</strong>. Future variants will be developed based on beta tester feedback.</p>
-      <p>2. <strong>Simple Activation</strong> – Just plug in the power connector, and the system begins drying. No switches or complex setup required.</p>
-      <p>3. <strong>Moisture Removal & Performance Boost</strong> – Actively removes trapped moisture to <strong>prevent damage and lighten your boat</strong> for improved handling.</p>
-    </section>
-
-    <section class="beta-release">
-      <h2>🚀 Beta Release – Seeking Testers! 🚀</h2>
-      <p>We are in our beta release phase and looking for early adopters! Beta testers get a <strong>special reduced price</strong> to help us refine the product.</p>
-      <p>The first version is ideal for <strong>Sunfish sailboats</strong>, and we plan to expand to <strong>Laser, Opti, and other boats with similar inspection ports</strong>.</p>
-      <p>Interested? Send us a message!</p>
-      <p><a href="beta-tester-info.html" class="cta-button">Learn more about our Beta Testing Program</a></p>
-    </section>
   </section>
 
   <footer>

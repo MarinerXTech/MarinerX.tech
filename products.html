@@ -1,30 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MarinerX Products</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <meta property="og:title" content="MarinerX Products" />
+  <meta property="og:description" content="Innovative products to improve your sailing experience." />
+  <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
+  <meta property="og:url" content="https://marinerx.tech/products.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
       padding: 0;
+      text-align: center;
+      background-color: #ffffff;
+      color: #222;
+      line-height: 1.6;
+      font-size: 16px;
     }
-    header {
-      background-color: #0077b6;
-      color: white;
-      padding: 20px;
+
+    @media screen and (min-width: 768px) {
+      body {
+        font-size: 18px;
+      }
     }
+
+    .hero {
+      background: url('images/hero.jpg') no-repeat center center/cover;
+      height: 250px;
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .hero-content h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      margin: 10px 0 0;
+    }
+
     nav {
       background-color: #005f8b;
       padding: 10px;
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    nav a {
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-links a {
       color: white;
       text-decoration: none;
       font-size: 18px;
@@ -32,16 +99,102 @@
       transition: background 0.3s ease, color 0.3s ease;
       border-radius: 5px;
     }
-    nav a:hover {
+
+    .nav-links a:hover {
       background-color: #ff7b00;
       color: white;
     }
+
+    @media screen and (max-width: 600px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .nav-links.open {
+        max-height: 300px;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+      }
+    }
+
+    @media screen and (min-width: 601px) {
+      nav {
+        justify-content: center;
+      }
+    }
+
     .content {
       max-width: 800px;
       margin: 40px auto;
-      text-align: center;
       padding: 20px;
     }
+
+    .content > *:not(:last-child) {
+      margin-bottom: 1.5em;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 180px;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .video {
+      margin-top: 40px;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .how-it-works {
+      text-align: left;
+      margin: 50px auto;
+      max-width: 800px;
+    }
+
+    .how-it-works p {
+      margin-bottom: 1em;
+    }
+
+    .beta-release {
+      background-color: #f9f9f9;
+      padding: 30px 20px;
+      margin-top: 50px;
+      border-radius: 6px;
+    }
+
     .cta-button {
       background-color: #ff7b00;
       color: white;
@@ -51,98 +204,70 @@
       font-size: 18px;
       display: inline-block;
       margin-top: 20px;
+      transition: background 0.2s ease, transform 0.1s ease;
     }
-    .gallery {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+
+    .cta-button:active {
+      transform: scale(0.98);
     }
-    .gallery img {
-      width: 180px;
-      height: auto;
-      border-radius: 5px;
-    }
-    .video {
-      margin-top: 20px;
-    }
-    /* Responsive YouTube embed */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .how-it-works {
-      text-align: center;
-      margin: 40px auto;
-      max-width: 800px;
-    }
-    .beta-release {
-      background-color: #f9f9f9;
-      padding: 20px;
-      margin-top: 30px;
-    }
+
     footer {
-      margin-top: 30px;
+      margin-top: 40px;
       padding: 10px;
       font-size: 14px;
       background-color: #f4f4f4;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>MarinerX Products</h1>
-    <p>Innovative solutions for boaters.</p>
-  </header>
-  
+  <div class="hero">
+    <div class="hero-content">
+      <h1>MarinerX Products</h1>
+      <p>Innovative solutions for boaters.</p>
+    </div>
+  </div>
+
   <nav>
-    <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
-    <a href="beta-tester-info.html">Beta Testing</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="beta-tester-info.html">Beta Testing</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
-  
+
   <section class="content">
     <h2>MarinerX Hull Dryer</h2>
     <p>The MarinerX Hull Dryer removes moisture from your boat’s hull, preventing damage and keeping your boat lightweight. The first version is designed for <strong>Beckson 6" inspection ports</strong> and is ideal for <strong>Sunfish sailboats</strong>. More variants will follow.</p>
     <p><em>Looking for compatibility with a different inspection port? Let us know! We can design and print alternate 6" port interfaces.</em></p>
-    
+
     <h3>See the Hull Dryer in Action</h3>
     <div class="gallery">
-      <img src="images/hull_dryer_2.jpg" alt="Hull Dryer Side View">
-      <img src="images/hull_dryer_3.jpg" alt="Hull Dryer Fan">
-      <img src="images/hull_dryer_1.jpg" alt="Hull Dryer Installed">
+      <img src="images/hull_dryer_2.jpg" alt="Hull Dryer Side View" />
+      <img src="images/hull_dryer_3.jpg" alt="Hull Dryer Fan" />
+      <img src="images/hull_dryer_1.jpg" alt="Hull Dryer Installed" />
     </div>
-    
+
     <div class="video">
       <h3>Product Demonstration</h3>
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/NVr3YrbPimQ" 
-                title="YouTube video player" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/NVr3YrbPimQ"
+          title="Hull Dryer Demo Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
     </div>
-    
+
     <section class="how-it-works">
       <h2>How the MarinerX Hull Dryer Works</h2>
       <p>1. <strong>Fits Standard Inspection Ports</strong> – The first model is designed to thread into a <strong>Beckson 6" inspection port</strong>. Future variants will be developed based on beta tester feedback.</p>
       <p>2. <strong>Simple Activation</strong> – Just plug in the power connector, and the system begins drying. No switches or complex setup required.</p>
       <p>3. <strong>Moisture Removal & Performance Boost</strong> – Actively removes trapped moisture to <strong>prevent damage and lighten your boat</strong> for improved handling.</p>
     </section>
-    
+
     <section class="beta-release">
       <h2>🚀 Beta Release – Seeking Testers! 🚀</h2>
       <p>We are in our beta release phase and looking for early adopters! Beta testers get a <strong>special reduced price</strong> to help us refine the product.</p>
@@ -151,9 +276,15 @@
       <p><a href="beta-tester-info.html" class="cta-button">Learn more about our Beta Testing Program</a></p>
     </section>
   </section>
-  
+
   <footer>
     <p>&copy; 2025 MarinerX. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>

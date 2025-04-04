@@ -12,150 +12,10 @@
   <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
   <meta property="og:url" content="https://marinerx.tech/about.html" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <style>
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      background-color: #ffffff;
-      color: #222;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    @media screen and (min-width: 768px) {
-      body {
-        font-size: 18px;
-      }
-    }
-
-    .hero {
-      background: url('images/hero.jpg') no-repeat center center/cover;
-      height: 250px;
-      min-height: 180px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-    }
-
-    .hero-content h1 {
-      font-size: 42px;
-      margin: 0;
-    }
-
-    .hero-content p {
-      font-size: 18px;
-      margin: 10px 0 0;
-    }
-
-    nav {
-      background-color: #005f8b;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      transition: max-height 0.3s ease;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 10px 15px;
-      transition: background 0.3s ease, color 0.3s ease;
-      border-radius: 5px;
-    }
-
-    .nav-links a:hover {
-      background-color: #ff7b00;
-      color: white;
-    }
-
-    @media screen and (max-width: 600px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-      }
-
-      .nav-links.open {
-        max-height: 300px;
-      }
-
-      .nav-links a {
-        width: 100%;
-        text-align: left;
-        padding: 10px;
-      }
-    }
-
-    @media screen and (min-width: 601px) {
-      nav {
-        justify-content: center;
-      }
-    }
-
-    .content {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      text-align: left;
-    }
-
-    .content h2 {
-      margin-top: 2em;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 10px;
-      font-size: 14px;
-      background-color: #f4f4f4;
-      text-align: center;
-    }
-  </style>
 </head>
 
 <body>
+  <!-- Hero -->
   <div class="hero">
     <div class="hero-content">
       <h1>About MarinerX</h1>
@@ -163,6 +23,7 @@
     </div>
   </div>
 
+  <!-- Navigation -->
   <nav>
     <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
     <div class="nav-links">
@@ -174,6 +35,7 @@
     </div>
   </nav>
 
+  <!-- Main Content -->
   <section class="content center-text">
     <h2>Our Mission</h2>
     <p>MarinerX was founded with a vision to develop innovative and practical solutions for boat owners. Our goal is to enhance the longevity and performance of boats by tackling common problems with effective, well-engineered products.</p>
@@ -188,6 +50,7 @@
     <p>We’re committed to growing MarinerX with more innovative products tailored for sailors and boaters. We welcome feedback and ideas—let us know what challenges you face, and we’ll work to develop solutions.</p>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 MarinerX. All rights reserved.</p>
   </footer>

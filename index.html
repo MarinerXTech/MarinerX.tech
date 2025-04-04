@@ -7,16 +7,89 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
-  <!-- Open Graph for social preview -->
+  <!-- Meta -->
   <meta property="og:title" content="MarinerX" />
   <meta property="og:description" content="Engineering smarter sailing solutions." />
   <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
   <meta property="og:url" content="https://marinerx.tech/" />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    .highlight-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .highlight-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5em;
+    }
+
+    .highlight-section p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2em;
+    }
+
+    .feature-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 3em;
+    }
+
+    .feature-icons .icon {
+      flex: 0 0 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-icons .icon img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 10px;
+    }
+
+    .feature-icons .icon span {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 2em;
+    }
+
+    .feature-box {
+      flex: 0 1 320px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: left;
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+
+    .feature-box p {
+      margin: 0;
+      color: #444;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Hero Section -->
+  <!-- Hero -->
   <div class="hero">
     <div class="hero-content">
       <h1>MarinerX</h1>
@@ -36,26 +109,53 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <section class="content center-text">
-    <h2>Innovating the Future of Boating Accessories</h2>
-    <p>At MarinerX, we develop cutting-edge solutions to improve your boating experience. Our first product, the <strong>Hull Dryer</strong>, is designed to remove trapped moisture from your boat’s hull, preventing damage and keeping your vessel lightweight.</p>
+  <!-- Highlight Section -->
+  <section class="highlight-section">
+    <h2>Innovative Gear for Small Sailboats</h2>
+    <p>MarinerX designs smart, practical gear to make your sailing experience simpler, drier, and more enjoyable.  Whether you're racing a Sunfish or cruising your local lake, our products help you take better care of your boat - and enjoy the time you spend on the water.</p>
 
-    <h3>Discover Our First Product</h3>
-    <p>Check out the <a href="products.html">MarinerX Hull Dryer</a> and learn how it can help protect your boat.</p>
+    <div class="feature-icons">
+      <div class="icon">
+        <img src="images/icon_dry.png" alt="Dry Icon">
+        <span>Moisture Control</span>
+      </div>
+      <div class="icon">
+        <img src="images/icon_engineering.png" alt="Easy Icon">
+        <span>Thoughtful Engineering</span>
+      </div>
+      <div class="icon">
+        <img src="images/icon_iteration.png" alt="Waterproof Icon">
+        <span>Built with Rapid Iteration</span>
+      </div>
+    </div>
 
-    <h3>🚀 Join Our Beta Testing Program</h3>
-    <p>We are currently seeking beta testers for the Hull Dryer at a reduced price. Help us refine the product and be one of the first to experience its benefits.</p>
-
-    <p><a href="beta-tester-info.html" class="cta-button">Apply for Beta Testing</a></p>
+    <div class="feature-grid">
+      <div class="feature-box">
+        <h3>Hull Dryer</h3>
+        <p>Threads into a 6" port and dries your hull with 101 CFM airflow. Helps prevent weight gain and water damage.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Sail Rings</h3>
+        <p>Durable 3D-printed rings snap easily onto the boom. Available in multiple colors and quantities.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Mainsheet Hanger</h3>
+        <p>Optional rig-mounted hook keeps your mainsheet tidy and off the deck for a smoother sail.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 MarinerX. All rights reserved.</p>
+    <p>
+      <a href="https://x.com/MarinerX2025" target="_blank">X</a> |
+      <a href="https://youtube.com/shorts/NVr3YrbPimQ?si=3C2wXnGvvarrgLvy" target="_blank">YouTube</a> |
+      <a href="https://www.ebay.com/usr/marinerx" target="_blank">eBay</a>
+    </p>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- JS -->
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('open');

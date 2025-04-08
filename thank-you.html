@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You - MarinerX</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+  <meta property="og:title" content="Thank You - MarinerX" />
+  <meta property="og:description" content="Thanks for your order! We'll get your items ready and ship them soon." />
+  <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
+  <meta property="og:url" content="https://marinerx.tech/thank-you.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCGKTFK92C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SCGKTFK92C');
+  </script>
+</head>
+
+<body>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Thank You for Your Order</h1>
+      <p>We're getting it ready for you.</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="beta-tester-info.html">Beta Testing</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section class="content center-text">
+    <h2>Your order has been received!</h2>
+    <p>Check your email for a confirmation from PayPal. We'll notify you when your item ships.</p>
+    <p>If you have any questions or need support, feel free to <a href="contact.html">get in touch</a>.</p>
+    <br />
+    <a class="button" href="products.html">Continue Browsing Products</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MarinerX. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

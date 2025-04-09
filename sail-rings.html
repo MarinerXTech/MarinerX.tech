@@ -6,15 +6,20 @@
   <title>Sail Rings - MarinerX</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCGKTFK92C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-SCGKTFK92C');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCGKTFK92C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SCGKTFK92C');
+  </script>
+
+  <!-- PayPal SDK -->
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAAyavhc8v-KKW2_TpJjGTJgQvhBaC8xX926H384Je3WElLivlot7Uk02j7MTjqFfZxhGYDQ3dJOgmhLWo&components=hosted-buttons&enable-funding=venmo&currency=USD">
+  </script>
 </head>
 
 <body>
@@ -60,7 +65,13 @@
 
     <p><em>Need a custom pack size, special fit, or favorite color? Reach out and we’ll print what you need.</em></p>
 
-    <a href="https://www.ebay.com/itm/316576545739" target="_blank" class="cta-button">Buy on eBay</a>
+    <!-- PayPal Button -->
+    <div id="paypal-container-AGPQMEB33JR8C" style="margin-top: 2rem;"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "AGPQMEB33JR8C",
+      }).render("#paypal-container-AGPQMEB33JR8C")
+    </script>
   </section>
 
   <!-- Footer -->

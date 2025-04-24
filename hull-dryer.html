@@ -16,10 +16,12 @@
     gtag('config', 'G-SCGKTFK92C');
   </script>
 
-  <!-- PayPal SDK -->
+  <!-- PayPal SDK (commented out for now) -->
+  <!--
   <script 
     src="https://www.paypal.com/sdk/js?client-id=BAAyavhc8v-KKW2_TpJjGTJgQvhBaC8xX926H384Je3WElLivlot7Uk02j7MTjqFfZxhGYDQ3dJOgmhLWo&components=hosted-buttons&enable-funding=venmo&currency=USD">
   </script>
+  -->
 </head>
 
 <body>
@@ -95,17 +97,40 @@
       <span style="font-weight: bold; display: block; margin-top: 8px;">– Well-Known Member, sailingforums.com</span>
     </blockquote>
 
-    <!-- PayPal Button Integration with Shipping Note -->
-    <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
-    <p style="text-align: center; font-style: italic; color: #444;">
-      🎯 Limited first batch – Available while supplies last as we gather insights and shape future versions.
-    </p>
-    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
-      ✅ Free shipping within the continental U.S.
-    </p>
-    <p style="text-align: center; font-size: 0.9em; margin-top: 0; margin-bottom: 2rem;">
-      Orders ship within 1–2 business days.
-    </p>
+    <!-- Orders Paused Message -->
+    <div style="max-width: 680px; margin: 3rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 6px; background-color: #fcfcfc;">
+      <h2 style="margin-top: 0; text-align: center;">Orders Temporarily Paused</h2>
+      <p style="text-align: center; font-style: italic; color: #444;">
+        We’ve paused new orders briefly to focus on gathering feedback from our first wave of early adopters and refining the design.
+      </p>
+      <p style="text-align: center; font-weight: bold;">
+        We're using this phase to make the product better—shaped by real feedback—enhanced and compatible with a wider range of boats.
+      </p>
+      <p style="text-align: center;">
+        Get notified when orders reopen. Join our insiders list below.
+      </p>
+
+      <form id="email-form"
+            action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec"
+            method="POST"
+            target="hidden_iframe"
+            onsubmit="handleFormSubmit(this);"
+            style="text-align: center; margin-top: 1.5rem;">
+        <input type="email"
+               name="email"
+               placeholder="Your email"
+               required
+               style="padding: 0.5em; width: 250px; border: 1px solid #ccc; border-radius: 4px; display: block; margin: 0 auto 0.75em auto;" />
+        <button type="submit"
+                style="padding: 0.5em 1.25em; font-weight: bold; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Notify Me
+        </button>
+      </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+      <p id="thank-you-message" style="display:none; margin-top: 1em; color: green; text-align: center;">Thanks! You're on the list.</p>
+    </div>
+
+    <!--
     <div style="margin-top: 0; text-align: center;">
       <div style="max-width: 350px; margin: 0 auto;">
         <div id="paypal-container-J8KXB894ZCMNN"></div>
@@ -116,6 +141,7 @@
         </script>
       </div>
     </div>
+    -->
 
     <!-- Safety Notice -->
     <div style="max-width: 680px; margin: 3rem auto 0 auto; padding: 1rem; border: 1px solid #ccc; border-radius: 6px; background-color: #fdf9f7;">
@@ -142,7 +168,6 @@
       If you use it and have thoughts—we’re all ears. Each early unit helps us shape what’s next.<br />
       <a href="mailto:marinerxtech@gmail.com">marinerxtech@gmail.com</a>
     </p>
-
   </section>
 
   <!-- Footer -->
@@ -157,6 +182,16 @@
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    function handleFormSubmit(form) {
+      setTimeout(function () {
+        form.reset();
+        const message = document.getElementById("thank-you-message");
+        if (message) {
+          message.style.display = "block";
+        }
+      }, 500);
     }
   </script>
 

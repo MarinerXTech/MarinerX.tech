@@ -15,6 +15,11 @@
     gtag('js', new Date());
     gtag('config', 'G-SCGKTFK92C');
   </script>
+
+  <!-- PayPal SDK -->
+  <script 
+    src="https://www.paypal.com/sdk/js?client-id=BAAyavhc8v-KKW2_TpJjGTJgQvhBaC8xX926H384Je3WElLivlot7Uk02j7MTjqFfZxhGYDQ3dJOgmhLWo&components=hosted-buttons&enable-funding=venmo&currency=USD">
+  </script>
 </head>
 
 <body>
@@ -87,7 +92,6 @@
       Patent pending for the MarinerX Hull Dryer (filed March 2025).
     </p>
 
-
     <!-- Testimonial -->
     <h2>What Our First Tester Says</h2>
     <blockquote style="font-style: italic; border-left: 4px solid #ccc; padding-left: 15px; margin: 20px auto; max-width: 600px;">
@@ -100,50 +104,22 @@
       Each Hull Dryer is built to order, so please allow for longer shipping times during periods of high volume.
     </p>
 
-    <!-- Orders Paused Message -->
-    <div style="max-width: 680px; margin: 3rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 6px; background-color: #fcfcfc;">
-      <h2 style="margin-top: 0; text-align: center;">Orders Temporarily Paused / Join our Insiders list</h2>
-      <p style="text-align: center; font-style: italic; color: #444;">
-        We’ve paused new orders briefly to focus on gathering feedback from our first wave of early adopters and refining the design.
-      </p>
-      <p style="text-align: center; font-weight: bold;">
-        We're using this phase to make the product better—shaped by real feedback—enhanced and compatible with a wider range of boats.
-      </p>
-      <p style="text-align: center;">
-        Be the first to know when the improved Hull Dryer is back in stock – and get early access to new features. Join our insiders list below.
-      </p>
+    <!-- PayPal Hosted Button -->
+    <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
+    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
+      ✅ Free shipping within the continental U.S.
+    </p>
 
-      <form id="email-form"
-            action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec"
-            method="POST"
-            target="hidden_iframe"
-            onsubmit="handleFormSubmit(this);"
-            style="text-align: center; margin-top: 1.5rem;">
-        <input type="email"
-               name="email"
-               placeholder="Your email"
-               required
-               style="padding: 0.5em; width: 250px; border: 1px solid #ccc; border-radius: 4px; display: block; margin: 0 auto 0.75em auto;" />
-        <button type="submit"
-                style="padding: 0.6em 1.5em; font-weight: bold; background-color: #ff7b00; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">
-          Notify Me
-        </button>
-      </form>
-      <iframe name="hidden_iframe" style="display:none;"></iframe>
-      <p id="thank-you-message" style="display:none; margin-top: 1em; color: green; text-align: center;">Thanks! You're on the list.</p>
+    <div style="margin-top: 2rem; text-align: center;">
+      <div style="max-width: 350px; margin: 0 auto;">
+        <div id="paypal-container-J8KXB894ZCMNN"></div>
+        <script>
+          paypal.HostedButtons({
+            hostedButtonId: "J8KXB894ZCMNN",
+          }).render("#paypal-container-J8KXB894ZCMNN");
+        </script>
+      </div>
     </div>
-
-    <!-- Uncomment this block when ready to take orders -->
-    <!--
-    <div style="text-align: center; margin: 3rem auto;">
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID_HERE">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
-    </div>
-    -->
 
     <!-- FAQ Call-to-Action -->
     <div style="max-width: 680px; margin: 3rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 6px; background-color: #f4f8fb;">
@@ -194,16 +170,6 @@
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('open');
-    }
-
-    function handleFormSubmit(form) {
-      setTimeout(function () {
-        form.reset();
-        const message = document.getElementById("thank-you-message");
-        if (message) {
-          message.style.display = "block";
-        }
-      }, 500);
     }
   </script>
 </body>

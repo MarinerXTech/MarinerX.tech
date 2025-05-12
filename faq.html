@@ -49,10 +49,33 @@
       padding-left: 20px;
     }
 
+    .compatibility-list li {
+      list-style: none;
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+
     .compatibility-list li::before {
-      content: "• ";
-      color: #ff7b00;
-      font-weight: bold;
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .status-green::before {
+      background-color: #28a745;
+    }
+
+    .status-orange::before {
+      background-color: #ff7b00;
+    }
+
+    .status-yellow::before {
+      background-color: #e0a800;
     }
   </style>
 </head>
@@ -84,11 +107,11 @@
       <summary>How do I know if it will fit my boat?</summary>
       <p>The Hull Dryer is designed to screw securely into a 6-inch Beckson inspection port. We're actively testing more brands and will continue updating this compatibility chart below.</p>
       <ul class="compatibility-list">
-        <li><strong>Beckson 6" screw-in:</strong> Fully compatible</li>
-        <li><strong>Sea Dog Line 6" screw-in:</strong> Compatible with optional adapter ring</li>
-        <li><strong>Seaflo 6" screw-in:</strong> Compatible with optional adapter ring</li>
-        <li><strong>RWO / Allen 6":</strong> In development</li>
-        <li><strong>Other brands:</strong> Let us know what you use</li>
+        <li class="status-green"><strong>Beckson 6" screw-in:</strong> Fully compatible</li>
+        <li class="status-green"><strong>Sea Dog Line 6" screw-in:</strong> Compatible with optional adapter ring</li>
+        <li class="status-green"><strong>Seaflo 6" screw-in:</strong> Compatible with optional adapter ring</li>
+        <li class="status-yellow"><strong>RWO / Allen 6":</strong> In development</li>
+        <li class="status-orange"><strong>Other brands:</strong> Let us know what you use</li>
       </ul>
       <p>If you have a different port, <a href="contact.html">send us a quick note</a> or <a href="https://instagram.com/marinerxtech" target="_blank">message us on Instagram</a>. We’re prioritizing based on demand.</p>
     </details>

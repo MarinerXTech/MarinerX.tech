@@ -116,11 +116,6 @@
       <span style="font-weight: bold; display: block; margin-top: 8px;">– Well-Known Member, sailingforums.com</span>
     </blockquote>
 
-    <!-- Build-to-Order Notice -->
-    <p style="max-width: 680px; margin: 2rem auto; text-align: center; font-style: italic; color: #555;">
-      Each Hull Dryer is built to order, so please allow for longer shipping times during periods of high volume.
-    </p>
-
     <!-- PayPal Hosted Button -->
     <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
     <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
@@ -137,6 +132,21 @@
         </script>
       </div>
     </div>
+
+<!-- Inline Email Signup Form (Google Sheets Backend) -->
+<div style="margin-top: 2.5rem; text-align: center;">
+  <p style="margin-bottom: 1rem; font-size: 1.05em;">
+    Not ready to buy? Join the email list to stay in the loop.
+  </p>
+  <form id="email-form-inline" action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec" method="POST" target="hidden_iframe_inline" onsubmit="handleFormSubmitInline(this);" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+    <input type="email" name="email" placeholder="Your email address" required style="padding: 0.6em 1em; font-size: 1em; width: 90%; max-width: 320px; border: 1px solid #ccc; border-radius: 4px;" />
+    <button type="submit" style="padding: 0.6em 1.4em; font-size: 1em; background-color: #0077b6; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Join
+    </button>
+  </form>
+  <iframe name="hidden_iframe_inline" style="display:none;"></iframe>
+  <p id="thank-you-message-inline" style="display:none; margin-top: 1em; color: green;">Thanks! You're on the list.</p>
+</div>
 
     <!-- FAQ Call-to-Action -->
     <div style="max-width: 680px; margin: 3rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 6px; background-color: #f4f8fb;">
@@ -187,6 +197,16 @@
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    function handleFormSubmitInline(form) {
+      setTimeout(function () {
+        form.reset();
+        const message = document.getElementById("thank-you-message-inline");
+        if (message) {
+          message.style.display = "block";
+        }
+      }, 500);
     }
   </script>
 </body>

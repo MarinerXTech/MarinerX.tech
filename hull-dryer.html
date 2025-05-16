@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
-  
   <!-- ✅ Canonical URL -->
   <link rel="canonical" href="https://marinerx.tech/hull-dryer.html" />
 
@@ -24,6 +23,30 @@
   <script 
     src="https://www.paypal.com/sdk/js?client-id=BAAyavhc8v-KKW2_TpJjGTJgQvhBaC8xX926H384Je3WElLivlot7Uk02j7MTjqFfZxhGYDQ3dJOgmhLWo&components=hosted-buttons&enable-funding=venmo&currency=USD">
   </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .scroll-cta {
+      text-align: center;
+      margin: 2rem 0 1rem 0;
+    }
+    .scroll-cta a {
+      display: inline-block;
+      padding: 0.7em 1.8em;
+      background-color: #f7941d;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.05em;
+      transition: background-color 0.3s ease;
+    }
+    .scroll-cta a:hover {
+      background-color: #e5830b;
+    }
+  </style>
 </head>
 
 <body>
@@ -53,7 +76,12 @@
     <h2>What Is the Hull Dryer?</h2>
     <p>When water gets inside the hull, it can really weigh you down and risks damage to your boat. Drying out the inside of the hull usually meant cobbling something together. We designed a clean, purpose-built solution—and tested it to optimize airflow and drying performance. The MarinerX Hull Dryer fits securely, works efficiently, and simplifies the whole process.</p>
     <p>The MarinerX Hull Dryer actively removes moisture trapped inside your boat’s hull using the inspection port as an interface. It's ideal for small craft such as Sunfish and Laser sailboats and any other boat with similar access points.</p>
-    <p>Standard offering fits Beckson 6" screw-in inspection ports, with an expanding list of adapter rings.</p>
+    <p>Standard offering fits Beckson 6" screw-in inspection ports, with an expanding list of adapter rings, including RWO, Allen, Sea-Dog, and Seaflo.</p>
+
+    <!-- Scroll-link CTA (moved below nav) -->
+  <div class="scroll-cta">
+    <a href="#purchase">Order Now</a>
+  </div>
 
     <!-- Image Gallery -->
     <div class="product-gallery">
@@ -121,7 +149,7 @@
     </blockquote>
 
     <!-- PayPal Hosted Button -->
-    <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
+    <h3 id="purchase" style="text-align: center; margin-top: 2rem;">Order Now</h3>
     <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
       ✅ Free shipping within the continental U.S.
     </p>
@@ -137,20 +165,20 @@
       </div>
     </div>
 
-<!-- Inline Email Signup Form (Google Sheets Backend) -->
-<div style="margin-top: 2.5rem; text-align: center;">
-  <p style="margin-bottom: 1rem; font-size: 1.05em;">
-    Not ready to buy? Join the email list to stay in the loop.
-  </p>
-  <form id="email-form-inline" action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec" method="POST" target="hidden_iframe_inline" onsubmit="handleFormSubmitInline(this);" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
-    <input type="email" name="email" placeholder="Your email address" required style="padding: 0.6em 1em; font-size: 1em; width: 90%; max-width: 320px; border: 1px solid #ccc; border-radius: 4px;" />
-    <button type="submit" style="padding: 0.6em 1.4em; font-size: 1em; background-color: #0077b6; color: white; border: none; border-radius: 4px; cursor: pointer;">
-      Join
-    </button>
-  </form>
-  <iframe name="hidden_iframe_inline" style="display:none;"></iframe>
-  <p id="thank-you-message-inline" style="display:none; margin-top: 1em; color: green;">Thanks! You're on the list.</p>
-</div>
+    <!-- Inline Email Signup Form -->
+    <div style="margin-top: 2.5rem; text-align: center;">
+      <p style="margin-bottom: 1rem; font-size: 1.05em;">
+        Not ready to buy? Join the email list to stay in the loop.
+      </p>
+      <form id="email-form-inline" action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec" method="POST" target="hidden_iframe_inline" onsubmit="handleFormSubmitInline(this);" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+        <input type="email" name="email" placeholder="Your email address" required style="padding: 0.6em 1em; font-size: 1em; width: 90%; max-width: 320px; border: 1px solid #ccc; border-radius: 4px;" />
+        <button type="submit" style="padding: 0.6em 1.4em; font-size: 1em; background-color: #0077b6; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Join
+        </button>
+      </form>
+      <iframe name="hidden_iframe_inline" style="display:none;"></iframe>
+      <p id="thank-you-message-inline" style="display:none; margin-top: 1em; color: green;">Thanks! You're on the list.</p>
+    </div>
 
     <!-- FAQ Call-to-Action -->
     <div style="max-width: 680px; margin: 3rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 6px; background-color: #f4f8fb;">

@@ -291,5 +291,67 @@
       pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true }
     });
   </script>
+
+  <!-- Event Tracking -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1. Track PayPal button click
+    const paypal = document.getElementById("paypal-container-J8KXB894ZCMNN");
+    if (paypal) {
+      paypal.addEventListener("click", function () {
+        gtag("event", "paypal_click", {
+          event_category: "engagement",
+          event_label: "PayPal Buy Button"
+        });
+      });
+    }
+
+    // 2. Track scroll 50%
+    let scrolled = false;
+    window.addEventListener("scroll", function () {
+      if (!scrolled && (window.scrollY + window.innerHeight) / document.body.scrollHeight >= 0.5) {
+        scrolled = true;
+        gtag("event", "scroll_50", {
+          event_category: "engagement",
+          event_label: "Scrolled Halfway"
+        });
+      }
+    });
+
+    // 3. Track email signup
+    const form = document.getElementById("email-form-inline");
+    if (form) {
+      form.addEventListener("submit", function () {
+        gtag("event", "email_signup", {
+          event_category: "lead",
+          event_label: "Email Form Submission"
+        });
+      });
+    }
+
+    // 4. Track FAQ button clicks
+    const faqButton = document.querySelector('a[href="faq.html"]');
+    if (faqButton) {
+      faqButton.addEventListener("click", function () {
+        gtag("event", "faq_click", {
+          event_category: "navigation",
+          event_label: "FAQ Button"
+        });
+      });
+    }
+
+    // 5. Track "Order Now" CTA click
+    const orderNowButtons = document.querySelectorAll('a[href="#purchase"]');
+    orderNowButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        gtag("event", "order_now_click", {
+          event_category: "conversion",
+          event_label: "Order Now Button"
+        });
+      });
+    });
+  });
+</script>
+
 </body>
 </html>

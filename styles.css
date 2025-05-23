@@ -291,6 +291,24 @@ button:hover {
   background-color: #cc6200;
 }
 
+/* ===== PROMO BANNER ===== */
+.promo-banner {
+  background-color: #1e90ff; /* or another attention-grabbing color */
+  color: white;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.promo-banner a {
+  color: white;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+
 /* ===== FOOTER ===== */
 footer {
   margin-top: 40px;

@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sail Rings + Hanger - MarinerX</title>
+  <title>Sail Ring with Mainsheet Hanger - MarinerX</title>
+  <meta name="description" content="Combine sail attachment with mainsheet organization using our dual-function sail ring and mainsheet hanger. Clean, simple, effective.">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <!-- Google tag (gtag.js) -->
@@ -50,16 +52,21 @@
     <p>We were developing sail rings and a mainsheet hanger at the same time when it became clear—they belong in the same spot, so why not combine them? This <b>dual-purpose</b> design keeps your sail secure and your mainsheet where it belongs, all in one clean part. Simple, reliable, and built for function without the extra clutter.</p>
 
     <!-- Gallery -->
-    <div class="product-gallery">
-      <img src="images/rings_hanger_combo_1.jpg" alt="Combo View 1" />
-      <img src="images/rings_hanger_combo_2.jpg" alt="Combo View 2" />
+    <div class="swiper product-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/rings_hanger_combo_1.jpg" alt="Sail Ring with Mainsheet Hanger Close" /></div>
+        <div class="swiper-slide"><img src="images/rings_hanger_combo_2.jpg" alt="Sail Ring with Mainsheet Hanger Installed" /></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
     </div>
 
     <h2>Highlights</h2>
     <ul style="display: inline-block; text-align: left;">
       <li>All-in-one and compact sail ring and mainsheet hanger design</li>
       <li>Same durable print quality as our standard sail rings, made from weather- and UV-resistant ASA plastic</li>
-      <li>Optimized for Sunfish and similar small sailboats with 1.5" diameter spars.</li>
+      <li>Optimized for Sunfish and similar small sailboats with 1.5" diameter spars</li>
       <li>Helps keep the mainsheet off you and the cockpit floor</li>
       <li>Sold in 5-pack for key rigging points</li>
     </ul>
@@ -91,7 +98,18 @@
       <a href="https://instagram.com/marinerxtech" target="_blank">Instagram</a> |
       <a href="https://youtube.com/shorts/NVr3YrbPimQ?si=3C2wXnGvvarrgLvy" target="_blank">YouTube</a>
     </p>
-      </footer>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const productSwiper = new Swiper('.product-swiper', {
+      loop: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      spaceBetween: 20
+    });
+  </script>
 
   <script>
     function toggleMenu() {

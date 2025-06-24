@@ -120,17 +120,19 @@
         6-inch<br>
         <small>(fits Beckson 6" screw-in directly)<br>(adapters available for additional brands and styles)</small>
       </td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">4-inch & 5-inch<br>
+        <small>(fits Beckson 4" screw-in directly)<br>(adapters available for additional brands and styles)</small>
+</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Airflow</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">101 CFM</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">39 CFM</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Noise Level</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">57 dB</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">54 dB</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Power Source</td>
@@ -138,17 +140,19 @@
         12V DC barrel jack<br>
         <small>(adapter included)</small>
       </td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">12V DC barrel jack<br>
+        <small>(adapter included)</small>
+</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Power Draw</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">11 Watts</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">7.8 Watts</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Current Draw</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">1.2 Amps (max)</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">0.65 Amps (max)</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Dimensions</td>
@@ -156,17 +160,19 @@
         6.5 x 6.5 x 7.25 inches<br>
         <small>(extends 4.75" below deck)</small>
       </td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">4.5 x 4.5 x 7 inches<br>
+        <small>(extends 4.5" below deck)</small>
+</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Weight</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">1.3 lbs</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">0.75 lbs</td>
     </tr>
     <tr>
       <td style="padding: 10px; border-top: 1px solid #ccc;">Fan Waterproof Rating</td>
       <td style="padding: 10px; border-top: 1px solid #ccc;">IP68</td>
-      <td style="padding: 10px; border-top: 1px solid #ccc;">Coming Soon</td>
+      <td style="padding: 10px; border-top: 1px solid #ccc;">IP68</td>
     </tr>
   </tbody>
 </table>
@@ -225,14 +231,27 @@
       ✅ Free shipping within the continental U.S.
     </p>
 
-    <div style="margin-top: 2rem; text-align: center;">
-      <div style="max-width: 350px; margin: 0 auto;">
-        <div id="paypal-container-J8KXB894ZCMNN"></div>
-        <script>
-          paypal.HostedButtons({ hostedButtonId: "J8KXB894ZCMNN" }).render("#paypal-container-J8KXB894ZCMNN");
-        </script>
-      </div>
+<div style="margin-top: 2rem; text-align: center;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; max-width: 750px; margin: 0 auto;">
+    
+    <!-- Standard Hull Dryer Button -->
+    <div style="flex: 1 1 300px; min-width: 280px;">
+      <div id="paypal-container-J8KXB894ZCMNN"></div>
+      <script>
+        paypal.HostedButtons({ hostedButtonId: "J8KXB894ZCMNN" }).render("#paypal-container-J8KXB894ZCMNN");
+      </script>
     </div>
+
+    <!-- Hull Dryer Mini Button -->
+    <div style="flex: 1 1 300px; min-width: 280px;">
+      <div id="paypal-container-RLJG8UVFHAN7E"></div>
+      <script>
+        paypal.HostedButtons({ hostedButtonId: "RLJG8UVFHAN7E" }).render("#paypal-container-RLJG8UVFHAN7E");
+      </script>
+    </div>
+
+  </div>
+</div>
 
     <div style="margin-top: 2.5rem; text-align: center;">
       <p style="margin-bottom: 1rem; font-size: 1.05em;">
@@ -323,16 +342,18 @@
   <!-- Event Tracking -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // 1. Track PayPal button click
-    const paypal = document.getElementById("paypal-container-J8KXB894ZCMNN");
-    if (paypal) {
-      paypal.addEventListener("click", function () {
-        gtag("event", "paypal_click", {
-          event_category: "engagement",
-          event_label: "PayPal Buy Button"
-        });
+// 1. Track PayPal button clicks (both products)
+["paypal-container-J8KXB894ZCMNN", "paypal-container-RLJG8UVFHAN7E"].forEach(function (id) {
+  const btn = document.getElementById(id);
+  if (btn) {
+    btn.addEventListener("click", function () {
+      gtag("event", "paypal_click", {
+        event_category: "engagement",
+        event_label: "PayPal Buy Button"
       });
-    }
+    });
+  }
+});
 
     // 2. Track scroll 50%
     let scrolled = false;
@@ -380,6 +401,6 @@
     });
   });
 </script>
-
+  <script src="script.js"></script>
 </body>
 </html>

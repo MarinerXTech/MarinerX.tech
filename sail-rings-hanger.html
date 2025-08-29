@@ -18,10 +18,7 @@
     gtag('config', 'G-SCGKTFK92C');
   </script>
 
-  <!-- PayPal SDK -->
-  <script 
-    src="https://www.paypal.com/sdk/js?client-id=BAAyavhc8v-KKW2_TpJjGTJgQvhBaC8xX926H384Je3WElLivlot7Uk02j7MTjqFfZxhGYDQ3dJOgmhLWo&components=hosted-buttons&enable-funding=venmo&currency=USD">
-  </script>
+  <!-- PayPal SDK loaded dynamically by script.js -->
 </head>
 
 <body>
@@ -73,20 +70,25 @@
 
     <p><em>Tested in real sailing conditions. Designed with feedback from the field.</em></p>
 
-    <!-- PayPal Button Section -->
+    <!-- Add to Cart Section (Variants) -->
     <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
-    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
-      ✅ Free shipping within the continental U.S.
-    </p>
+    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">✅ Free shipping within the continental U.S.</p>
 
-    <div style="margin-top: 2rem; text-align: center;">
-      <div style="max-width: 350px; margin: 0 auto;">
-        <div id="paypal-container-MFJS5DCGQYL9G"></div>
-        <script>
-          paypal.HostedButtons({
-            hostedButtonId: "MFJS5DCGQYL9G",
-          }).render("#paypal-container-MFJS5DCGQYL9G");
-        </script>
+    <div class="add-to-cart-section" style="margin-top: 1.5rem;">
+      <div class="product-options">
+        <div class="product-option">
+          <h3>Sail Rings + Hanger (5 Pack)</h3>
+          <div class="price">$13.95</div>
+          <p style="margin: 0.5rem 0; font-size: 0.9em;">Color: White</p>
+          <button class="add-to-cart-btn" onclick="addToCart({ id:'rings-hanger-5pk-white', name:'Sail Rings + Mainsheet Hanger (5 Pack) - White', variant:'white', price:13.95, quantity:1, image:'images/rings_hanger_combo_1.jpg' })">Add to Cart</button>
+        </div>
+
+        <div class="product-option">
+          <h3>Sail Rings + Hanger (5 Pack)</h3>
+          <div class="price">$13.95</div>
+          <p style="margin: 0.5rem 0; font-size: 0.9em;">Color: Teal</p>
+          <button class="add-to-cart-btn" onclick="addToCart({ id:'rings-hanger-5pk-teal', name:'Sail Rings + Mainsheet Hanger (5 Pack) - Teal', variant:'teal', price:13.95, quantity:1, image:'images/rings_hanger_combo_2.jpg' })">Add to Cart</button>
+        </div>
       </div>
     </div>
   </section>

@@ -101,8 +101,9 @@
       Patent pending for the MarinerX Hull Dryer (filed March 2025).
     </p>
 
-    <h2>Specs</h2>
-<table style="width: 100%; max-width: 800px; margin: 2rem auto; border-collapse: collapse; border: 1px solid #ccc; text-align: left;">
+    <details class="accordion" open>
+      <summary><h2>Specs</h2><span class="hint-below">View specs</span></summary>
+<table style="width: 100%; max-width: 800px; margin: 1rem auto; border-collapse: collapse; border: 1px solid #ccc; text-align: left;">
   <thead>
     <tr style="background-color: #f4f4f4;">
       <th style="padding: 10px;">Feature</th>
@@ -173,9 +174,10 @@
     </tr>
   </tbody>
 </table>
-    <p><em>Looking for compatibility with another port type? Let us know — we can design and 3D print alternate interfaces!</em></p>
+    </details>
 
-<h2>Performance</h2>
+<details class="accordion">
+  <summary><h2>Performance</h2><span class="hint-below">See performance</span></summary>
 <p>Controlled tests were run using a sealed container with water inside—simulating a wet hull. Each setup had either an open port, the Hull Dryer, or the Hull Dryer Mini. Tests ran continuously for over 24 hours. All tests were performed in a stable indoor environment.</p>
 
 <blockquote style="font-size: 1.05em; margin: 1.5rem auto; max-width: 500px;">
@@ -192,8 +194,10 @@
 </div>
 
 <p>This confirms what users experience in the real world: fast, effective, airflow-optimized drying.</p>
+</details>
     
-    <h2>Adapters & Compatibility</h2>
+    <details class="accordion">
+      <summary><h2>Adapters &amp; Compatibility</h2><span class="hint-below">See adapters &amp; compatibility</span></summary>
     <p>The Hull Dryer is designed to screw into standard Beckson 6" ports—but we also offer adapters for other port styles. Shown below is the adapter for a Seaflo port. New styles will be added based on customer needs.</p>
 
     <div class="video-container">
@@ -203,6 +207,7 @@
         allowfullscreen>
       </iframe>
     </div>
+    </details>
 
     <h2>What Boaters Are Saying</h2>
     <div class="swiper testimonial-swiper">
@@ -219,30 +224,61 @@
             <footer>– Well-Known Member, sailingforums.com</footer>
           </blockquote>
         </div>
+        <div class="swiper-slide">
+          <blockquote>
+            “Thanks again for a great, well thought out product. You did an excellent job with the unit and your attention to detail is very apparent.”
+            <footer>– John, Customer from Ontario (contributed idea for extension rings)</footer>
+          </blockquote>
+        </div>
       </div>
       <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
 
     <h2 id="purchase" style="text-align: center; margin-top: 2rem;">Order Now</h2>
     <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">
-      ✅ Free shipping within the continental U.S.
+      ✅ Free shipping on orders $13 and up within the continental U.S.
     </p>
 
     <div class="add-to-cart-section" style="margin-top: 2rem;">
       <div class="product-options">
-        <div class="product-option plain">
+        <div class="product-option plain" data-sku="hull-dryer-standard">
+          <img class="tile-thumb" alt="">
           <h3>Standard Hull Dryer</h3>
           <div class="price">$119.00</div>
           <p style="margin: 0.5rem 0; font-size: 0.9em;">Fits 6&quot; Beckson screw-in inspection ports.<br>Select an adapter below if needed for other inspection ports.</p>
-          <button type="button" class="add-to-cart-btn" onclick="addToCart({ id:'hull-dryer-standard', name:'Standard Hull Dryer', variant:'standard', price:119.00, quantity:1, image:'images/hull_dryer_1.jpg' })">Add to Cart</button>
+          <button type="button" class="add-to-cart-btn" data-add-to-cart data-id="hull-dryer-standard" data-variant="standard" data-qty="1">Add to Cart</button>
         </div>
 
-        <div class="product-option plain">
+        <div class="product-option plain" data-sku="hull-dryer-mini">
+          <img class="tile-thumb" alt="">
           <h3>Hull Dryer Mini</h3>
           <div class="price">$99.00</div>
           <p style="margin: 0.5rem 0; font-size: 0.9em;">Fits 4&quot; Beckson screw-in inspection ports.<br>Select an adapter below if needed for other inspection ports.</p>
-          <button type="button" class="add-to-cart-btn" onclick="addToCart({ id:'hull-dryer-mini', name:'Hull Dryer Mini', variant:'mini', price:99.00, quantity:1, image:'images/hull_dryer_2.jpg' })">Add to Cart</button>
+          <button type="button" class="add-to-cart-btn" data-add-to-cart data-id="hull-dryer-mini" data-variant="mini" data-qty="1">Add to Cart</button>
         </div>
+      </div>
+      
+      <!-- General Accessories (applies to both products) -->
+      <div class="accessory-column" style="flex-basis: 100%; margin-top: 0.5rem;">
+        <h3 style="text-align:center; margin:0 0 0.5rem;">General Accessories</h3>
+        <ul class="accessory-list" style="margin: 0;">
+          <li class="accessory-row">
+            <div class="accessory-info">
+              <img class="acc-thumb" alt="">
+              <span class="accessory-name">USB-C Adapter Cable</span>
+              <span class="accessory-price">$10.99</span>
+              <div style="font-size: 0.9em; color: #555; margin-top: 4px; text-align: center;">
+                Power your Hull Dryer or Hull Dryer Mini with a USB battery bank using a 12V USB-C PD to barrel plug cable.<br>
+                Compatible with any power supply that supports 12V output via USB-C Power Delivery.
+              </div>
+            </div>
+            <div class="accessory-actions">
+              <button class="add-to-cart-btn" data-add-to-cart data-id="usb-c-adapter" data-variant="usb-c-pd" data-qty="1">Add to Cart</button>
+            </div>
+          </li>
+        </ul>
       </div>
       
     </div>
@@ -258,7 +294,7 @@
               <span class="accessory-price">$3.95</span>
             </div>
             <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-rwo" data-name="Adapter for 6&quot; RWO screw-in inspection port" data-variant="6-rwo" data-price="3.95" data-qty="1" data-image="images/hull_dryer_1.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-rwo" data-variant="6-rwo" data-qty="1">Add to Cart</button>
             </div>
           </li>
           <li class="accessory-row">
@@ -267,7 +303,7 @@
               <span class="accessory-price">$3.95</span>
             </div>
             <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-allen" data-name="Adapter for 6&quot; Allen screw-in inspection port" data-variant="6-allen" data-price="3.95" data-qty="1" data-image="images/hull_dryer_1.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-allen" data-variant="6-allen" data-qty="1">Add to Cart</button>
             </div>
           </li>
           <li class="accessory-row">
@@ -276,7 +312,7 @@
               <span class="accessory-price">$3.95</span>
             </div>
             <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-sea-dog" data-name="Adapter for 6&quot; Sea Dog Line screw-in inspection port" data-variant="6-sea-dog" data-price="3.95" data-qty="1" data-image="images/hull_dryer_1.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-sea-dog" data-variant="6-sea-dog" data-qty="1">Add to Cart</button>
             </div>
           </li>
           <li class="accessory-row">
@@ -285,7 +321,7 @@
               <span class="accessory-price">$3.95</span>
             </div>
             <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-seaflo" data-name="Adapter for 6&quot; Seaflo screw-in inspection port" data-variant="6-seaflo" data-price="3.95" data-qty="1" data-image="images/hull_dryer_1.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-6-seaflo" data-variant="6-seaflo" data-qty="1">Add to Cart</button>
             </div>
           </li>
           <li class="accessory-row">
@@ -294,7 +330,7 @@
               <span class="accessory-price">$3.95</span>
             </div>
             <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="extension-ring-1-5" data-name="1.5&quot; Extension Ring for Hull Dryer" data-variant="ext-1-5" data-price="3.95" data-qty="1" data-image="images/hull_dryer_1.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="extension-ring-1-5" data-variant="ext-1-5" data-qty="1">Add to Cart</button>
             </div>
           </li>
         </ul>
@@ -309,7 +345,7 @@
               <span class="accessory-price">$3.95</span>
         </div>
         <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-4-rwo" data-name="Adapter for 4&quot; RWO screw-in inspection port" data-variant="4-rwo" data-price="3.95" data-qty="1" data-image="images/hull_dryer_2.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-4-rwo" data-variant="4-rwo" data-qty="1">Add to Cart</button>
         </div>
       </li>
       <li class="accessory-row">
@@ -318,7 +354,7 @@
               <span class="accessory-price">$3.95</span>
         </div>
         <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-4-allen" data-name="Adapter for 4&quot; Allen screw-in inspection port" data-variant="4-allen" data-price="3.95" data-qty="1" data-image="images/hull_dryer_2.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-4-allen" data-variant="4-allen" data-qty="1">Add to Cart</button>
         </div>
       </li>
       <li class="accessory-row">
@@ -327,7 +363,7 @@
               <span class="accessory-price">$3.95</span>
         </div>
         <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-5-rwo" data-name="Adapter for 5&quot; RWO screw-in inspection port" data-variant="5-rwo" data-price="3.95" data-qty="1" data-image="images/hull_dryer_2.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-5-rwo" data-variant="5-rwo" data-qty="1">Add to Cart</button>
         </div>
       </li>
       <li class="accessory-row">
@@ -336,12 +372,14 @@
               <span class="accessory-price">$3.95</span>
         </div>
         <div class="accessory-actions">
-              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-5-allen" data-name="Adapter for 5&quot; Allen screw-in inspection port" data-variant="5-allen" data-price="3.95" data-qty="1" data-image="images/hull_dryer_2.jpg">Add to Cart</button>
+              <button class="add-to-cart-btn" data-add-to-cart data-id="adapter-5-allen" data-variant="5-allen" data-qty="1">Add to Cart</button>
         </div>
       </li>
         </ul>
       </div>
     </div>
+
+    <p><em>Looking for compatibility with another port type? Let us know — we can design and 3D print alternate interfaces!</em></p>
 
     <div style="margin-top: 2.5rem; text-align: center;">
       <p style="margin-bottom: 1rem; font-size: 1.05em;">
@@ -400,6 +438,10 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Simple lightbox container -->
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content"><img alt=""></div>
+  </div>
   <script>
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('open');
@@ -425,8 +467,21 @@
     const testimonialSwiper = new Swiper('.testimonial-swiper', {
       loop: true,
       autoplay: { delay: 6000 },
-      pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true }
+      pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true },
+      navigation: { nextEl: '.testimonial-swiper .swiper-button-next', prevEl: '.testimonial-swiper .swiper-button-prev' }
     });
+
+    // Lightweight lightbox for thumbnails
+    const overlay = document.getElementById('lightbox');
+    const overlayImg = overlay.querySelector('img');
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img.tile-thumb, img.acc-thumb, .product-swiper .swiper-slide img');
+      if (!img) return;
+      overlayImg.src = img.src;
+      overlayImg.alt = img.alt || '';
+      overlay.classList.add('open');
+    });
+    overlay.addEventListener('click', () => overlay.classList.remove('open'));
   </script>
 
   <!-- Event Tracking -->
@@ -491,6 +546,7 @@
     });
   });
 </script>
+  <script src="catalog.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -72,22 +72,24 @@
 
     <!-- Add to Cart Section (Variants) -->
     <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
-    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">✅ Free shipping within the continental U.S.</p>
+    <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">✅ Free shipping on orders $13 and up within the continental U.S.</p>
 
     <div class="add-to-cart-section" style="margin-top: 1.5rem;">
       <div class="product-options">
-        <div class="product-option">
+        <div class="product-option" data-sku="rings-hanger-5pk-white">
+          <img class="tile-thumb" alt="">
           <h3>Sail Rings + Hanger (5 Pack)</h3>
           <div class="price">$13.95</div>
           <p style="margin: 0.5rem 0; font-size: 0.9em;">Color: White</p>
-          <button class="add-to-cart-btn" onclick="addToCart({ id:'rings-hanger-5pk-white', name:'Sail Rings + Mainsheet Hanger (5 Pack) - White', variant:'white', price:13.95, quantity:1, image:'images/rings_hanger_combo_1.jpg' })">Add to Cart</button>
+          <button class="add-to-cart-btn" data-add-to-cart data-id="rings-hanger-5pk-white" data-qty="1">Add to Cart</button>
         </div>
 
-        <div class="product-option">
+        <div class="product-option" data-sku="rings-hanger-5pk-teal">
+          <img class="tile-thumb" alt="">
           <h3>Sail Rings + Hanger (5 Pack)</h3>
           <div class="price">$13.95</div>
           <p style="margin: 0.5rem 0; font-size: 0.9em;">Color: Teal</p>
-          <button class="add-to-cart-btn" onclick="addToCart({ id:'rings-hanger-5pk-teal', name:'Sail Rings + Mainsheet Hanger (5 Pack) - Teal', variant:'teal', price:13.95, quantity:1, image:'images/rings_hanger_combo_2.jpg' })">Add to Cart</button>
+          <button class="add-to-cart-btn" data-add-to-cart data-id="rings-hanger-5pk-teal" data-qty="1">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -118,6 +120,7 @@
       document.querySelector('.nav-links').classList.toggle('open');
     }
   </script>
+  <script src="catalog.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

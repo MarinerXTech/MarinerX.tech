@@ -272,18 +272,24 @@ class ShoppingCart {
       const btn = e.target.closest('[data-add-to-cart]');
       if (!btn) return;
       e.preventDefault();
-      const product = {
-        id: btn.dataset.id,
-        name: btn.dataset.name,
-        variant: btn.dataset.variant || 'standard',
-        price: Number(btn.dataset.price || 0),
-        quantity: Number(btn.dataset.qty || 1),
-        image: btn.dataset.image || ''
-      };
-      if (product.id && product.name && product.price > 0) {
+      const id = btn.dataset.id;
+      try {
+        const catalog = (window.PRODUCT_CATALOG || {});
+        const fromCatalog = catalog[id];
+        if (!fromCatalog) throw new Error('Missing catalog entry for ' + id);
+        const product = {
+          id,
+          name: fromCatalog.name,
+          variant: btn.dataset.variant || 'standard',
+          price: Number(fromCatalog.price),
+          quantity: Number(btn.dataset.qty || 1),
+          image: (fromCatalog.image && fromCatalog.image.src) || ''
+        };
+        if (!product.name || !(product.price > 0)) throw new Error('Catalog entry incomplete for ' + id);
         this.addItem(product);
-      } else {
-        console.warn('Invalid add-to-cart data on element', btn.dataset);
+      } catch (err) {
+        console.warn('Add-to-cart error:', err);
+        alert('This item is being updated. Please try again later.');
       }
     });
   }
@@ -474,11 +480,81 @@ class ShoppingCart {
 let cart;
 document.addEventListener('DOMContentLoaded', () => {
   cart = new ShoppingCart();
+  // Hydrate any tile elements from catalog (title/price) where data-sku is present
+  try {
+    const catalog = (window.PRODUCT_CATALOG || {});
+    document.querySelectorAll('[data-sku]').forEach((el) => {
+      const sku = el.getAttribute('data-sku') || '';
+      const c = catalog[sku];
+      if (!c) return;
+      const title = el.querySelector('h3');
+      if (title && c.name) title.textContent = c.name.replace(/\s*\(.*\)$/,'');
+      const priceEl = el.querySelector('.price');
+      if (priceEl && typeof c.price === 'number') priceEl.textContent = `$${c.price.toFixed(2)}`;
+      // Accessory name/price rows
+      const accName = el.querySelector('.accessory-name');
+      if (accName && c.name) accName.textContent = c.name;
+      const accPrice = el.querySelector('.accessory-price');
+      if (accPrice && typeof c.price === 'number') accPrice.textContent = `$${c.price.toFixed(2)}`;
+      const img = el.querySelector('img.tile-thumb');
+      if (img) {
+        if (c.image && c.image.src) {
+          img.src = c.image.src;
+          if (c.image.alt) img.alt = c.image.alt;
+          img.style.display = 'block';
+        } else {
+          // No image defined: keep it hidden to avoid empty box
+          img.style.display = 'none';
+        }
+      }
+    });
+
+    // Accessory rows can show an icon if we inject a placeholder <img class="acc-thumb">
+    document.querySelectorAll('.accessory-row').forEach((row) => {
+      const btn = row.querySelector('[data-add-to-cart][data-id]');
+      if (!btn) return;
+      const sku = btn.getAttribute('data-id');
+      const c = catalog[sku];
+      if (!c || !c.image || !c.image.src) return;
+      // Insert thumbnail at start of accessory-info if not present
+      const info = row.querySelector('.accessory-info');
+      if (!info) return;
+      const existing = info.querySelector('img.acc-thumb');
+      if (existing) {
+        existing.src = c.image.src;
+        if (c.image.alt) existing.alt = c.image.alt;
+        info.classList.add('with-thumb');
+        return;
+      }
+      const img = document.createElement('img');
+      img.className = 'acc-thumb';
+      img.src = c.image.src;
+      if (c.image.alt) img.alt = c.image.alt;
+      info.prepend(img);
+      info.classList.add('with-thumb');
+    });
+  } catch (e) { /* non-blocking */ }
 });
 
 // Global helpers for product pages
 window.addToCart = function(product) {
-  if (cart) cart.addItem(product);
+  if (!cart) return;
+  try {
+    const catalog = (window.PRODUCT_CATALOG || {});
+    const fromCatalog = catalog[product.id];
+    if (!fromCatalog) throw new Error('Missing catalog entry for ' + product.id);
+    cart.addItem({
+      id: product.id,
+      name: fromCatalog.name,
+      variant: product.variant || 'standard',
+      price: Number(fromCatalog.price),
+      quantity: Number(product.quantity || 1),
+      image: (fromCatalog.image && fromCatalog.image.src) || ''
+    });
+  } catch (err) {
+    console.warn('addToCart error:', err);
+    alert('This item is being updated. Please try again later.');
+  }
 };
 
 // Quantity helper (if any legacy quantity inputs remain)

@@ -268,35 +268,6 @@ nav {
       width: 100%;
       border-radius: 8px;
     }
-    /* Fine-tune testimonial carousel arrows */
-    .testimonial-swiper { padding: 0 34px; }
-    .testimonial-swiper .swiper-button-prev,
-    .testimonial-swiper .swiper-button-next {
-      color: #0077b6;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-    }
-    .testimonial-swiper .swiper-button-prev::after,
-    .testimonial-swiper .swiper-button-next::after { font-size: 16px; }
-
-    /* Apply the same arrow bubble style to the main product photo carousel */
-    .product-swiper { padding: 0 34px; }
-    .product-swiper .swiper-button-prev,
-    .product-swiper .swiper-button-next {
-      color: #0077b6;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-    }
-    .product-swiper .swiper-button-prev::after,
-    .product-swiper .swiper-button-next::after { font-size: 16px; }
     
     blockquote {
       font-style: italic;
@@ -731,16 +702,6 @@ footer {
   cursor: not-allowed;
 }
 
-/* Optional product tile thumbnail inside .product-option */
-.tile-thumb {
-  width: 100%;
-  max-width: 240px;
-  height: auto;
-  border-radius: 6px;
-  display: block;
-  margin: 0 auto 0.75rem;
-}
-
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .cart-panel {
@@ -789,7 +750,7 @@ footer {
 
 .accessory-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 8px 0;
@@ -802,20 +763,6 @@ footer {
 
 .accessory-info {
   text-align: left;
-  flex: 1 1 auto;
-}
-
-/* When a thumbnail exists, lay out info as grid to prevent text wrapping under the image */
-.accessory-info.with-thumb {
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  align-items: start;
-  column-gap: 10px;
-}
-
-.accessory-info .accessory-name,
-.accessory-info .accessory-price {
-  white-space: normal;
 }
 
 .accessory-name {
@@ -833,118 +780,4 @@ footer {
 .accessory-actions .add-to-cart-btn {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-}
-
-/* Optional small accessory thumbnail */
-.acc-thumb {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.tile-thumb,
-.acc-thumb {
-  cursor: zoom-in;
-}
-
-/* Lightbox for enlarging thumbnails */
-.lightbox-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.lightbox-overlay.open { display: flex; }
-
-.lightbox-content {
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.lightbox-content img {
-  max-width: 100%;
-  max-height: 90vh;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-}
-
-/* ===== ACCORDION (details/summary) ===== */
-.accordion {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 1.5rem 0;
-}
-
-.accordion > summary {
-  list-style: none;
-  cursor: pointer;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 0;
-}
-
-.accordion > summary::-webkit-details-marker {
-  display: none;
-}
-
-.accordion > summary::after { display: none; }
-.accordion[open] > summary::after { }
-
-.accordion > summary:focus-visible {
-  outline: 2px solid #99c7de;
-  outline-offset: 2px;
-}
-
-.accordion > summary h2 {
-  margin: 0;
-  color: inherit;
-}
-
-.accordion > summary .hint-below {
-  display: block;
-  font-size: 0.8rem;
-  color: #777;
-  text-align: center;
-  margin-top: 6px;
-}
-
-.accordion[open] > summary .hint-below {
-  display: none;
-}
-
-.accordion > summary .hint {
-  font-size: 0.8rem;
-  color: #666;
-  margin-left: 10px;
-}
-
-.accordion > summary:hover {
-  background: rgba(0,0,0,0.02);
-  border-radius: 6px;
-}
-
-/* Caret to the right of the heading */
-.accordion > summary h2::after {
-  content: '\25BE';
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 0.8em;
-  vertical-align: middle;
-  transition: transform 0.2s ease;
-}
-
-.accordion[open] > summary h2::after {
-  transform: rotate(180deg);
 }

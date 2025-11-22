@@ -781,3 +781,27 @@ footer {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
 }
+
+/* Product/accessory thumbnails */
+.product-option .tile-thumb {
+  width: 100%;
+  max-width: 220px;
+  max-height: 180px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 0.75rem;
+  border-radius: 6px;
+}
+
+.accessory-row .acc-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  background: #fafafa;
+  margin-right: 10px;
+}

@@ -41,6 +41,11 @@ window.PRODUCT_CATALOG = {
     price: 3.95,
     image: { src: 'images/adapter_seaflo_6in.jpg', alt: 'Adapter for 6\" Seaflo screw-in inspection port' }
   },
+  'adapter-8-beckson-west': {
+    name: 'Adapter for 8" Beckson / West Marine screw-in inspection port',
+    price: 3.95,
+    image: { src: 'images/hull_dryer_1.jpg', alt: 'Adapter for 8\" Beckson / West Marine screw-in inspection port' }
+  },
   'extension-ring-1-5': {
     name: '1.5" Extension Ring for Hull Dryer',
     price: 3.95,
@@ -70,5 +75,3 @@ window.PRODUCT_CATALOG = {
   'rings-hanger-5pk-white': { name: 'Sail Rings + Mainsheet Hanger (5 Pack) - White', price: 13.95, image: { src: 'images/rings_hanger_combo_1.jpg', alt: 'Sail Rings + Hanger White' } },
   'rings-hanger-5pk-teal':  { name: 'Sail Rings + Mainsheet Hanger (5 Pack) - Teal', price: 13.95, image: { src: 'images/rings_hanger_combo_2.jpg', alt: 'Sail Rings + Hanger Teal' } }
 };
-
-

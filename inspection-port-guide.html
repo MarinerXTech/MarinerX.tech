@@ -20,6 +20,120 @@
       padding: 1.5rem;
     }
 
+    .intro-grid,
+    .measurement-grid,
+    .spec-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .intro-grid,
+    .measurement-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 1rem;
+    }
+
+    .spec-card {
+      background: #ffffff;
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+
+    .spec-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .measurement-visual {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      background: linear-gradient(180deg, #f9fcfe 0%, #f0f5f8 100%);
+      border: 1px solid #d7e3ea;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .measurement-stack {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+
+    .measurement-ring,
+    .measurement-cutout,
+    .measurement-opening {
+      position: absolute;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .measurement-ring {
+      width: 260px;
+      height: 260px;
+      border: 18px solid #8eb8cc;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .measurement-cutout {
+      width: 208px;
+      height: 208px;
+      border: 3px dashed #f28c28;
+      background: rgba(242, 140, 40, 0.07);
+    }
+
+    .measurement-opening {
+      width: 180px;
+      height: 180px;
+      border: 3px solid #005f8b;
+      background: rgba(0, 95, 139, 0.08);
+    }
+
+    .measurement-tag {
+      position: absolute;
+      max-width: 130px;
+      font-size: 0.88em;
+      line-height: 1.35;
+      color: #183645;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .measurement-tag strong {
+      display: block;
+      color: #005f8b;
+    }
+
+    .measurement-tag.nominal {
+      top: 8px;
+      left: -22px;
+    }
+
+    .measurement-tag.rim {
+      top: 118px;
+      right: -42px;
+    }
+
+    .measurement-tag.cutout {
+      bottom: 10px;
+      left: -8px;
+    }
+
+    .source-list {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .source-list li + li {
+      margin-top: 0.45rem;
+    }
+
     .guide-jump-links {
       display: flex;
       flex-wrap: wrap;
@@ -44,7 +158,6 @@
     }
 
     .flow-grid,
-    .support-grid,
     .image-row,
     .section-actions {
       display: grid;
@@ -73,27 +186,6 @@
 
     .flow-step h3 {
       margin: 0.35rem 0 0.5rem;
-    }
-
-    .support-grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      margin-top: 1rem;
-    }
-
-    .support-box {
-      border-radius: 8px;
-      padding: 1.25rem;
-      text-align: left;
-    }
-
-    .support-box.supported {
-      background: #f2f8f4;
-      border: 1px solid #cfe2d4;
-    }
-
-    .support-box.unsupported {
-      background: #fbf6f1;
-      border: 1px solid #ead7c7;
     }
 
     .matrix-wrapper {
@@ -216,6 +308,11 @@
       color: #42535e;
     }
 
+    .top-link {
+      margin-top: 1rem;
+      font-size: 0.95em;
+    }
+
     .image-row {
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       margin: 1.25rem 0;
@@ -272,12 +369,6 @@
     }
     .section-link:hover {
       opacity: 0.92;
-    }
-
-    .top-link {
-      margin-top: 1rem;
-      text-align: right;
-      font-size: 0.95em;
     }
 
     .faq-list {
@@ -439,7 +530,6 @@
     @media screen and (max-width: 700px) {
       .guide-panel,
       .flow-step,
-      .support-box,
       .image-card,
       .faq-list details {
         padding: 1rem;
@@ -496,40 +586,75 @@
 
   <section class="content inspection-guide-page">
     <div class="guide-panel">
-      <p><strong>This guide is meant to remove fitment anxiety.</strong> Start with size, then lock type, then brand cues. The supported combinations below cover roughly 80% of the common screw-in inspection ports and deck plates we see. If your port does not match clearly, do not guess, <a href="contact.html">send us photos</a>.</p>
+      <p><strong>This guide is meant to remove fitment anxiety.</strong> Correct hull-dryer fit depends on matching the port's nominal opening, thread geometry, and lock style, not just the outer ring diameter.</p>
+      <p>The supported combinations below cover roughly 80% of the common screw-in inspection ports and deck plates we see. If your port does not match clearly, do not guess, <a href="contact.html">send us photos</a>.</p>
       <div class="guide-jump-links">
         <a href="#identification-flow">60-second flow</a>
+        <a href="#measurement-guide">How to measure</a>
         <a href="#compatibility-matrix">Compatibility matrix</a>
-        <a href="#supported-vs-unsupported">Supported vs unsupported</a>
         <a href="#supported-sections">Supported port sections</a>
         <a href="#faq">FAQ</a>
       </div>
     </div>
 
+    <section>
+      <div class="intro-grid">
+        <article class="spec-card">
+          <h3>Why identification matters</h3>
+          <p>Each brand uses its own thread form, cover geometry, and dimensions. The correct MarinerX base unit or adapter only works when those details line up.</p>
+        </article>
+      </div>
+    </section>
+
     <section id="identification-flow">
       <h2>60-Second Identification Flow</h2>
-      <p>If you want the shortest path, use this order. It will usually narrow the field faster than browsing photos at random.</p>
+      <p>If you want the shortest path, use this order. It narrows the field faster than browsing photos at random and keeps the measurement logic consistent with how manufacturers publish dimensions.</p>
       <div class="flow-grid">
         <article class="flow-step">
           <div class="step-label">Step 1</div>
           <h3>Measure the nominal size</h3>
-          <p>Most ports we see are 4-inch, 5-inch, 6-inch, or 8-inch. Measure the lid opening size or the marked nominal size, not the outside flange.</p>
+          <p>Start with the clear opening or inside thread area: usually 4, 5, 6, or 8 inches, not the outside flange.</p>
         </article>
         <article class="flow-step">
           <div class="step-label">Step 2</div>
           <h3>Check the lock type</h3>
-          <p><strong>Screw-in</strong> ports show real threads. <strong>Quarter-turn</strong> ports use cam tabs. <strong>Pop-out / snap-in</strong> ports release without full threads.</p>
+          <p><strong>Screw-in</strong> has full threads. <strong>Quarter-turn</strong> uses cam tabs. <strong>Pop-out</strong> has no threads.</p>
         </article>
         <article class="flow-step">
           <div class="step-label">Step 3</div>
           <h3>Match brand cues</h3>
-          <p>Look for thread pitch, grip lug shape, molded brand names, ring color, and whether the lid uses coarse or fine threads.</p>
+          <p>Check thread pitch, grip shape, molded brand text, and lid color.</p>
         </article>
         <article class="flow-step">
           <div class="step-label">Step 4</div>
           <h3>Use the matrix</h3>
-          <p>Once size and lock type match, jump to the matrix below to confirm the correct MarinerX base unit and adapter, if any.</p>
+          <p>Find your port in the matrix below, then use that row to choose the correct Hull Dryer and adapter.</p>
         </article>
+      </div>
+    </section>
+
+    <section id="measurement-guide" class="port-profile">
+      <h2>How to Measure an Inspection Port Correctly</h2>
+      <p>Nominal size, outside rim diameter, and cutout size are not the same thing. For compatibility, start with the clear opening and thread pattern, then use the cutout and outside-rim numbers as confidence checks in the brand sections below.</p>
+      <div class="measurement-grid">
+        <div class="measurement-visual" aria-hidden="true">
+          <div class="measurement-stack">
+            <div class="measurement-ring"></div>
+            <div class="measurement-cutout"></div>
+            <div class="measurement-opening"></div>
+            <div class="measurement-tag nominal"><strong>Nominal opening</strong>Clear inside diameter or advertised opening size</div>
+            <div class="measurement-tag rim"><strong>Outside rim</strong>Overall flange or ring dimension</div>
+            <div class="measurement-tag cutout"><strong>Cutout hole</strong>Diameter of the hole in the deck or hull</div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <h3>Measurement tips</h3>
+          <ul>
+            <li>Measure the clear opening or inside thread area first, not the outside rim.</li>
+            <li>If you already know the cutout size, use it as a secondary check because brands with similar openings can still use different cutouts.</li>
+            <li>If the advertised size and your flange measurement do not agree, trust the clear opening and thread pattern first.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -620,40 +745,13 @@
       <p class="top-link"><a href="#top">Back to top</a></p>
     </section>
 
-    <section id="supported-vs-unsupported" class="port-profile">
-      <h2>Supported vs Unsupported Types</h2>
-      <p>We are deliberately explicit here. The guide should help you confirm a fit, or rule it out, without wishful thinking.</p>
-      <div class="support-grid">
-        <div class="support-box supported">
-          <h3>Supported now</h3>
-          <p>Supported fits are centered on <strong>screw-in inspection ports</strong> where the Hull Dryer or adapter can achieve secure mechanical engagement and a controlled airflow path.</p>
-          <ul>
-            <li>Beckson / West Marine 4-inch, 6-inch, and 8-inch screw-in ports</li>
-            <li>RWO and Allen 4-inch, 5-inch, and 6-inch screw-in ports with size-specific adapters</li>
-            <li>Sea-Dog Line 6-inch screw-in ports with adapter</li>
-            <li>Seaflo 6-inch screw-in ports with adapter</li>
-          </ul>
-        </div>
-        <div class="support-box unsupported">
-          <h3>Not currently supported</h3>
-          <p><strong>Quarter-turn</strong> and <strong>pop-out / snap-in</strong> ports are not currently supported. Those styles do not provide the same threaded engagement, sealing consistency, or airflow path control that the supported screw-in types provide.</p>
-          <ul>
-            <li>No visible continuous threads is usually the first warning sign</li>
-            <li>Cam tabs, latch tabs, or snap lips usually indicate an unsupported type</li>
-            <li>If unsure, <a href="contact.html">send us a photo</a> before ordering</li>
-          </ul>
-        </div>
-      </div>
-      <p class="top-link"><a href="#top">Back to top</a></p>
-    </section>
-
     <section id="supported-sections" class="port-profile">
-      <h2>Supported Screw-In Inspection Port Sections</h2>
-      <p>Use the consistent checks below to confirm your match. Each section includes the visual cues that matter most before you choose a base unit or adapter.</p>
+      <h2>Supported Inspection Ports</h2>
+      <p>Each section highlights the visual cues that matter most so you can identify the inspection port you have.</p>
 
       <article id="beckson-6" class="port-profile">
         <h2>Beckson / West Marine 6-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>Usually the easiest match: a common white screw-in plate with familiar grip lugs and a coarse thread pattern. This is the direct-fit baseline for the MarinerX Standard Hull Dryer.</p>
+        <p>Usually the easiest match: a common white or beige screw-out plate with Beckson's coarse buttress thread, designed to resist cross-threading. Official Beckson dimensions for the 6-inch plate are 6-inch opening, 8-1/8-inch outside diameter, and 6-1/2-inch cutout.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> None. Standard Hull Dryer fits directly.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/beckson-6-plate.jpg" alt="Beckson or West Marine 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-6-plate.jpg</code></figcaption></figure>
@@ -662,20 +760,20 @@
         </div>
         <h3>Confidence checks</h3>
         <ul>
-          <li>You can see continuous screw threads rather than quarter-turn tabs</li>
-          <li>The nominal size is 6 inches, not 4 inches or 8 inches</li>
-          <li>The lid and ring resemble the common Beckson / West Marine three-grip style</li>
+          <li>You can see continuous coarse threads rather than quarter-turn tabs or cam slots</li>
+          <li>The nominal opening is 6 inches and the outside flange is about 8-1/8 inches</li>
+          <li>The lid uses Beckson / West Marine style grip geometry, often with dimpled or textured hand-grip areas</li>
         </ul>
         <div class="section-actions">
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="beckson-4" class="port-profile">
         <h2>Beckson / West Marine 4-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>This is the smaller direct-fit Beckson family pattern. The visual language is very similar to the 6-inch version, but the opening is tighter and the correct MarinerX base unit is the Mini.</p>
+        <p>This is the smaller Beckson family pattern and the direct-fit match for the Hull Dryer Mini. Beckson lists the 4-inch plate at roughly 5-7/8 inches outside diameter with a 4-1/2-inch cutout, so measure the clear opening rather than the flange.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> None. Hull Dryer Mini fits directly.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/beckson-4-plate.jpg" alt="Beckson or West Marine 4 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-4-plate.jpg</code></figcaption></figure>
@@ -684,20 +782,20 @@
         </div>
         <h3>Confidence checks</h3>
         <ul>
-          <li>You see screw threads and Beckson-style grip geometry</li>
+          <li>You see Beckson-style coarse threads and familiar grip geometry</li>
           <li>The nominal size is 4 inches</li>
-          <li>The port is not an RWO / Allen fine-thread pattern</li>
+          <li>The cutout is about 4-1/2 inches rather than the larger Beckson 6-inch family</li>
         </ul>
         <div class="section-actions">
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="beckson-8" class="port-profile">
         <h2>Beckson / West Marine 8-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>This larger Beckson-family screw-in port keeps the same general identification logic, but it needs the larger Beckson / West Marine adapter for a secure Standard Hull Dryer fit.</p>
+        <p>This larger Beckson-family port keeps the same thread language as the smaller Beckson plates, but the dimensions step up to about 7-5/8-inch opening, 10-inch outside diameter, and 8-1/2-inch cutout. It needs the larger Beckson / West Marine adapter for a secure Standard Hull Dryer fit.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 8-inch Beckson / West Marine adapter with the Standard Hull Dryer.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/beckson-8-plate.jpg" alt="Beckson or West Marine 8 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-8-plate.jpg</code></figcaption></figure>
@@ -707,19 +805,19 @@
         <h3>Confidence checks</h3>
         <ul>
           <li>The brand cues look Beckson / West Marine, but the nominal size is 8 inches</li>
-          <li>The lock type is still true screw-in, not quarter-turn</li>
+          <li>The lock type is still true screw-in, not quarter-turn or pry-out</li>
           <li>You need the Standard base unit plus the 8-inch adapter, not the Mini</li>
         </ul>
         <div class="section-actions">
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="rwo-allen-6" class="port-profile">
         <h2>RWO / Allen 6-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>These ports are commonly identified by a finer thread pattern than Beckson and often show darker rings or molded brand markings. Match the size first, then confirm whether your lid is RWO or Allen so you choose the right adapter.</p>
+        <p>These ports are commonly identified by a finer thread pattern than Beckson and often show darker rings or molded brand markings. RWO's 150 mm hatch family and Allen's larger hatch family both land in this general size class, so confirm the thread form and model family before choosing the adapter.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 6-inch RWO adapter or 6-inch Allen adapter with the Standard Hull Dryer.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/rwo-allen-6-plate.jpg" alt="RWO or Allen 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-6-plate.jpg</code></figcaption></figure>
@@ -736,12 +834,12 @@
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="sea-dog-6" class="port-profile">
         <h2>Sea-Dog Line 6-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>Sea-Dog screw-in ports typically show a chunkier thread form than RWO / Allen and a different lid geometry than Beckson. The important distinction is that this supported version must be true screw-in, not quarter-turn.</p>
+        <p>Sea-Dog's supported screw-out pattern typically shows a chunkier thread form than RWO / Allen and a different lid geometry than Beckson. Sea-Dog publishes its larger screw-out plate at about 6-1/2-inch opening, 8-1/8-inch outside rim, and 7-3/8-inch overall dimension. The important distinction is that this supported version must be true screw-in, not quarter-turn.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 6-inch Sea-Dog adapter with the Standard Hull Dryer.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/sea-dog-6-plate.jpg" alt="Sea-Dog Line 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/sea-dog-6-plate.jpg</code></figcaption></figure>
@@ -751,18 +849,19 @@
         <h3>Confidence checks</h3>
         <ul>
           <li>You can see full threads around the port opening</li>
-          <li>The nominal size is 6 inches</li>
+          <li>The large Sea-Dog screw-out pattern has an outside rim near 8-1/8 inches</li>
           <li>The port does not use quarter-turn cam tabs or latch ears</li>
+          <li>Sea-Dog recommends keeping threads clean with hot soapy water and lubricated with Vaseline or Teflon grease, not acetone</li>
         </ul>
         <div class="section-actions">
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
       <article id="seaflo-6" class="port-profile">
         <h2>Seaflo 6-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>Seaflo lids often make identification easier because the brand is molded into the plastic. Thread shape and lid geometry still matter, but visible Seaflo branding is a strong clue when size also matches.</p>
+        <p>Seaflo lids often make identification easier because the brand is molded into the plastic. Thread shape and lid geometry still matter, but visible Seaflo branding is a strong clue when size also matches. Measure the opening carefully because budget screw-in plates are often described by nominal size even when flange and cutout numbers differ from Beckson.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 6-inch Seaflo adapter with the Standard Hull Dryer.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/seaflo-6-plate.jpg" alt="Seaflo 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/seaflo-6-plate.jpg</code></figcaption></figure>
@@ -779,12 +878,12 @@
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="rwo-allen-5" class="port-profile">
         <h2>RWO / Allen 5-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>The 5-inch RWO / Allen family uses the same identification logic as the 6-inch version, but it routes to the Mini base unit instead of the Standard. Size is the deciding factor after you confirm the brand family and screw-in thread pattern.</p>
+        <p>The 5-inch RWO / Allen family uses the same identification logic as the 6-inch version, but it routes to the Mini base unit instead of the Standard. RWO's 125 mm hatch family and Allen's medium-size hatches typically land here after you confirm the finer thread form.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 5-inch RWO adapter or 5-inch Allen adapter with the Hull Dryer Mini.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/rwo-allen-5-plate.jpg" alt="RWO or Allen 5 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-5-plate.jpg</code></figcaption></figure>
@@ -801,12 +900,12 @@
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
 
       <article id="rwo-allen-4" class="port-profile">
         <h2>RWO / Allen 4-Inch Screw-In Inspection Port / Deck Plate</h2>
-        <p>This smaller RWO / Allen pattern also uses the Mini base unit. It can look close to a Beckson 4-inch port at first glance, so confirming the finer thread profile and brand cues matters.</p>
+        <p>This smaller RWO / Allen pattern also uses the Mini base unit. It can look close to a Beckson 4-inch port at first glance, so confirming the finer thread profile and brand cues matters more than nominal naming alone.</p>
         <p class="port-meta"><strong>Adapter needed:</strong> 4-inch RWO adapter or 4-inch Allen adapter with the Hull Dryer Mini.</p>
         <div class="image-row">
           <figure class="image-card"><img src="images/inspection-ports/rwo-allen-4-plate.jpg" alt="RWO or Allen 4 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-4-plate.jpg</code></figcaption></figure>
@@ -823,13 +922,13 @@
           <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
           <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
         </div>
-        <p class="top-link"><a href="#top">Back to top</a></p>
+        <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
       </article>
     </section>
 
     <section id="unsupported-types" class="port-profile">
       <h2>Unsupported Types: Quarter-Turn and Pop-Out Inspection Ports</h2>
-      <p>If your port uses a cam-lock, quarter-turn latch, or pop-out / snap-in retention instead of full threads, it is not currently supported. That boundary is intentional.</p>
+      <p>If your port uses a cam-lock, quarter-turn latch, pry-out lid, or pop-out / snap-in retention instead of full threads, it is not currently supported. That boundary is intentional.</p>
       <div class="image-row">
         <figure class="image-card"><img src="images/inspection-ports/quarter-turn-plate.jpg" alt="Unsupported quarter-turn inspection port plate view" /><figcaption>Quarter-turn placeholder: <code>images/inspection-ports/quarter-turn-plate.jpg</code></figcaption></figure>
         <figure class="image-card"><img src="images/inspection-ports/pop-out-port.jpg" alt="Unsupported pop-out or snap-in inspection port example" /><figcaption>Pop-out placeholder: <code>images/inspection-ports/pop-out-port.jpg</code></figcaption></figure>
@@ -838,19 +937,34 @@
       <h3>How to recognize unsupported types</h3>
       <ul>
         <li>No continuous screw thread around the lid or ring</li>
-        <li>Locking cams, bayonet tabs, or a short quarter-turn motion to lock</li>
-        <li>Snap-in release lips or pop-out retention features</li>
+        <li>Quarter-turn plates open with a short cam action and use slots rather than full threads</li>
+        <li>Low-profile pop-out plates use a pop-up lever, O-ring seal, and snap fit rather than a threaded lid</li>
+        <li>Pry-out or pry-off plates also have no thread engagement for an adapter to grab</li>
       </ul>
       <h3>Why they are not supported</h3>
       <ul>
         <li>They do not provide the same secure mechanical engagement as a supported screw-in port</li>
         <li>Sealing is less predictable across quarter-turn and snap-in geometries</li>
         <li>Airflow path control is harder to maintain without a fully matched threaded interface</li>
+        <li>Quarter-turn and low-profile pop-out systems are intentionally built to avoid cross-threading because they are not threaded systems in the first place</li>
       </ul>
       <div class="section-actions">
         <a class="section-link primary" href="contact.html">Send us a photo</a>
         <a class="section-link secondary" href="#">Interest / waitlist placeholder</a>
       </div>
+      <p class="top-link"><a href="#compatibility-matrix">Back to matrix</a> | <a href="#top">Back to top</a></p>
+    </section>
+
+    <section class="port-profile">
+      <h2>Manufacturer Reference Notes</h2>
+      <p>The dimensions and type descriptions above are summarized from manufacturer product pages and catalog listings. They are useful for narrowing a match, but exact model variations still exist, so measure your own port if the fit is critical.</p>
+      <ul class="source-list">
+        <li><a href="https://beckson.com/product/screw-out-deck-plate/?attribute_pa_plate-size=4&attribute_pa_plate-color=black">Beckson screw-out deck plate, 4-inch</a> and <a href="https://beckson.com/product/screw-out-deck-plate/?attribute_pa_plate-size=6&attribute_pa_plate-color=black">6-inch</a> and <a href="https://beckson.com/product/screw-out-deck-plate/?attribute_pa_plate-size=8&attribute_pa_plate-color=black">8-inch</a> product pages</li>
+        <li><a href="https://sea-dog.com/groups/257-screw-out-deck-plates">Sea-Dog screw-out deck plate group</a> and <a href="https://sea-dog.com/categories/372-quarter-turn-deck-plates">quarter-turn deck plate group</a></li>
+        <li><a href="https://sea-dog.com/categories/268-pop-out-deck-plates">Sea-Dog low-profile pop-out deck plate group</a></li>
+        <li><a href="https://www.rwosports.com/products/inspection-hatches-r4055">RWO 125 mm hatch</a> and <a href="https://www.rwosports.com/products/inspection-hatches-r4060">RWO 150 mm hatch</a></li>
+        <li><a href="https://www.allenbrothers.co.uk/our-products/hatches-portlights-external-seal/deck-plate-medium-external-seal-hatch-cover-pair/">Allen medium external seal hatch cover</a> and <a href="https://www.allenbrothers.co.uk/our-products/hatches-portlights-internal-seal/replacement-medium-hatch-cover-pair-a1837/">Allen medium internal seal hatch cover</a></li>
+      </ul>
       <p class="top-link"><a href="#top">Back to top</a></p>
     </section>
     <section class="port-profile">

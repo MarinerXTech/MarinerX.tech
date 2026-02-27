@@ -4,21 +4,486 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inspection Port Identification Guide - MarinerX</title>
-  <meta name="description" content="Visually identify your boat's inspection port and find the right MarinerX Hull Dryer adapter. Covers Beckson, Seadog, RWO, and Seaflo ports.">
+  <meta name="description" content="Identify your boat inspection port or deck plate by size, lock type, and brand cues. Confirm screw-in compatibility for Beckson, West Marine, RWO, Allen, Sea-Dog, and Seaflo ports." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
-  <link rel="canonical" href="https://marinerx.tech/inspection-ports.html" />
+  <link rel="canonical" href="https://marinerx.tech/inspection-port-guide.html" />
+  <style>
+    .inspection-guide-page {
+      max-width: 1080px;
+    }
+
+    .guide-panel {
+      background: #f7fafc;
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .guide-jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1rem 0 2rem;
+    }
+
+    .guide-jump-links a {
+      display: inline-block;
+      padding: 0.55rem 0.9rem;
+      background: #eef5f9;
+      border: 1px solid #d0dee7;
+      border-radius: 999px;
+      color: #005f8b;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    .guide-jump-links a:hover {
+      background: #e3eff6;
+    }
+
+    .flow-grid,
+    .support-grid,
+    .image-row,
+    .section-actions {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .flow-grid {
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      margin-top: 1.25rem;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .flow-step .step-label {
+      color: #005f8b;
+      font-size: 0.82em;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .flow-step h3 {
+      margin: 0.35rem 0 0.5rem;
+    }
+
+    .support-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 1rem;
+    }
+
+    .support-box {
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: left;
+    }
+
+    .support-box.supported {
+      background: #f2f8f4;
+      border: 1px solid #cfe2d4;
+    }
+
+    .support-box.unsupported {
+      background: #fbf6f1;
+      border: 1px solid #ead7c7;
+    }
+
+    .matrix-wrapper {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    .matrix-reset {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cfdbe3;
+      border-radius: 6px;
+      background: #eef5f9;
+      color: #005f8b;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .matrix-reset:hover {
+      background: #e3eff6;
+    }
+
+    .matrix-status {
+      margin: 0.4rem 0 0.9rem;
+      font-size: 0.95em;
+      color: #4d5c66;
+    }
+
+    .matrix-status strong {
+      color: #183645;
+    }
+
+    .compatibility-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+      background: #ffffff;
+    }
+    .compatibility-matrix th,
+    .compatibility-matrix td {
+      border: 1px solid #d9e2e8;
+      padding: 0.8rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compatibility-matrix .thumb-cell {
+      width: 96px;
+      text-align: center;
+    }
+
+    .matrix-thumb {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #d7e3ea;
+      background: #edf2f5;
+      display: block;
+      margin: 0 auto;
+      cursor: zoom-in;
+    }
+
+    .compatibility-matrix th {
+      background: #eef5f9;
+    }
+
+    .matrix-header-stack {
+      display: grid;
+      gap: 0.45rem;
+      min-width: 120px;
+    }
+
+    .matrix-header-stack span {
+      display: block;
+    }
+
+    .compatibility-matrix thead select,
+    .compatibility-matrix thead .matrix-reset {
+      width: 100%;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid #cfdbe3;
+      border-radius: 6px;
+      background: #ffffff;
+      font: inherit;
+      color: #22313a;
+      box-sizing: border-box;
+    }
+
+    .compatibility-matrix thead .matrix-reset {
+      background: #eef5f9;
+      color: #005f8b;
+    }
+
+    .compatibility-matrix thead .reset-cell {
+      vertical-align: bottom;
+      min-width: 120px;
+    }
+
+    .compatibility-note {
+      margin-top: 0.9rem;
+      font-size: 0.95em;
+      color: #4d5c66;
+    }
+
+    .port-profile {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #dce6ec;
+    }
+
+    .port-profile h2 {
+      margin-bottom: 0.6rem;
+    }
+
+    .port-meta {
+      margin: 0.75rem 0 1rem;
+      font-size: 0.98em;
+      color: #42535e;
+    }
+
+    .image-row {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin: 1.25rem 0;
+    }
+
+    .image-card {
+      margin: 0;
+      background: #ffffff;
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #edf2f5;
+      border: 1px solid #dde4e8;
+      cursor: zoom-in;
+    }
+
+    .image-card figcaption {
+      margin-top: 0.6rem;
+      font-size: 0.92em;
+      color: #4d5c66;
+      text-align: center;
+    }
+
+    .section-actions {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 1rem;
+    }
+
+    .section-link {
+      display: inline-block;
+      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .section-link.primary {
+      background: #005f8b;
+      color: #ffffff;
+    }
+
+    .section-link.secondary {
+      background: #eef5f9;
+      color: #005f8b;
+      border: 1px solid #d0dee7;
+    }
+    .section-link:hover {
+      opacity: 0.92;
+    }
+
+    .top-link {
+      margin-top: 1rem;
+      text-align: right;
+      font-size: 0.95em;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .faq-list details {
+      border: 1px solid #d7e3ea;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 1rem 1.1rem;
+    }
+
+    .faq-list summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #183645;
+    }
+
+    .faq-list p {
+      margin: 0.85rem 0 0;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    body.image-viewer-open {
+      overflow: hidden;
+    }
+
+    .image-viewer[hidden] {
+      display: none;
+    }
+
+    .image-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+
+    .image-viewer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 18, 24, 0.86);
+      backdrop-filter: blur(4px);
+    }
+
+    .image-viewer-shell {
+      position: relative;
+      z-index: 1;
+      width: min(96vw, 1180px);
+      max-height: calc(100vh - 2rem);
+      background: rgba(15, 26, 34, 0.94);
+      color: #f4f8fb;
+      border: 1px solid rgba(215, 227, 234, 0.18);
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+
+    .image-viewer-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(215, 227, 234, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .image-viewer-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .image-viewer-hint {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(244, 248, 251, 0.8);
+    }
+
+    .image-viewer-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .image-viewer-button {
+      padding: 0.6rem 0.85rem;
+      border: 1px solid rgba(215, 227, 234, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .image-viewer-button:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .image-viewer-stage {
+      position: relative;
+      height: min(72vh, 820px);
+      overflow: hidden;
+      touch-action: none;
+      background:
+        linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%);
+      background-size: 28px 28px;
+      background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+      cursor: grab;
+    }
+
+    .image-viewer-stage.dragging {
+      cursor: grabbing;
+    }
+
+    .image-viewer-stage img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: min(92vw, 1080px);
+      max-height: calc(min(72vh, 820px) - 1rem);
+      transform-origin: center center;
+      will-change: transform;
+      user-select: none;
+      -webkit-user-drag: none;
+      touch-action: none;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .image-viewer-caption {
+      margin: 0;
+      padding: 0.85rem 1rem 1rem;
+      font-size: 0.94rem;
+      color: rgba(244, 248, 251, 0.84);
+      text-align: center;
+    }
+
+    @media screen and (max-width: 700px) {
+      .guide-panel,
+      .flow-step,
+      .support-box,
+      .image-card,
+      .faq-list details {
+        padding: 1rem;
+      }
+
+      .image-viewer {
+        padding: 0.5rem;
+      }
+
+      .image-viewer-shell {
+        width: 100%;
+        max-height: calc(100vh - 1rem);
+        border-radius: 12px;
+      }
+
+      .image-viewer-toolbar {
+        padding: 0.75rem;
+      }
+
+      .image-viewer-stage {
+        height: min(68vh, 620px);
+      }
+
+      .image-viewer-stage img {
+        max-width: 94vw;
+        max-height: calc(min(68vh, 620px) - 1rem);
+      }
+
+      .image-card img {
+        height: 160px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body id="top">
   <div class="hero">
     <div class="hero-content">
       <h1>Inspection Port Identification Guide</h1>
-      <p>Not sure which inspection port you have? Use this visual guide to identify your deck plate and find the right Hull Dryer adapter.</p>
+      <p>Identify your deck plate quickly, confirm compatibility clearly, and avoid ordering the wrong fit.</p>
     </div>
   </div>
 
   <nav>
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776; Menu</button>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
@@ -29,77 +494,429 @@
     </div>
   </nav>
 
-  <section class="content center-text">
-    <h2>How to Use This Guide</h2>
-    <p>Scroll through the photo sections below. Match your port to one of the examples. We include close-ups, thread views, and adapter compatibility to help you be sure.</p>
-
-    <div class="inspection-guide">
-
-      <!-- Beckson 6" Screw-In -->
-      <div class="port-section">
-        <h3>Beckson 6" Screw-In</h3>
-        <p>The most common port on small sailboats. Three-lug design, coarse threads, usually white plastic.</p>
-        <img src="images/beckson6_plate.jpg" alt="Beckson 6 inch screw-in plate">
-        <img src="images/beckson6_threads.jpg" alt="Beckson 6 inch port thread view">
-        <img src="images/beckson6_adapter.jpg" alt="Hull Dryer installed in Beckson 6 inch port">
-        <p><strong>Adapter Needed:</strong> None – fits directly.</p>
+  <section class="content inspection-guide-page">
+    <div class="guide-panel">
+      <p><strong>This guide is meant to remove fitment anxiety.</strong> Start with size, then lock type, then brand cues. The supported combinations below cover roughly 80% of the common screw-in inspection ports and deck plates we see. If your port does not match clearly, do not guess, <a href="contact.html">send us photos</a>.</p>
+      <div class="guide-jump-links">
+        <a href="#identification-flow">60-second flow</a>
+        <a href="#compatibility-matrix">Compatibility matrix</a>
+        <a href="#supported-vs-unsupported">Supported vs unsupported</a>
+        <a href="#supported-sections">Supported port sections</a>
+        <a href="#faq">FAQ</a>
       </div>
-
-      <!-- Beckson 4" Screw-In -->
-      <div class="port-section">
-        <h3>Beckson 4" Screw-In</h3>
-        <p>Same brand, smaller diameter. Threads and lugs similar to the 6" version, but tighter radius.</p>
-        <img src="images/beckson4_plate.jpg" alt="Beckson 4 inch screw-in plate">
-        <img src="images/beckson4_threads.jpg" alt="Beckson 4 inch port thread view">
-        <img src="images/beckson4_adapter.jpg" alt="Hull Dryer Mini installed in Beckson 4 inch port">
-        <p><strong>Adapter Needed:</strong> Hull Dryer Mini fits directly.</p>
-      </div>
-
-      <!-- RWO 6" Screw-In -->
-      <div class="port-section">
-        <h3>RWO 6" Screw-In</h3>
-        <p>Distinctive fine threads and black plastic ring. Common on older UK-built boats.</p>
-        <img src="images/rwo6_plate.jpg" alt="RWO 6 inch screw-in plate">
-        <img src="images/rwo6_threads.jpg" alt="RWO 6 inch port thread view">
-        <img src="images/rwo6_adapter.jpg" alt="Adapter fitted for RWO port">
-        <p><strong>Adapter Needed:</strong> RWO 6" adapter ring</p>
-      </div>
-
-      <!-- Sea-Dog 6" Screw-In -->
-      <div class="port-section">
-        <h3>Sea-Dog 6" Screw-In</h3>
-        <p>Coarse, wide threads. Lighter plastic than Beckson. Often found on budget-friendly boats.</p>
-        <img src="images/seadog6_plate.jpg" alt="Sea-Dog 6 inch screw-in plate">
-        <img src="images/seadog6_threads.jpg" alt="Sea-Dog 6 inch port thread view">
-        <img src="images/seadog6_adapter.jpg" alt="Adapter fitted for Sea-Dog port">
-        <p><strong>Adapter Needed:</strong> Sea-Dog 6" screw-in adapter</p>
-      </div>
-
-      <!-- Sea-Dog 6" Quarter-Turn -->
-      <div class="port-section">
-        <h3>Sea-Dog 6" Quarter-Turn</h3>
-        <p>Locks with a quarter twist instead of threads. Has locking tabs and no visible threads.</p>
-        <img src="images/seadog6_qtr_plate.jpg" alt="Sea-Dog 6 inch quarter-turn plate">
-        <img src="images/seadog6_qtr_adapter.jpg" alt="Adapter fitted for Sea-Dog quarter-turn">
-        <p><strong>Adapter Needed:</strong> Sea-Dog quarter-turn adapter</p>
-      </div>
-
-      <!-- Seaflo 6" Screw-In -->
-      <div class="port-section">
-        <h3>Seaflo 6" Screw-In</h3>
-        <p>Smooth threads with wider spacing. Usually marked with brand name on the lid.</p>
-        <img src="images/seaflo6_plate.jpg" alt="Seaflo 6 inch screw-in plate">
-        <img src="images/seaflo6_threads.jpg" alt="Seaflo 6 inch port thread view">
-        <img src="images/seaflo6_adapter.jpg" alt="Adapter fitted for Seaflo port">
-        <p><strong>Adapter Needed:</strong> Seaflo 6" adapter ring</p>
-      </div>
-
     </div>
 
-    <p style="margin-top: 3rem; font-size: 1.05em;">
-      Still not sure what you have? <a href="contact.html">Send us a photo</a> and we’ll help you identify it.
-    </p>
+    <section id="identification-flow">
+      <h2>60-Second Identification Flow</h2>
+      <p>If you want the shortest path, use this order. It will usually narrow the field faster than browsing photos at random.</p>
+      <div class="flow-grid">
+        <article class="flow-step">
+          <div class="step-label">Step 1</div>
+          <h3>Measure the nominal size</h3>
+          <p>Most ports we see are 4-inch, 5-inch, 6-inch, or 8-inch. Measure the lid opening size or the marked nominal size, not the outside flange.</p>
+        </article>
+        <article class="flow-step">
+          <div class="step-label">Step 2</div>
+          <h3>Check the lock type</h3>
+          <p><strong>Screw-in</strong> ports show real threads. <strong>Quarter-turn</strong> ports use cam tabs. <strong>Pop-out / snap-in</strong> ports release without full threads.</p>
+        </article>
+        <article class="flow-step">
+          <div class="step-label">Step 3</div>
+          <h3>Match brand cues</h3>
+          <p>Look for thread pitch, grip lug shape, molded brand names, ring color, and whether the lid uses coarse or fine threads.</p>
+        </article>
+        <article class="flow-step">
+          <div class="step-label">Step 4</div>
+          <h3>Use the matrix</h3>
+          <p>Once size and lock type match, jump to the matrix below to confirm the correct MarinerX base unit and adapter, if any.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="compatibility-matrix" class="port-profile">
+      <h2>Compatibility Matrix</h2>
+      <p>This table is designed to reduce decision fatigue. If your port looks close but not exact, stop and <a href="contact.html">contact us with photos</a> before ordering.</p>
+      <p class="matrix-status" id="matrix-status"><strong>Showing 10 rows.</strong> Use diameter, lock type, brand family, and support status to narrow the list.</p>
+      <div class="matrix-wrapper">
+        <table class="compatibility-matrix">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>
+                <div class="matrix-header-stack">
+                  <span>Port type / brand</span>
+                  <label class="sr-only" for="matrix-filter-brand">Filter by brand family</label>
+                  <select id="matrix-filter-brand" aria-label="Filter by brand family">
+                    <option value="">All brands</option>
+                    <option value="beckson-west">Beckson / West Marine</option>
+                    <option value="rwo-allen">RWO / Allen</option>
+                    <option value="sea-dog">Sea-Dog Line</option>
+                    <option value="seaflo">Seaflo</option>
+                    <option value="other">Other / unsupported</option>
+                  </select>
+                </div>
+              </th>
+              <th>
+                <div class="matrix-header-stack">
+                  <span>Diameter</span>
+                  <label class="sr-only" for="matrix-filter-diameter">Filter by diameter</label>
+                  <select id="matrix-filter-diameter" aria-label="Filter by diameter">
+                    <option value="">All diameters</option>
+                    <option value="4">4 in</option>
+                    <option value="5">5 in</option>
+                    <option value="6">6 in</option>
+                    <option value="8">8 in</option>
+                    <option value="varies">Varies</option>
+                  </select>
+                </div>
+              </th>
+              <th>
+                <div class="matrix-header-stack">
+                  <span>Lock type</span>
+                  <label class="sr-only" for="matrix-filter-lock">Filter by lock type</label>
+                  <select id="matrix-filter-lock" aria-label="Filter by lock type">
+                    <option value="">All lock types</option>
+                    <option value="screw-in">Screw-in</option>
+                    <option value="quarter-turn">Quarter-turn</option>
+                    <option value="pop-out">Pop-out / snap-in</option>
+                  </select>
+                </div>
+              </th>
+              <th>
+                <div class="matrix-header-stack">
+                  <span>MarinerX fit</span>
+                  <label class="sr-only" for="matrix-filter-support">Filter by support status</label>
+                  <select id="matrix-filter-support" aria-label="Filter by support status">
+                    <option value="">All rows</option>
+                    <option value="supported">Supported</option>
+                    <option value="unsupported">Unsupported</option>
+                  </select>
+                </div>
+              </th>
+              <th>Adapter</th>
+              <th class="reset-cell">
+                <div class="matrix-header-stack">
+                  <span>Guide section</span>
+                  <button type="button" class="matrix-reset" id="matrix-reset">Reset</button>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="matrix-body">
+            <tr data-diameter="6" data-lock="screw-in" data-brand="beckson-west" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/beckson-6-installed.jpg" alt="Installed view of Beckson or West Marine 6 inch inspection port" /></td><td>Beckson / West Marine screw-in inspection port</td><td>6 in</td><td>Screw-in</td><td>Standard</td><td>None</td><td><a href="#beckson-6">Jump</a></td></tr>
+            <tr data-diameter="4" data-lock="screw-in" data-brand="beckson-west" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/beckson-4-installed.jpg" alt="Installed view of Beckson or West Marine 4 inch inspection port" /></td><td>Beckson / West Marine screw-in inspection port</td><td>4 in</td><td>Screw-in</td><td>Mini</td><td>None</td><td><a href="#beckson-4">Jump</a></td></tr>
+            <tr data-diameter="8" data-lock="screw-in" data-brand="beckson-west" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/beckson-8-installed.jpg" alt="Installed view of Beckson or West Marine 8 inch inspection port" /></td><td>Beckson / West Marine screw-in inspection port</td><td>8 in</td><td>Screw-in</td><td>Standard</td><td>8 in Beckson / West Marine adapter</td><td><a href="#beckson-8">Jump</a></td></tr>
+            <tr data-diameter="6" data-lock="screw-in" data-brand="rwo-allen" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/rwo-allen-6-installed.jpg" alt="Installed view of RWO or Allen 6 inch inspection port" /></td><td>RWO / Allen screw-in inspection port</td><td>6 in</td><td>Screw-in</td><td>Standard</td><td>6 in RWO adapter or 6 in Allen adapter</td><td><a href="#rwo-allen-6">Jump</a></td></tr>
+            <tr data-diameter="6" data-lock="screw-in" data-brand="sea-dog" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/sea-dog-6-installed.jpg" alt="Installed view of Sea-Dog Line 6 inch inspection port" /></td><td>Sea-Dog Line screw-in inspection port</td><td>6 in</td><td>Screw-in</td><td>Standard</td><td>6 in Sea-Dog adapter</td><td><a href="#sea-dog-6">Jump</a></td></tr>
+            <tr data-diameter="6" data-lock="screw-in" data-brand="seaflo" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/seaflo-6-installed.jpg" alt="Installed view of Seaflo 6 inch inspection port" /></td><td>Seaflo screw-in inspection port</td><td>6 in</td><td>Screw-in</td><td>Standard</td><td>6 in Seaflo adapter</td><td><a href="#seaflo-6">Jump</a></td></tr>
+            <tr data-diameter="5" data-lock="screw-in" data-brand="rwo-allen" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/rwo-allen-5-installed.jpg" alt="Installed view of RWO or Allen 5 inch inspection port" /></td><td>RWO / Allen screw-in inspection port</td><td>5 in</td><td>Screw-in</td><td>Mini</td><td>5 in RWO adapter or 5 in Allen adapter</td><td><a href="#rwo-allen-5">Jump</a></td></tr>
+            <tr data-diameter="4" data-lock="screw-in" data-brand="rwo-allen" data-support="supported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/rwo-allen-4-installed.jpg" alt="Installed view of RWO or Allen 4 inch inspection port" /></td><td>RWO / Allen screw-in inspection port</td><td>4 in</td><td>Screw-in</td><td>Mini</td><td>4 in RWO adapter or 4 in Allen adapter</td><td><a href="#rwo-allen-4">Jump</a></td></tr>
+            <tr data-diameter="6" data-lock="quarter-turn" data-brand="other" data-support="unsupported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/quarter-turn-plate.jpg" alt="Quarter-turn inspection port example" /></td><td>Quarter-turn / cam-lock inspection port</td><td>Usually 6 in</td><td>Quarter-turn</td><td>Not currently supported</td><td>None</td><td><a href="#unsupported-types">Jump</a></td></tr>
+            <tr data-diameter="varies" data-lock="pop-out" data-brand="other" data-support="unsupported"><td class="thumb-cell"><img class="matrix-thumb" src="images/inspection-ports/pop-out-port.jpg" alt="Pop-out or snap-in inspection port example" /></td><td>Pop-out / snap-in inspection port</td><td>Varies</td><td>Pop-out / snap-in</td><td>Not currently supported</td><td>None</td><td><a href="#unsupported-types">Jump</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compatibility-note">Quick rule: Standard is the base unit for supported 6-inch and 8-inch screw-in ports. Mini is the base unit for supported 4-inch and 5-inch screw-in ports.</p>
+      <p class="top-link"><a href="#top">Back to top</a></p>
+    </section>
+
+    <section id="supported-vs-unsupported" class="port-profile">
+      <h2>Supported vs Unsupported Types</h2>
+      <p>We are deliberately explicit here. The guide should help you confirm a fit, or rule it out, without wishful thinking.</p>
+      <div class="support-grid">
+        <div class="support-box supported">
+          <h3>Supported now</h3>
+          <p>Supported fits are centered on <strong>screw-in inspection ports</strong> where the Hull Dryer or adapter can achieve secure mechanical engagement and a controlled airflow path.</p>
+          <ul>
+            <li>Beckson / West Marine 4-inch, 6-inch, and 8-inch screw-in ports</li>
+            <li>RWO and Allen 4-inch, 5-inch, and 6-inch screw-in ports with size-specific adapters</li>
+            <li>Sea-Dog Line 6-inch screw-in ports with adapter</li>
+            <li>Seaflo 6-inch screw-in ports with adapter</li>
+          </ul>
+        </div>
+        <div class="support-box unsupported">
+          <h3>Not currently supported</h3>
+          <p><strong>Quarter-turn</strong> and <strong>pop-out / snap-in</strong> ports are not currently supported. Those styles do not provide the same threaded engagement, sealing consistency, or airflow path control that the supported screw-in types provide.</p>
+          <ul>
+            <li>No visible continuous threads is usually the first warning sign</li>
+            <li>Cam tabs, latch tabs, or snap lips usually indicate an unsupported type</li>
+            <li>If unsure, <a href="contact.html">send us a photo</a> before ordering</li>
+          </ul>
+        </div>
+      </div>
+      <p class="top-link"><a href="#top">Back to top</a></p>
+    </section>
+
+    <section id="supported-sections" class="port-profile">
+      <h2>Supported Screw-In Inspection Port Sections</h2>
+      <p>Use the consistent checks below to confirm your match. Each section includes the visual cues that matter most before you choose a base unit or adapter.</p>
+
+      <article id="beckson-6" class="port-profile">
+        <h2>Beckson / West Marine 6-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>Usually the easiest match: a common white screw-in plate with familiar grip lugs and a coarse thread pattern. This is the direct-fit baseline for the MarinerX Standard Hull Dryer.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> None. Standard Hull Dryer fits directly.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/beckson-6-plate.jpg" alt="Beckson or West Marine 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-6-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-6-thread.jpg" alt="Beckson or West Marine 6 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/beckson-6-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-6-installed.jpg" alt="MarinerX Standard Hull Dryer installed in a Beckson or West Marine 6 inch port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/beckson-6-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>You can see continuous screw threads rather than quarter-turn tabs</li>
+          <li>The nominal size is 6 inches, not 4 inches or 8 inches</li>
+          <li>The lid and ring resemble the common Beckson / West Marine three-grip style</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="beckson-4" class="port-profile">
+        <h2>Beckson / West Marine 4-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>This is the smaller direct-fit Beckson family pattern. The visual language is very similar to the 6-inch version, but the opening is tighter and the correct MarinerX base unit is the Mini.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> None. Hull Dryer Mini fits directly.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/beckson-4-plate.jpg" alt="Beckson or West Marine 4 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-4-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-4-thread.jpg" alt="Beckson or West Marine 4 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/beckson-4-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-4-installed.jpg" alt="MarinerX Hull Dryer Mini installed in a Beckson or West Marine 4 inch port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/beckson-4-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>You see screw threads and Beckson-style grip geometry</li>
+          <li>The nominal size is 4 inches</li>
+          <li>The port is not an RWO / Allen fine-thread pattern</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="beckson-8" class="port-profile">
+        <h2>Beckson / West Marine 8-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>This larger Beckson-family screw-in port keeps the same general identification logic, but it needs the larger Beckson / West Marine adapter for a secure Standard Hull Dryer fit.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 8-inch Beckson / West Marine adapter with the Standard Hull Dryer.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/beckson-8-plate.jpg" alt="Beckson or West Marine 8 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/beckson-8-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-8-thread.jpg" alt="Beckson or West Marine 8 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/beckson-8-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/beckson-8-installed.jpg" alt="MarinerX Standard Hull Dryer with 8 inch adapter installed in a Beckson or West Marine port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/beckson-8-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>The brand cues look Beckson / West Marine, but the nominal size is 8 inches</li>
+          <li>The lock type is still true screw-in, not quarter-turn</li>
+          <li>You need the Standard base unit plus the 8-inch adapter, not the Mini</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="rwo-allen-6" class="port-profile">
+        <h2>RWO / Allen 6-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>These ports are commonly identified by a finer thread pattern than Beckson and often show darker rings or molded brand markings. Match the size first, then confirm whether your lid is RWO or Allen so you choose the right adapter.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 6-inch RWO adapter or 6-inch Allen adapter with the Standard Hull Dryer.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-6-plate.jpg" alt="RWO or Allen 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-6-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-6-thread.jpg" alt="RWO or Allen 6 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/rwo-allen-6-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-6-installed.jpg" alt="MarinerX Standard Hull Dryer with adapter installed in a 6 inch RWO or Allen port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/rwo-allen-6-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>The port uses continuous screw threads, but they are finer than Beckson / West Marine</li>
+          <li>The nominal size is 6 inches</li>
+          <li>You can confirm RWO or Allen branding, or the geometry clearly matches those families</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="sea-dog-6" class="port-profile">
+        <h2>Sea-Dog Line 6-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>Sea-Dog screw-in ports typically show a chunkier thread form than RWO / Allen and a different lid geometry than Beckson. The important distinction is that this supported version must be true screw-in, not quarter-turn.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 6-inch Sea-Dog adapter with the Standard Hull Dryer.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/sea-dog-6-plate.jpg" alt="Sea-Dog Line 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/sea-dog-6-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/sea-dog-6-thread.jpg" alt="Sea-Dog Line 6 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/sea-dog-6-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/sea-dog-6-installed.jpg" alt="MarinerX Standard Hull Dryer with adapter installed in a Sea-Dog Line 6 inch screw-in port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/sea-dog-6-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>You can see full threads around the port opening</li>
+          <li>The nominal size is 6 inches</li>
+          <li>The port does not use quarter-turn cam tabs or latch ears</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+      <article id="seaflo-6" class="port-profile">
+        <h2>Seaflo 6-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>Seaflo lids often make identification easier because the brand is molded into the plastic. Thread shape and lid geometry still matter, but visible Seaflo branding is a strong clue when size also matches.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 6-inch Seaflo adapter with the Standard Hull Dryer.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/seaflo-6-plate.jpg" alt="Seaflo 6 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/seaflo-6-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/seaflo-6-thread.jpg" alt="Seaflo 6 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/seaflo-6-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/seaflo-6-installed.jpg" alt="MarinerX Standard Hull Dryer with adapter installed in a Seaflo 6 inch port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/seaflo-6-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>The lid is a true screw-in design</li>
+          <li>The nominal size is 6 inches</li>
+          <li>Seaflo branding or matching thread geometry is visible</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="rwo-allen-5" class="port-profile">
+        <h2>RWO / Allen 5-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>The 5-inch RWO / Allen family uses the same identification logic as the 6-inch version, but it routes to the Mini base unit instead of the Standard. Size is the deciding factor after you confirm the brand family and screw-in thread pattern.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 5-inch RWO adapter or 5-inch Allen adapter with the Hull Dryer Mini.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-5-plate.jpg" alt="RWO or Allen 5 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-5-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-5-thread.jpg" alt="RWO or Allen 5 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/rwo-allen-5-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-5-installed.jpg" alt="MarinerX Hull Dryer Mini with adapter installed in a 5 inch RWO or Allen port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/rwo-allen-5-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>The lock type is true screw-in</li>
+          <li>The nominal size is 5 inches</li>
+          <li>The port matches the RWO / Allen family rather than Beckson / West Marine</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+
+      <article id="rwo-allen-4" class="port-profile">
+        <h2>RWO / Allen 4-Inch Screw-In Inspection Port / Deck Plate</h2>
+        <p>This smaller RWO / Allen pattern also uses the Mini base unit. It can look close to a Beckson 4-inch port at first glance, so confirming the finer thread profile and brand cues matters.</p>
+        <p class="port-meta"><strong>Adapter needed:</strong> 4-inch RWO adapter or 4-inch Allen adapter with the Hull Dryer Mini.</p>
+        <div class="image-row">
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-4-plate.jpg" alt="RWO or Allen 4 inch screw-in inspection port plate view" /><figcaption>Plate view placeholder: <code>images/inspection-ports/rwo-allen-4-plate.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-4-thread.jpg" alt="RWO or Allen 4 inch screw-in inspection port thread view" /><figcaption>Thread view placeholder: <code>images/inspection-ports/rwo-allen-4-thread.jpg</code></figcaption></figure>
+          <figure class="image-card"><img src="images/inspection-ports/rwo-allen-4-installed.jpg" alt="MarinerX Hull Dryer Mini with adapter installed in a 4 inch RWO or Allen port" /><figcaption>Installed example placeholder: <code>images/inspection-ports/rwo-allen-4-installed.jpg</code></figcaption></figure>
+        </div>
+        <h3>Confidence checks</h3>
+        <ul>
+          <li>The nominal size is 4 inches</li>
+          <li>The threads are finer than the common Beckson / West Marine pattern</li>
+          <li>You can identify RWO or Allen branding, or the geometry clearly matches that family</li>
+        </ul>
+        <div class="section-actions">
+          <a class="section-link primary" href="hull-dryer.html#purchase">See the correct Hull Dryer / Adapter</a>
+          <a class="section-link secondary" href="contact.html">Still unsure? Send photos</a>
+        </div>
+        <p class="top-link"><a href="#top">Back to top</a></p>
+      </article>
+    </section>
+
+    <section id="unsupported-types" class="port-profile">
+      <h2>Unsupported Types: Quarter-Turn and Pop-Out Inspection Ports</h2>
+      <p>If your port uses a cam-lock, quarter-turn latch, or pop-out / snap-in retention instead of full threads, it is not currently supported. That boundary is intentional.</p>
+      <div class="image-row">
+        <figure class="image-card"><img src="images/inspection-ports/quarter-turn-plate.jpg" alt="Unsupported quarter-turn inspection port plate view" /><figcaption>Quarter-turn placeholder: <code>images/inspection-ports/quarter-turn-plate.jpg</code></figcaption></figure>
+        <figure class="image-card"><img src="images/inspection-ports/pop-out-port.jpg" alt="Unsupported pop-out or snap-in inspection port example" /><figcaption>Pop-out placeholder: <code>images/inspection-ports/pop-out-port.jpg</code></figcaption></figure>
+        <figure class="image-card"><img src="images/inspection-ports/unsupported-closeup.jpg" alt="Unsupported inspection port close-up showing latch or snap tabs" /><figcaption>Close-up placeholder: <code>images/inspection-ports/unsupported-closeup.jpg</code></figcaption></figure>
+      </div>
+      <h3>How to recognize unsupported types</h3>
+      <ul>
+        <li>No continuous screw thread around the lid or ring</li>
+        <li>Locking cams, bayonet tabs, or a short quarter-turn motion to lock</li>
+        <li>Snap-in release lips or pop-out retention features</li>
+      </ul>
+      <h3>Why they are not supported</h3>
+      <ul>
+        <li>They do not provide the same secure mechanical engagement as a supported screw-in port</li>
+        <li>Sealing is less predictable across quarter-turn and snap-in geometries</li>
+        <li>Airflow path control is harder to maintain without a fully matched threaded interface</li>
+      </ul>
+      <div class="section-actions">
+        <a class="section-link primary" href="contact.html">Send us a photo</a>
+        <a class="section-link secondary" href="#">Interest / waitlist placeholder</a>
+      </div>
+      <p class="top-link"><a href="#top">Back to top</a></p>
+    </section>
+    <section class="port-profile">
+      <h2>Once You Have a Match</h2>
+      <p>The correct next step should feel straightforward. If your inspection port is listed above, choose the matching base unit and then the adapter noted in that section, if required.</p>
+      <div class="product-grid">
+        <a class="product-card" href="hull-dryer.html#purchase">
+          <h3>Standard Hull Dryer</h3>
+          <p>Base unit for supported 6-inch and 8-inch screw-in inspection ports. Direct fit for Beckson / West Marine 6-inch ports.</p>
+        </a>
+        <a class="product-card" href="hull-dryer.html#purchase">
+          <h3>Hull Dryer Mini</h3>
+          <p>Base unit for supported 4-inch and 5-inch screw-in inspection ports. Direct fit for Beckson / West Marine 4-inch ports.</p>
+        </a>
+      </div>
+      <p style="text-align: center; margin-top: 1.5rem;">If your port is close but not exact, <a href="contact.html">send us clear photos of the plate, thread or lock geometry, and the installed ring</a> before ordering.</p>
+      <p class="top-link"><a href="#top">Back to top</a></p>
+    </section>
+
+    <section id="faq" class="port-profile">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details open>
+          <summary>How do I identify my inspection port quickly?</summary>
+          <p>Start with nominal size, then determine whether it is screw-in, quarter-turn, or pop-out, then compare the thread shape and molded brand cues. If you still have two plausible matches, send photos before ordering.</p>
+        </details>
+        <details>
+          <summary>What is the difference between screw-in, quarter-turn, and pop-out inspection ports?</summary>
+          <p>Screw-in ports use continuous threads and several turns to lock. Quarter-turn ports use cam tabs and a short twist. Pop-out or snap-in ports rely on latch tabs or a snap fit rather than full threads.</p>
+        </details>
+        <details>
+          <summary>Are different brands cross-compatible if the diameter is the same?</summary>
+          <p>Usually not. Nominal diameter alone is not enough because thread pitch, lock geometry, and sealing surfaces vary by brand and port family. That is why the guide calls out both size and brand cues.</p>
+        </details>
+        <details>
+          <summary>What should I do if I have a quarter-turn or pop-out port?</summary>
+          <p>Do not assume compatibility. Those types are not currently supported because secure engagement and airflow control are different. <a href="contact.html">Send us photos</a> if you want us to review it, or use the waitlist placeholder above if you add one later.</p>
+        </details>
+        <details>
+          <summary>How do I measure port size quickly?</summary>
+          <p>Use the nominal lid opening size, typically 4 inches, 5 inches, 6 inches, or 8 inches. Avoid measuring the outer flange because flange diameter varies and can make a supported port look larger than it really is.</p>
+        </details>
+      </div>
+      <p class="top-link"><a href="#top">Back to top</a></p>
+    </section>
   </section>
+
+  <div class="image-viewer" id="image-viewer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="image-viewer-backdrop" data-viewer-close></div>
+    <div class="image-viewer-shell">
+      <div class="image-viewer-toolbar">
+        <div>
+          <p class="image-viewer-title" id="image-viewer-title">Inspection port image</p>
+          <p class="image-viewer-hint">Scroll or pinch to zoom. Drag to pan. Double-click or double-tap to zoom faster.</p>
+        </div>
+        <div class="image-viewer-actions">
+          <button type="button" class="image-viewer-button" id="image-viewer-reset">Reset view</button>
+          <button type="button" class="image-viewer-button" id="image-viewer-close">Close</button>
+        </div>
+      </div>
+      <div class="image-viewer-stage" id="image-viewer-stage">
+        <img id="image-viewer-image" alt="" />
+      </div>
+      <p class="image-viewer-caption" id="image-viewer-caption"></p>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2025 MarinerX. All rights reserved.</p>
@@ -110,6 +927,333 @@
     </p>
   </footer>
 
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    (function () {
+      const body = document.getElementById('matrix-body');
+      const status = document.getElementById('matrix-status');
+      const diameter = document.getElementById('matrix-filter-diameter');
+      const lock = document.getElementById('matrix-filter-lock');
+      const brand = document.getElementById('matrix-filter-brand');
+      const support = document.getElementById('matrix-filter-support');
+      const reset = document.getElementById('matrix-reset');
+
+      if (!body || !status || !diameter || !lock || !brand || !support || !reset) {
+        return;
+      }
+
+      const rows = Array.from(body.querySelectorAll('tr'));
+
+      function applyFilters() {
+        const diameterValue = diameter.value;
+        const lockValue = lock.value;
+        const brandValue = brand.value;
+        const supportValue = support.value;
+
+        let visibleCount = 0;
+
+        rows.forEach((row) => {
+          const matchDiameter = !diameterValue || row.dataset.diameter === diameterValue;
+          const matchLock = !lockValue || row.dataset.lock === lockValue;
+          const matchBrand = !brandValue || row.dataset.brand === brandValue;
+          const matchSupport = !supportValue || row.dataset.support === supportValue;
+          const show = matchDiameter && matchLock && matchBrand && matchSupport;
+
+          row.hidden = !show;
+          if (show) {
+            visibleCount += 1;
+          }
+        });
+
+        status.innerHTML = visibleCount
+          ? '<strong>Showing ' + visibleCount + ' row' + (visibleCount === 1 ? '' : 's') + '.</strong> Refine further if you still have more than one plausible match.'
+          : '<strong>No rows match those filters.</strong> Clear the filters or <a href=\"contact.html\">send us photos</a> if your port is not listed here.';
+      }
+
+      [diameter, lock, brand, support].forEach((select) => {
+        select.addEventListener('change', applyFilters);
+      });
+
+      reset.addEventListener('click', function () {
+        diameter.value = '';
+        lock.value = '';
+        brand.value = '';
+        support.value = '';
+        applyFilters();
+      });
+
+      applyFilters();
+    })();
+
+    (function () {
+      const viewer = document.getElementById('image-viewer');
+      const stage = document.getElementById('image-viewer-stage');
+      const image = document.getElementById('image-viewer-image');
+      const caption = document.getElementById('image-viewer-caption');
+      const title = document.getElementById('image-viewer-title');
+      const closeButton = document.getElementById('image-viewer-close');
+      const resetButton = document.getElementById('image-viewer-reset');
+      const clickableSelector = '.inspection-guide-page .matrix-thumb, .inspection-guide-page .image-card img';
+
+      if (!viewer || !stage || !image || !caption || !title || !closeButton || !resetButton) {
+        return;
+      }
+
+      let scale = 1;
+      let offsetX = 0;
+      let offsetY = 0;
+      let startOffsetX = 0;
+      let startOffsetY = 0;
+      let startPointerX = 0;
+      let startPointerY = 0;
+      let lastTapTime = 0;
+      let activePointers = new Map();
+      let pinchStartDistance = 0;
+      let pinchStartScale = 1;
+      let openSource = null;
+
+      function getDisplayMetrics(testScale) {
+        const rect = image.getBoundingClientRect();
+        const currentScale = testScale || scale || 1;
+        return {
+          width: rect.width / currentScale,
+          height: rect.height / currentScale,
+          stageWidth: stage.clientWidth,
+          stageHeight: stage.clientHeight
+        };
+      }
+
+      function clampOffsets() {
+        const metrics = getDisplayMetrics();
+        const maxX = Math.max(0, (metrics.width * scale - metrics.stageWidth) / 2);
+        const maxY = Math.max(0, (metrics.height * scale - metrics.stageHeight) / 2);
+
+        offsetX = Math.min(maxX, Math.max(-maxX, offsetX));
+        offsetY = Math.min(maxY, Math.max(-maxY, offsetY));
+      }
+
+      function renderTransform() {
+        clampOffsets();
+        image.style.transform = 'translate3d(calc(-50% + ' + offsetX + 'px), calc(-50% + ' + offsetY + 'px), 0) scale(' + scale + ')';
+      }
+
+      function resetView() {
+        scale = 1;
+        offsetX = 0;
+        offsetY = 0;
+        renderTransform();
+      }
+
+      function setScale(nextScale, focalX, focalY) {
+        const previousScale = scale;
+        scale = Math.min(5, Math.max(1, nextScale));
+
+        if (scale === previousScale) {
+          return;
+        }
+
+        if (typeof focalX === 'number' && typeof focalY === 'number') {
+          const stageRect = stage.getBoundingClientRect();
+          const centerX = focalX - stageRect.left - stage.clientWidth / 2;
+          const centerY = focalY - stageRect.top - stage.clientHeight / 2;
+          const ratio = scale / previousScale;
+          offsetX = (offsetX - centerX) * ratio + centerX;
+          offsetY = (offsetY - centerY) * ratio + centerY;
+        } else if (scale === 1) {
+          offsetX = 0;
+          offsetY = 0;
+        }
+
+        renderTransform();
+      }
+
+      function openViewer(source) {
+        openSource = source;
+        image.src = source.currentSrc || source.src;
+        image.alt = source.alt || '';
+        title.textContent = source.alt || 'Inspection port image';
+        caption.textContent = source.closest('figure')?.querySelector('figcaption')?.textContent || source.alt || '';
+        viewer.hidden = false;
+        viewer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('image-viewer-open');
+
+        requestAnimationFrame(function () {
+          resetView();
+        });
+      }
+
+      function closeViewer() {
+        viewer.hidden = true;
+        viewer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('image-viewer-open');
+        activePointers.clear();
+        stage.classList.remove('dragging');
+        openSource = null;
+      }
+
+      function getPointerDistance() {
+        const points = Array.from(activePointers.values());
+        if (points.length < 2) {
+          return 0;
+        }
+        const dx = points[0].x - points[1].x;
+        const dy = points[0].y - points[1].y;
+        return Math.hypot(dx, dy);
+      }
+
+      function getPointerCenter() {
+        const points = Array.from(activePointers.values());
+        if (points.length < 2) {
+          return null;
+        }
+        return {
+          x: (points[0].x + points[1].x) / 2,
+          y: (points[0].y + points[1].y) / 2
+        };
+      }
+
+      document.addEventListener('click', function (event) {
+        const target = event.target.closest(clickableSelector);
+        if (!target) {
+          return;
+        }
+        openViewer(target);
+      });
+
+      viewer.addEventListener('click', function (event) {
+        if (event.target.hasAttribute('data-viewer-close')) {
+          closeViewer();
+        }
+      });
+
+      closeButton.addEventListener('click', closeViewer);
+      resetButton.addEventListener('click', resetView);
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !viewer.hidden) {
+          closeViewer();
+        }
+      });
+
+      stage.addEventListener('wheel', function (event) {
+        if (viewer.hidden) {
+          return;
+        }
+        event.preventDefault();
+        const direction = event.deltaY < 0 ? 1.16 : 1 / 1.16;
+        setScale(scale * direction, event.clientX, event.clientY);
+      }, { passive: false });
+
+      stage.addEventListener('pointerdown', function (event) {
+        if (viewer.hidden) {
+          return;
+        }
+
+        stage.setPointerCapture(event.pointerId);
+        activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+        if (activePointers.size === 1) {
+          startPointerX = event.clientX;
+          startPointerY = event.clientY;
+          startOffsetX = offsetX;
+          startOffsetY = offsetY;
+          if (scale > 1) {
+            stage.classList.add('dragging');
+          }
+        } else if (activePointers.size === 2) {
+          pinchStartDistance = getPointerDistance();
+          pinchStartScale = scale;
+          stage.classList.remove('dragging');
+        }
+      });
+
+      stage.addEventListener('pointermove', function (event) {
+        if (viewer.hidden || !activePointers.has(event.pointerId)) {
+          return;
+        }
+
+        activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+        if (activePointers.size >= 2) {
+          const center = getPointerCenter();
+          const distance = getPointerDistance();
+          if (pinchStartDistance > 0 && center) {
+            setScale(pinchStartScale * (distance / pinchStartDistance), center.x, center.y);
+          }
+          return;
+        }
+
+        if (scale <= 1) {
+          return;
+        }
+
+        offsetX = startOffsetX + (event.clientX - startPointerX);
+        offsetY = startOffsetY + (event.clientY - startPointerY);
+        renderTransform();
+      });
+
+      function releasePointer(event) {
+        activePointers.delete(event.pointerId);
+        stage.classList.remove('dragging');
+        if (activePointers.size === 1) {
+          const remaining = Array.from(activePointers.values())[0];
+          startPointerX = remaining.x;
+          startPointerY = remaining.y;
+          startOffsetX = offsetX;
+          startOffsetY = offsetY;
+          if (scale > 1) {
+            stage.classList.add('dragging');
+          }
+        } else {
+          pinchStartDistance = 0;
+        }
+      }
+
+      stage.addEventListener('pointerup', releasePointer);
+      stage.addEventListener('pointercancel', releasePointer);
+      stage.addEventListener('pointerleave', function (event) {
+        if (event.pointerType !== 'mouse') {
+          releasePointer(event);
+        }
+      });
+
+      stage.addEventListener('dblclick', function (event) {
+        event.preventDefault();
+        setScale(scale > 1 ? 1 : 2.5, event.clientX, event.clientY);
+      });
+
+      stage.addEventListener('touchend', function (event) {
+        if (event.touches.length > 0) {
+          return;
+        }
+        const now = Date.now();
+        if (now - lastTapTime < 280) {
+          const touch = event.changedTouches[0];
+          if (touch) {
+            setScale(scale > 1 ? 1 : 2.5, touch.clientX, touch.clientY);
+          }
+          lastTapTime = 0;
+          return;
+        }
+        lastTapTime = now;
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        if (!viewer.hidden) {
+          renderTransform();
+        }
+      });
+
+      image.addEventListener('load', function () {
+        if (!viewer.hidden) {
+          resetView();
+        }
+      });
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

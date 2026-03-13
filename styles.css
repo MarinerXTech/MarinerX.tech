@@ -180,11 +180,6 @@ nav {
   font-size: 0.8em;
 }
 
-[data-nav-parent="products"]::after {
-  content: " \25BE";
-  font-size: 0.8em;
-}
-
 .has-submenu.submenu-active > .nav-item-head > [data-nav-parent] {
   background-color: transparent;
   color: white;

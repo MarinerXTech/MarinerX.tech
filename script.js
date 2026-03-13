@@ -12,10 +12,7 @@ function buildSharedNavMarkup() {
         <a href="index.html">Home</a>
         <div class="nav-item has-submenu" data-nav-group="products">
           <div class="nav-item-head">
-            <a href="products.html" class="nav-link" data-nav-parent="products" aria-haspopup="true">Products</a>
-            <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="submenu-products">
-              <span class="sr-only">Toggle Products menu</span>
-            </button>
+            <button type="button" class="nav-link nav-link-button submenu-trigger" data-nav-parent="products" aria-expanded="false" aria-controls="submenu-products">Products</button>
           </div>
           <div class="submenu" id="submenu-products">
             <a href="products.html">All Products</a>

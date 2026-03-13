@@ -1,3 +1,171 @@
+// Shared navigation: single source of truth for all pages.
+function getCurrentPageName() {
+  const lastPath = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  return lastPath || 'index.html';
+}
+
+function buildSharedNavMarkup() {
+  return `
+    <nav class="site-nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-links">&#9776; Menu</button>
+      <div class="nav-links" id="site-nav-links">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-submenu" data-nav-group="products">
+          <div class="nav-item-head">
+            <a href="products.html" class="nav-link" data-nav-parent="products" aria-haspopup="true">Products</a>
+            <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="submenu-products">
+              <span class="sr-only">Toggle Products menu</span>
+            </button>
+          </div>
+          <div class="submenu" id="submenu-products">
+            <a href="products.html">All Products</a>
+            <a href="hull-dryer.html">Hull Dryer</a>
+            <a href="sail-rings-hanger.html">Sail Rings + Mainsheet Hanger</a>
+          </div>
+        </div>
+        <div class="nav-item has-submenu" data-nav-group="guides">
+          <div class="nav-item-head">
+            <button type="button" class="nav-link nav-link-button submenu-trigger" data-nav-parent="guides" aria-expanded="false" aria-controls="submenu-guides">Guides</button>
+          </div>
+          <div class="submenu" id="submenu-guides">
+            <a href="inspection-port-guide.html">Inspection Port Guide</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </div>
+        <a href="insiders.html">Insiders</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  `;
+}
+
+function closeSubmenu(item) {
+  item.classList.remove('open');
+  item.querySelectorAll('.submenu-toggle, .submenu-trigger').forEach((btn) => {
+    btn.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function openSubmenu(item, navRoot) {
+  navRoot.querySelectorAll('.has-submenu.open').forEach((other) => {
+    if (other !== item) closeSubmenu(other);
+  });
+  item.classList.add('open');
+  item.querySelectorAll('.submenu-toggle, .submenu-trigger').forEach((btn) => {
+    btn.setAttribute('aria-expanded', 'true');
+  });
+}
+
+function toggleSubmenu(item, navRoot) {
+  if (item.classList.contains('open')) {
+    closeSubmenu(item);
+    return;
+  }
+  openSubmenu(item, navRoot);
+}
+
+function applyNavCurrentState(navRoot) {
+  const currentPage = getCurrentPageName();
+  const productsPages = new Set([
+    'products.html',
+    'hull-dryer.html',
+    'sail-rings-hanger.html',
+    'sail-rings.html',
+    'rig-nest.html',
+    'clipon-hanger.html',
+    'beta-tester-info.html'
+  ]);
+  const guidesPages = new Set(['inspection-port-guide.html', 'faq.html']);
+
+  navRoot.querySelectorAll('a[href]').forEach((link) => {
+    const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
+    if (href && href === currentPage) {
+      link.classList.add('current');
+      link.setAttribute('aria-current', 'page');
+      const groupItem = link.closest('.has-submenu');
+      if (groupItem) {
+        groupItem.classList.add('submenu-active');
+        const parentLink = groupItem.querySelector('[data-nav-parent]');
+        if (parentLink) parentLink.classList.add('current');
+      }
+    }
+  });
+
+  if (productsPages.has(currentPage)) {
+    const productsParent = navRoot.querySelector('[data-nav-parent="products"]');
+    const productsGroup = navRoot.querySelector('[data-nav-group="products"]');
+    if (productsParent) productsParent.classList.add('current');
+    if (productsGroup) productsGroup.classList.add('submenu-active');
+  }
+
+  if (guidesPages.has(currentPage)) {
+    const guidesParent = navRoot.querySelector('[data-nav-parent="guides"]');
+    const guidesGroup = navRoot.querySelector('[data-nav-group="guides"]');
+    if (guidesParent) guidesParent.classList.add('current');
+    if (guidesGroup) guidesGroup.classList.add('submenu-active');
+  }
+}
+
+function wireSharedNav(navRoot) {
+  const menuToggle = navRoot.querySelector('.menu-toggle');
+  const navLinks = navRoot.querySelector('.nav-links');
+  if (!menuToggle || !navLinks) return;
+
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!open) {
+      navRoot.querySelectorAll('.has-submenu.open').forEach(closeSubmenu);
+    }
+  });
+
+  navRoot.querySelectorAll('.submenu-toggle').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      const item = btn.closest('.has-submenu');
+      if (!item) return;
+      toggleSubmenu(item, navRoot);
+    });
+  });
+
+  navRoot.querySelectorAll('.submenu-trigger').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      const item = btn.closest('.has-submenu');
+      if (!item) return;
+      toggleSubmenu(item, navRoot);
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (navRoot.contains(event.target)) return;
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    navRoot.querySelectorAll('.has-submenu.open').forEach(closeSubmenu);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 600) {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      navRoot.querySelectorAll('.has-submenu.open').forEach(closeSubmenu);
+    }
+  });
+
+  applyNavCurrentState(navRoot);
+}
+
+function initSharedNavigation() {
+  const targets = document.querySelectorAll('[data-shared-nav]');
+  if (!targets.length) return;
+  targets.forEach((target) => {
+    target.innerHTML = buildSharedNavMarkup();
+    const navRoot = target.querySelector('nav');
+    if (navRoot) wireSharedNav(navRoot);
+  });
+}
+
 // Microsoft Clarity Tracking
 (function(c,l,a,r,i,t,y){
   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -479,6 +647,7 @@ class ShoppingCart {
 // Initialize cart when DOM is loaded
 let cart;
 document.addEventListener('DOMContentLoaded', () => {
+  initSharedNavigation();
   cart = new ShoppingCart();
   // Hydrate any tile elements from catalog (title/price) where data-sku is present
   try {

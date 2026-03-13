@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <meta property="og:title" content="MarinerX Products" />
-  <meta property="og:description" content="Explore purpose-built sailing gear from MarinerX." />
+  <meta property="og:description" content="Explore purpose-built boating gear from MarinerX." />
   <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
   <meta property="og:url" content="https://marinerx.tech/products.html" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -67,7 +67,9 @@
       gap: 20px;
     }
 
-    .nav-links a {
+    .nav-links > a,
+    .nav-item-head > .nav-link,
+    .nav-link-button {
       color: white;
       text-decoration: none;
       font-size: 18px;
@@ -76,7 +78,9 @@
       border-radius: 5px;
     }
 
-    .nav-links a:hover {
+    .nav-links > a:hover,
+    .nav-item-head > .nav-link:hover,
+    .nav-link-button:hover {
       background-color: #ff7b00;
       color: white;
     }
@@ -94,10 +98,12 @@
       }
 
       .nav-links.open {
-        max-height: 300px;
+        max-height: 700px;
       }
 
-      .nav-links a {
+      .nav-links > a,
+      .nav-item-head > .nav-link,
+      .nav-item-head > .nav-link-button {
         text-align: left;
         padding: 10px;
       }
@@ -191,21 +197,11 @@
   <div class="hero">
     <div class="hero-content">
       <h1>MarinerX Products</h1>
-      <p>Purpose-built tools for better sailing. No clutter, just performance.</p>
+      <p>Purpose-built tools for small boats. No clutter, just performance.</p>
     </div>
   </div>
 
-  <nav>
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="insiders.html">Insiders</a>
-      <a href="about.html">About Us</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+  <div data-shared-nav></div>
 
   <section class="content center-text">
     <h2>Featured Products</h2>
@@ -231,7 +227,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 MarinerX. All rights reserved.</p>
+    <p>&copy; 2026 MarinerX. All rights reserved.</p>
     <p><small>Campbell Tech Ventures LLC</small></p>
     <p>
       <a href="https://instagram.com/marinerxtech" target="_blank">Instagram</a> |
@@ -239,12 +235,6 @@
       <a href="returns.html">Return Policy</a> |
     </p>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('open');
-    }
-  </script>
   <script src="catalog.js"></script>
   <script src="script.js"></script>
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,7 @@
   <title>MarinerX - Innovative Gear for Sailors</title>
   <meta name="description" content="Discover performance-focused sailing accessories, including the MarinerX Hull Dryer. Simplify your boating experience.">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
   <!-- Meta -->
@@ -108,17 +109,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav>
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="insiders.html">Insiders</a>
-      <a href="about.html">About Us</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+  <div data-shared-nav></div>
 
   <!-- Featured Product Section -->
   <section class="highlight-section" style="padding: 20px 20px 10px; background-color: white; margin-top: 10px; margin-bottom: 10px;">
@@ -127,7 +118,7 @@
 
 <!-- 
 <div class="promo-banner">
-  🎉 Early Supporter Price – Now <strong>$119</strong> through <strong>June 6</strong>  
+  ðŸŽ‰ Early Supporter Price â€“ Now <strong>$119</strong> through <strong>June 6</strong>  
   <a href="hull-dryer.html#purchase">[View Product & Order]</a>
 </div>
 -->
@@ -144,18 +135,37 @@
 <!-- Testimonial Section -->
 <section class="highlight-section" style="padding: 30px 20px; background-color: #f9f9f9; border-radius: 10px; margin-top: 20px; margin-bottom: 20px;">
   <h2 style="font-size:1.8rem; margin-bottom:0.8em;">What Boaters Are Saying</h2>
-  <blockquote style="font-style:italic; color:#555; max-width:800px; margin:0 auto;">
-    “One of the most common problems I find with older boats is rot and water buildup in small crevices under the hull. It’s so hard to get this moisture out without cutting the floor apart—until I found MarinerXTech and this amazing product! It’s truly changed the game by drying out the hull, helping avoid saltwater damage, and keeping boats on the water longer. I can’t recommend it enough!”
-    <footer style="margin-top:1em; font-style:normal; font-weight:bold; color:#333;">
-      — Nick, Boat Captain, South Florida
-    </footer>
-  </blockquote>
+  <div class="swiper testimonial-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <blockquote>
+          "One of the most common problems I find with older boats is rot and water buildup in small crevices under the hull. It's so hard to get this moisture out without cutting the floor apart until I found MarinerXTech and this amazing product. It's truly changed the game by drying out the hull, helping avoid saltwater damage, and keeping boats on the water longer. I can't recommend it enough."
+          <footer>- Nick, Boat Captain, South Florida</footer>
+        </blockquote>
+      </div>
+      <div class="swiper-slide">
+        <blockquote>
+          "This is the second time I've bought from this seller. The items came in well packaged and in mint condition. They fitted my sailing dinghy perfectly. They are well made and look great. Well pleased again."
+          <footer>- eBay verified buyer</footer>
+        </blockquote>
+      </div>
+      <div class="swiper-slide">
+        <blockquote>
+          "Came in well packed, fits my boat spar perfectly (Scorpion Dinghy), easy to fit, looks good, great value for the money. Brand new and I am sure they will last a long time. Very happy with the product and the seller."
+          <footer>- eBay verified buyer</footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
 </section>
 
   <!-- Highlight Section -->
   <section class="highlight-section">
-    <h2>Innovative Gear for Small Sailboats</h2>
-    <p>Smart, practical gear that makes small-boat sailing easier and more fun. Whether you’re racing a Sunfish or cruising the lake, MarinerX helps you take better care of your boat—and enjoy the time you spend on the water.</p>
+    <h2>Innovative Gear for Small Boats</h2>
+    <p>Smart, practical gear that makes small-boat sailing and cruising easier and more fun. Whether youâ€™re sailing a dinghy, fishing from a skiff or cruising the lake, MarinerX helps you take better care of your boatâ€”and enjoy the time you spend on the water.</p>
 
     <div class="feature-icons">
       <div class="icon">
@@ -194,8 +204,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 MarinerX. All rights reserved.</p>
-    <p><small>Campbell Tech Ventures LLC</small></p>
+    <p>&copy; 2026 MarinerX. All rights reserved.</p>
     <p>
       <a href="https://instagram.com/marinerxtech" target="_blank">Instagram</a> |
       <a href="https://youtube.com/shorts/NVr3YrbPimQ?si=3C2wXnGvvarrgLvy" target="_blank">YouTube</a>
@@ -203,11 +212,17 @@
   </footer>
 
   <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('open');
-    }
+    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+      loop: true,
+      autoplay: { delay: 6000 },
+      pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true },
+      navigation: { nextEl: '.testimonial-swiper .swiper-button-next', prevEl: '.testimonial-swiper .swiper-button-prev' }
+    });
   </script>
   <script src="script.js"></script>
 </body>
 </html>
+
+

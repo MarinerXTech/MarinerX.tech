@@ -31,17 +31,7 @@
   </div>
 
   <!-- Navigation -->
-  <nav>
-    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="insiders.html">Insiders</a>
-      <a href="about.html">About Us</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+  <div data-shared-nav></div>
 
   <!-- Content -->
   <section class="content center-text">
@@ -70,6 +60,33 @@
 
     <p><em>Tested in real sailing conditions. Designed with feedback from the field.</em></p>
 
+    <h2>What Boaters Are Saying</h2>
+    <div class="swiper testimonial-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <blockquote>
+            "This is the second time I've bought from this seller. The items came in well packaged and in mint condition. They fitted my sailing dinghy perfectly. They are well made and look great. Well pleased again."
+            <footer>- eBay verified buyer</footer>
+          </blockquote>
+        </div>
+        <div class="swiper-slide">
+          <blockquote>
+            "Came in well packed, fits my boat spar perfectly (Scorpion Dinghy), easy to fit, looks good, great value for the money. Brand new and I am sure they will last a long time. Very happy with the product and the seller."
+            <footer>- eBay verified buyer</footer>
+          </blockquote>
+        </div>
+        <div class="swiper-slide">
+          <blockquote>
+            "As described and fast shipping."
+            <footer>- eBay verified buyer</footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
     <!-- Add to Cart Section (Variants) -->
     <h3 style="text-align: center; margin-top: 2rem;">Order Now</h3>
     <p style="text-align: center; font-weight: bold; margin-bottom: 0.5rem;">✅ Free shipping on orders $13 and up within the continental U.S.</p>
@@ -97,7 +114,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 MarinerX. All rights reserved.</p>
+    <p>&copy; 2026 MarinerX. All rights reserved.</p>
     <p><small>Campbell Tech Ventures LLC</small></p>
     <p>
       <a href="https://instagram.com/marinerxtech" target="_blank">Instagram</a> |
@@ -114,12 +131,13 @@
       navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       spaceBetween: 20
     });
-  </script>
 
-  <script>
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('open');
-    }
+    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+      loop: true,
+      autoplay: { delay: 6000 },
+      pagination: { el: '.testimonial-swiper .swiper-pagination', clickable: true },
+      navigation: { nextEl: '.testimonial-swiper .swiper-button-next', prevEl: '.testimonial-swiper .swiper-button-prev' }
+    });
   </script>
   <script src="catalog.js"></script>
   <script src="script.js"></script>

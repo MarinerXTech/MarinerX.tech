@@ -163,13 +163,6 @@ function initSharedNavigation() {
   });
 }
 
-// Microsoft Clarity Tracking
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "re4qg49ycv");
-
 // Shopping Cart System with PayPal Checkout (server-backed)
 class ShoppingCart {
   constructor() {
@@ -229,6 +222,20 @@ class ShoppingCart {
     this.ensurePayPalSdkLoaded().then(() => this.renderPayPalButtonsIfAvailable());
   }
 
+  getAnalyticsItems(items = this.items) {
+    return items.map(item => ({
+      item_id: item.id,
+      item_name: item.name,
+      item_variant: item.variant,
+      price: item.price,
+      quantity: item.quantity
+    }));
+  }
+
+  getCartValue(items = this.items) {
+    return items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  }
+
   ensurePayPalSdkLoaded() {
     return new Promise((resolve) => {
       const sdkLoaded = () => resolve();
@@ -284,17 +291,11 @@ class ShoppingCart {
 
             // Track begin_checkout
             if (typeof gtag !== 'undefined') {
-              const totalValue = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+              const totalValue = this.getCartValue();
               gtag('event', 'begin_checkout', {
                 currency: 'USD',
                 value: totalValue,
-                items: this.items.map(item => ({
-                  item_id: item.id,
-                  item_name: item.name,
-                  item_variant: item.variant,
-                  price: item.price,
-                  quantity: item.quantity
-                }))
+                items: this.getAnalyticsItems()
               });
             }
 
@@ -386,6 +387,16 @@ class ShoppingCart {
               }
             })
             .catch(error => {
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'checkout_error', {
+                  currency: 'USD',
+                  value: this.getCartValue(),
+                  checkout_stage: 'capture_order',
+                  payment_provider: 'paypal',
+                  error_message: String(error?.message || error),
+                  items: this.getAnalyticsItems()
+                });
+              }
               console.error('Payment capture error:', error);
               alert('There was an error processing your payment. Please contact support if the issue persists.');
               // Re-render PayPal buttons on error
@@ -394,9 +405,26 @@ class ShoppingCart {
             });
           },
           onCancel: () => {
-            // no-op
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'checkout_cancelled', {
+                currency: 'USD',
+                value: this.getCartValue(),
+                payment_provider: 'paypal',
+                items: this.getAnalyticsItems()
+              });
+            }
           },
           onError: (err) => {
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'checkout_error', {
+                currency: 'USD',
+                value: this.getCartValue(),
+                checkout_stage: 'paypal_sdk',
+                payment_provider: 'paypal',
+                error_message: String(err?.message || err),
+                items: this.getAnalyticsItems()
+              });
+            }
             console.error('PayPal error', err);
             alert('There was an error with PayPal. Please try again.');
           }
@@ -468,17 +496,11 @@ class ShoppingCart {
       this.updateCartCount();
       // Track view_cart
       if (typeof gtag !== 'undefined' && this.items.length > 0) {
-        const totalValue = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalValue = this.getCartValue();
         gtag('event', 'view_cart', {
           currency: 'USD',
           value: totalValue,
-          items: this.items.map(item => ({
-            item_id: item.id,
-            item_name: item.name,
-            item_variant: item.variant,
-            price: item.price,
-            quantity: item.quantity
-          }))
+          items: this.getAnalyticsItems()
         });
       }
     }

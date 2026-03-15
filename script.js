@@ -181,6 +181,7 @@ class ShoppingCart {
     this.bindEvents();
     this.updateCartCount();
     this.updateCartDisplay();
+    this.trackViewItemsForCurrentPage();
   }
 
   createCartUI() {
@@ -234,6 +235,46 @@ class ShoppingCart {
 
   getCartValue(items = this.items) {
     return items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  }
+
+  getViewItemConfigsForCurrentPage() {
+    const page = getCurrentPageName();
+    const pageViewItems = {
+      'hull-dryer.html': [
+        { id: 'hull-dryer-standard', variant: 'standard', category: 'Hull Dryer' },
+        { id: 'hull-dryer-mini', variant: 'mini', category: 'Hull Dryer' }
+      ],
+      'sail-rings-hanger.html': [
+        { id: 'rings-hanger-5pk-white', variant: 'white', category: 'Sail Rings + Mainsheet Hanger' },
+        { id: 'rings-hanger-5pk-teal', variant: 'teal', category: 'Sail Rings + Mainsheet Hanger' }
+      ]
+    };
+    return pageViewItems[page] || [];
+  }
+
+  trackViewItemsForCurrentPage() {
+    if (typeof gtag === 'undefined') return;
+
+    const catalog = window.PRODUCT_CATALOG || {};
+    const pageItems = this.getViewItemConfigsForCurrentPage();
+
+    pageItems.forEach(({ id, variant, category }) => {
+      const product = catalog[id];
+      if (!product) return;
+
+      gtag('event', 'view_item', {
+        currency: 'USD',
+        value: Number(product.price),
+        items: [{
+          item_id: id,
+          item_name: product.name,
+          item_variant: variant,
+          item_category: category,
+          price: Number(product.price),
+          quantity: 1
+        }]
+      });
+    });
   }
 
   ensurePayPalSdkLoaded() {

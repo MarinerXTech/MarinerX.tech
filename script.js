@@ -163,6 +163,41 @@ function initSharedNavigation() {
   });
 }
 
+const PAGE_COMMERCE_CONFIG = {
+  'hull-dryer.html': {
+    viewItems: [
+      { id: 'hull-dryer-standard', variant: 'standard' },
+      { id: 'hull-dryer-mini', variant: 'mini' }
+    ]
+  },
+  'sail-rings-hanger.html': {
+    viewItems: [
+      { id: 'rings-hanger-5pk-white', variant: 'white' },
+      { id: 'rings-hanger-5pk-teal', variant: 'teal' }
+    ]
+  },
+  'sail-rings.html': {
+    viewItems: [
+      { id: 'sail-rings-30pk', variant: '30-pack' }
+    ]
+  },
+  'rig-nest.html': {
+    viewItems: [
+      { id: 'rig-nest' }
+    ]
+  },
+  'clipon-hanger.html': {
+    viewItems: [
+      { id: 'clip-on-mainsheet-hanger' }
+    ]
+  }
+};
+
+function trackGtagEvent(eventName, params) {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', eventName, params);
+}
+
 // Shopping Cart System with PayPal Checkout (server-backed)
 class ShoppingCart {
   constructor() {
@@ -182,6 +217,7 @@ class ShoppingCart {
     this.updateCartCount();
     this.updateCartDisplay();
     this.trackViewItemsForCurrentPage();
+    this.bindOffsiteCheckoutTracking();
   }
 
   createCartUI() {
@@ -223,56 +259,99 @@ class ShoppingCart {
     this.ensurePayPalSdkLoaded().then(() => this.renderPayPalButtonsIfAvailable());
   }
 
+  getCatalogEntry(id) {
+    const catalog = window.PRODUCT_CATALOG || {};
+    return catalog[id] || null;
+  }
+
+  getAnalyticsItem(item = {}) {
+    const itemId = item.item_id || item.id;
+    const catalogEntry = itemId ? this.getCatalogEntry(itemId) : null;
+    const normalized = {
+      item_id: itemId,
+      item_name: item.item_name || item.name || catalogEntry?.name,
+      item_category: item.item_category || item.category || catalogEntry?.category,
+      item_variant: item.item_variant || item.variant,
+      quantity: Number(item.quantity || 1)
+    };
+
+    const price = Number(item.price ?? catalogEntry?.price);
+    if (Number.isFinite(price) && price > 0) {
+      normalized.price = price;
+    }
+
+    return Object.fromEntries(
+      Object.entries(normalized).filter(([, value]) => value !== undefined && value !== null && value !== '')
+    );
+  }
+
   getAnalyticsItems(items = this.items) {
-    return items.map(item => ({
-      item_id: item.id,
-      item_name: item.name,
-      item_variant: item.variant,
-      price: item.price,
-      quantity: item.quantity
-    }));
+    return items
+      .map((item) => this.getAnalyticsItem(item))
+      .filter((item) => item.item_id || item.item_name);
   }
 
   getCartValue(items = this.items) {
-    return items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    return items.reduce((sum, item) => {
+      const itemId = item.item_id || item.id;
+      const catalogEntry = itemId ? this.getCatalogEntry(itemId) : null;
+      const price = Number(item.price ?? catalogEntry?.price);
+      const quantity = Number(item.quantity || 1);
+      if (!Number.isFinite(price) || !Number.isFinite(quantity)) return sum;
+      return sum + (price * quantity);
+    }, 0);
+  }
+
+  buildEcommerceEventParams(items, extraParams = {}) {
+    const params = { ...extraParams, items: this.getAnalyticsItems(items) };
+    const computedValue = this.getCartValue(items);
+
+    if (!('value' in params) && computedValue > 0) {
+      params.value = Number(computedValue.toFixed(2));
+    }
+
+    if ((params.value ?? 0) > 0 && !params.currency) {
+      params.currency = 'USD';
+    }
+
+    return params;
   }
 
   getViewItemConfigsForCurrentPage() {
     const page = getCurrentPageName();
-    const pageViewItems = {
-      'hull-dryer.html': [
-        { id: 'hull-dryer-standard', variant: 'standard', category: 'Hull Dryer' },
-        { id: 'hull-dryer-mini', variant: 'mini', category: 'Hull Dryer' }
-      ],
-      'sail-rings-hanger.html': [
-        { id: 'rings-hanger-5pk-white', variant: 'white', category: 'Sail Rings + Mainsheet Hanger' },
-        { id: 'rings-hanger-5pk-teal', variant: 'teal', category: 'Sail Rings + Mainsheet Hanger' }
-      ]
-    };
-    return pageViewItems[page] || [];
+    return PAGE_COMMERCE_CONFIG[page]?.viewItems || [];
   }
 
   trackViewItemsForCurrentPage() {
-    if (typeof gtag === 'undefined') return;
+    if (typeof window.gtag !== 'function') return;
 
-    const catalog = window.PRODUCT_CATALOG || {};
     const pageItems = this.getViewItemConfigsForCurrentPage();
 
-    pageItems.forEach(({ id, variant, category }) => {
-      const product = catalog[id];
-      if (!product) return;
+    pageItems.forEach(({ id, variant }) => {
+      const analyticsItem = this.getAnalyticsItem({ id, variant, quantity: 1 });
+      if (!analyticsItem.item_id && !analyticsItem.item_name) return;
 
-      gtag('event', 'view_item', {
-        currency: 'USD',
-        value: Number(product.price),
-        items: [{
-          item_id: id,
-          item_name: product.name,
-          item_variant: variant,
-          item_category: category,
-          price: Number(product.price),
-          quantity: 1
-        }]
+      trackGtagEvent('view_item', this.buildEcommerceEventParams([{ id, variant, quantity: 1 }]));
+    });
+  }
+
+  bindOffsiteCheckoutTracking() {
+    document.querySelectorAll('[data-begin-checkout]').forEach((element) => {
+      if (element.dataset.analyticsBound === 'true') return;
+
+      element.dataset.analyticsBound = 'true';
+      element.addEventListener('click', () => {
+        const itemId = element.dataset.itemId;
+        if (!itemId) return;
+
+        trackGtagEvent('begin_checkout', this.buildEcommerceEventParams([{
+          id: itemId,
+          variant: element.dataset.itemVariant,
+          quantity: Number(element.dataset.qty || 1)
+        }], {
+          checkout_flow: element.dataset.checkoutFlow || 'offsite',
+          payment_provider: element.dataset.paymentProvider || 'offsite'
+        }));
       });
     });
   }
@@ -331,14 +410,7 @@ class ShoppingCart {
             }
 
             // Track begin_checkout
-            if (typeof gtag !== 'undefined') {
-              const totalValue = this.getCartValue();
-              gtag('event', 'begin_checkout', {
-                currency: 'USD',
-                value: totalValue,
-                items: this.getAnalyticsItems()
-              });
-            }
+            trackGtagEvent('begin_checkout', this.buildEcommerceEventParams(this.items));
 
             const payload = {
               items: this.items.map(({ id, name, variant, price, quantity, image }) => ({
@@ -411,33 +483,26 @@ class ShoppingCart {
             })
             .then(result => {
               if (result && result.status === 'COMPLETED') {
+                const purchasedItems = this.items.map((item) => ({ ...item }));
                 this.clearCart();
                 this.closeCart();
-                if (typeof gtag !== 'undefined') {
-                  const totalValue = Number(result.amount || 0);
-                  gtag('event', 'purchase', {
-                    currency: 'USD',
-                    value: totalValue,
-                    transaction_id: data.orderID,
-                    items: result.items || []
-                  });
-                }
+                const totalValue = Number(result.amount || 0);
+                const purchaseItems = Array.isArray(result.items) && result.items.length ? result.items : purchasedItems;
+                trackGtagEvent('purchase', this.buildEcommerceEventParams(purchaseItems, {
+                  transaction_id: data.orderID,
+                  ...(totalValue > 0 ? { value: totalValue, currency: 'USD' } : {})
+                }));
                 window.location.href = 'thank-you.html';
               } else {
                 throw new Error(result?.error || 'Payment capture failed');
               }
             })
             .catch(error => {
-              if (typeof gtag !== 'undefined') {
-                gtag('event', 'checkout_error', {
-                  currency: 'USD',
-                  value: this.getCartValue(),
-                  checkout_stage: 'capture_order',
-                  payment_provider: 'paypal',
-                  error_message: String(error?.message || error),
-                  items: this.getAnalyticsItems()
-                });
-              }
+              trackGtagEvent('checkout_error', this.buildEcommerceEventParams(this.items, {
+                checkout_stage: 'capture_order',
+                payment_provider: 'paypal',
+                error_message: String(error?.message || error)
+              }));
               console.error('Payment capture error:', error);
               alert('There was an error processing your payment. Please contact support if the issue persists.');
               // Re-render PayPal buttons on error
@@ -446,26 +511,16 @@ class ShoppingCart {
             });
           },
           onCancel: () => {
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'checkout_cancelled', {
-                currency: 'USD',
-                value: this.getCartValue(),
-                payment_provider: 'paypal',
-                items: this.getAnalyticsItems()
-              });
-            }
+            trackGtagEvent('checkout_cancelled', this.buildEcommerceEventParams(this.items, {
+              payment_provider: 'paypal'
+            }));
           },
           onError: (err) => {
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'checkout_error', {
-                currency: 'USD',
-                value: this.getCartValue(),
-                checkout_stage: 'paypal_sdk',
-                payment_provider: 'paypal',
-                error_message: String(err?.message || err),
-                items: this.getAnalyticsItems()
-              });
-            }
+            trackGtagEvent('checkout_error', this.buildEcommerceEventParams(this.items, {
+              checkout_stage: 'paypal_sdk',
+              payment_provider: 'paypal',
+              error_message: String(err?.message || err)
+            }));
             console.error('PayPal error', err);
             alert('There was an error with PayPal. Please try again.');
           }
@@ -536,13 +591,8 @@ class ShoppingCart {
       this.updateCartDisplay();
       this.updateCartCount();
       // Track view_cart
-      if (typeof gtag !== 'undefined' && this.items.length > 0) {
-        const totalValue = this.getCartValue();
-        gtag('event', 'view_cart', {
-          currency: 'USD',
-          value: totalValue,
-          items: this.getAnalyticsItems()
-        });
+      if (this.items.length > 0) {
+        trackGtagEvent('view_cart', this.buildEcommerceEventParams(this.items));
       }
     }
   }
@@ -566,19 +616,7 @@ class ShoppingCart {
     this.showAddedMessage(product);
 
     // Track add_to_cart
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'add_to_cart', {
-        currency: 'USD',
-        value: product.price * product.quantity,
-        items: [{
-          item_id: product.id,
-          item_name: product.name,
-          item_variant: product.variant,
-          price: product.price,
-          quantity: product.quantity
-        }]
-      });
-    }
+    trackGtagEvent('add_to_cart', this.buildEcommerceEventParams([product]));
 
     this.ensureCartStaysOpen();
   }
@@ -591,18 +629,8 @@ class ShoppingCart {
     this.updateCartCount();
 
     // Track remove_from_cart
-    if (removedItem && typeof gtag !== 'undefined') {
-      gtag('event', 'remove_from_cart', {
-        currency: 'USD',
-        value: removedItem.price * removedItem.quantity,
-        items: [{
-          item_id: removedItem.id,
-          item_name: removedItem.name,
-          item_variant: removedItem.variant,
-          price: removedItem.price,
-          quantity: removedItem.quantity
-        }]
-      });
+    if (removedItem) {
+      trackGtagEvent('remove_from_cart', this.buildEcommerceEventParams([removedItem]));
     }
 
     this.ensureCartStaysOpen();

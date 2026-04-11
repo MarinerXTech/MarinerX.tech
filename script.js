@@ -4,6 +4,37 @@ function getCurrentPageName() {
   return lastPath || 'index.html';
 }
 
+// Vacation shipping notice toggle.
+// Set enabled to false when normal shipping resumes, then update shipDateLabel for future trips.
+const VACATION_NOTICE = {
+  enabled: true,
+  shipDateLabel: 'Monday, April 20, 2026'
+};
+
+function hasVacationNotice() {
+  return Boolean(VACATION_NOTICE.enabled && VACATION_NOTICE.shipDateLabel);
+}
+
+function buildVacationBannerMarkup() {
+  if (!hasVacationNotice()) return '';
+
+  return `
+    <div class="promo-banner promo-banner--vacation" role="status">
+      Orders placed now will ship starting <strong>${VACATION_NOTICE.shipDateLabel}</strong> while we're away for a short break.
+    </div>
+  `;
+}
+
+function buildVacationCheckoutMarkup() {
+  if (!hasVacationNotice()) return '';
+
+  return `
+    <p class="vacation-shipping-note" role="status">
+      Ships starting <strong>${VACATION_NOTICE.shipDateLabel}</strong>
+    </p>
+  `;
+}
+
 function buildSharedNavMarkup() {
   return `
     <nav class="site-nav" aria-label="Main navigation">
@@ -157,9 +188,15 @@ function initSharedNavigation() {
   const targets = document.querySelectorAll('[data-shared-nav]');
   if (!targets.length) return;
   targets.forEach((target) => {
-    target.innerHTML = buildSharedNavMarkup();
+    target.innerHTML = `${buildSharedNavMarkup()}${buildVacationBannerMarkup()}`;
     const navRoot = target.querySelector('nav');
     if (navRoot) wireSharedNav(navRoot);
+  });
+}
+
+function initVacationShippingNotes() {
+  document.querySelectorAll('[data-vacation-shipping-note]').forEach((target) => {
+    target.innerHTML = buildVacationCheckoutMarkup();
   });
 }
 
@@ -247,6 +284,7 @@ class ShoppingCart {
             <span>Total:</span>
             <span class="total-amount">$0.00</span>
           </div>
+          ${buildVacationCheckoutMarkup()}
           <div class="paypal-separator">Checkout</div>
           <div id="paypal-buttons" class="paypal-buttons-wrapper"></div>
           <button class="checkout-btn" style="display:none">Checkout</button>
@@ -736,6 +774,7 @@ class ShoppingCart {
 let cart;
 document.addEventListener('DOMContentLoaded', () => {
   initSharedNavigation();
+  initVacationShippingNotes();
   cart = new ShoppingCart();
   // Hydrate any tile elements from catalog (title/price) where data-sku is present
   try {

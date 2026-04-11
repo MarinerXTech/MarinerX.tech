@@ -516,6 +516,19 @@ button:hover {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
 
+.promo-banner--vacation {
+  background: linear-gradient(90deg, #1e90ff 0%, #4aa8ff 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.promo-banner strong {
+  font-weight: 700;
+}
+
 .promo-banner a {
   color: white;
   text-decoration: underline;
@@ -751,6 +764,23 @@ footer {
 
 .paypal-buttons-wrapper {
   padding-bottom: 10px;
+}
+
+.vacation-shipping-note {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #1e90ff 0%, #4aa8ff 100%);
+  border: 1px solid rgba(0, 79, 103, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.vacation-shipping-note strong {
+  font-weight: 700;
 }
 
 .card-buttons-wrapper {

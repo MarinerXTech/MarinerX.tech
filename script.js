@@ -38,6 +38,10 @@ function buildVacationCheckoutMarkup() {
 function buildSharedNavMarkup() {
   return `
     <nav class="site-nav" aria-label="Main navigation">
+      <a class="site-brand" href="index.html" aria-label="MarinerX home">
+        <img src="images/MarinerX_Logo_No_Text.svg" alt="" aria-hidden="true" />
+        <span>MarinerX</span>
+      </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-links">&#9776; Menu</button>
       <div class="nav-links" id="site-nav-links">
         <a href="index.html">Home</a>
@@ -264,7 +268,7 @@ class ShoppingCart {
       cartIcon.className = 'cart-icon';
       cartIcon.setAttribute('aria-label', 'Open cart');
       cartIcon.innerHTML = `
-        <span style="font-size:20px">🛒</span>
+        <span class="cart-glyph" aria-hidden="true"></span>
         <span class="cart-count">0</span>
       `;
       document.body.appendChild(cartIcon);
@@ -287,7 +291,7 @@ class ShoppingCart {
           ${buildVacationCheckoutMarkup()}
           <div class="paypal-separator">Checkout</div>
           <div id="paypal-buttons" class="paypal-buttons-wrapper"></div>
-          <button class="checkout-btn" style="display:none">Checkout</button>
+          <button class="checkout-btn" hidden>Checkout</button>
         </div>
       `;
       document.body.appendChild(cartPanel);
@@ -505,7 +509,7 @@ class ShoppingCart {
             // Show loading state
             const paypalButtons = document.getElementById('paypal-buttons');
             if (paypalButtons) {
-              paypalButtons.innerHTML = '<div style="text-align: center; padding: 20px;">Processing your order...</div>';
+              paypalButtons.innerHTML = '<div class="cart-processing">Processing your order...</div>';
             }
 
             return fetch(this.SERVER_ENDPOINT + '/capture-order', {
@@ -691,7 +695,7 @@ class ShoppingCart {
     if (!cartItems || !totalAmount) return;
 
     if (this.items.length === 0) {
-      cartItems.innerHTML = '<p style="text-align: center; padding: 20px; color: #666;">Your cart is empty</p>';
+      cartItems.innerHTML = '<p class="cart-empty">Your cart is empty</p>';
       totalAmount.textContent = '$0.00';
       return;
     }
@@ -708,7 +712,7 @@ class ShoppingCart {
           <span class="quantity-display">${item.quantity}</span>
           <button class="quantity-btn" onclick="cart.updateQuantity(${index}, ${item.quantity + 1})">+</button>
         </div>
-        <button class="remove-item" onclick="cart.removeItem(${index})" title="Remove">×</button>
+        <button class="remove-item" onclick="cart.removeItem(${index})" title="Remove">&times;</button>
       </div>
     `).join('');
 
@@ -724,17 +728,7 @@ class ShoppingCart {
 
   showAddedMessage(product) {
     const message = document.createElement('div');
-    message.style.cssText = `
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      background: #28a745;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 6px;
-      z-index: 1001;
-      animation: slideIn 0.3s ease;
-    `;
+    message.className = 'cart-added-message';
     message.textContent = `${product.name} added to cart!`;
     document.body.appendChild(message);
     setTimeout(() => { message.remove(); }, 3000);
@@ -797,10 +791,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (c.image && c.image.src) {
           img.src = c.image.src;
           if (c.image.alt) img.alt = c.image.alt;
-          img.style.display = 'block';
+          img.hidden = false;
         } else {
           // No image defined: keep it hidden to avoid empty box
-          img.style.display = 'none';
+          img.hidden = true;
         }
       }
     });
@@ -860,13 +854,3 @@ window.updateQuantity = function(type, change) {
   const newValue = Math.max(1, Math.min(10, parseInt(input.value || '1', 10) + change));
   input.value = String(newValue);
 };
-
-// Add CSS animation for cart messages
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-`;
-document.head.appendChild(style);

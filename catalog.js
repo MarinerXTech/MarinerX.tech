@@ -89,13 +89,13 @@ window.PRODUCT_CATALOG = {
     name: 'Sail Rings + Mainsheet Hanger (5 Pack) - White',
     price: 13.95,
     category: 'Rigging Accessories',
-    image: { src: 'images/rings_hanger_combo_1.jpg', alt: 'Sail Rings + Hanger White' }
+    image: { src: 'images/rings_hanger_combo_3.jpg', alt: 'Sail Rings + Hanger White' }
   },
   'rings-hanger-5pk-teal': {
     name: 'Sail Rings + Mainsheet Hanger (5 Pack) - Teal',
     price: 13.95,
     category: 'Rigging Accessories',
-    image: { src: 'images/rings_hanger_combo_3.jpg', alt: 'Sail Rings + Hanger Teal' }
+    image: { src: 'images/rings_hanger_combo_1.jpg', alt: 'Sail Rings + Hanger Teal' }
   },
   'sail-rings-30pk': {
     name: 'Sail Rings (30 Pack)',

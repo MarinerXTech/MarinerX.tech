@@ -6,7 +6,7 @@
   <title>Insiders - MarinerX</title>
   <meta name="description" content="Join the MarinerX Insiders group to get early access, updates, and exclusive offers.">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="images/MarinerX_Logo_No_Text.svg" />
 
   <meta property="og:title" content="MarinerX Insiders" />
   <meta property="og:description" content="Get early access to new products and help shape future designs." />
@@ -41,30 +41,83 @@
 
   <div data-shared-nav></div>
 
-  <section class="content center-text">
+  <main class="support-page">
+  <!-- Temporarily hidden until Spar Mount beta is ready for public mention. Remove hidden to publish. -->
+  <section class="content spar-beta-section" aria-labelledby="spar-beta-title" hidden>
+    <div class="spar-beta-header">
+      <span class="product-badge beta">Limited beta</span>
+      <h2 id="spar-beta-title">Spar Mount Beta Test</h2>
+      <p class="spar-beta-subtitle">Help test a cleaner way to carry Sunfish spars on deck.</p>
+    </div>
+
+    <div class="spar-beta-layout">
+      <div class="spar-beta-copy">
+        <p>I've been testing a padded spar transport kit for trailering a Sunfish with the spars carried on deck. The front mount drops into the mast step for repeatable placement, while the rear mount supports the spar bundle. Foam padding protects the deck and spars, and the kit includes integrated straps and hooks.</p>
+
+        <p>Initial road testing has gone well, and I'm looking for a small group of careful beta testers before deciding whether to offer it more broadly.</p>
+
+        <div class="spar-beta-details" aria-label="Spar mount beta details">
+          <div><strong>Beta price</strong><span>$59 shipped</span></div>
+          <div><strong>First run</strong><span>About 3-5 testers</span></div>
+          <div><strong>Best fit</strong><span>Sunfish owners who trailer their boat</span></div>
+          <div><strong>Includes</strong><span>Front mast-step locating mount, rear padded support mount, integrated straps/hooks, and foam padding</span></div>
+          <div><strong>In exchange</strong><span>Setup photos and feedback after at least one road trip</span></div>
+        </div>
+
+        <h3>Who this is for</h3>
+        <p>This beta is best for sailors who trailer a Sunfish and want a more repeatable way to carry spars on the deck. You should be comfortable inspecting your own trailering setup and giving practical feedback.</p>
+
+        <p class="spar-beta-note"><strong>Beta note:</strong> This kit is intended to support, locate, and secure the spar bundle as part of a responsible trailering setup. Users are responsible for confirming that their boat, spars, and gear are safely secured before driving.</p>
+
+        <a class="cta-button" href="mailto:marinerxtech@gmail.com?subject=Spar%20Mount%20Beta%20Test&body=Hi%20MarinerX%2C%20I%27m%20interested%20in%20testing%20the%20spar%20mount%20kit.%20I%20sail%2Ftrailer%20a%20%5Bboat%20type%5D%20and%20can%20send%20setup%20photos%20and%20feedback%20after%20a%20road%20trip.">Ask about beta testing</a>
+      </div>
+
+      <div class="spar-beta-photos" aria-label="Spar mount beta photo placeholders">
+        <figure>
+          <div class="spar-beta-placeholder" role="img" aria-label="Sunfish on trailer with spars carried on deck using MarinerX spar mount beta kit">
+            <span>Photo placeholder: full trailering setup</span>
+          </div>
+        </figure>
+        <figure>
+          <div class="spar-beta-placeholder" role="img" aria-label="Front spar mount located in Sunfish mast step">
+            <span>Photo placeholder: front mast-step mount</span>
+          </div>
+        </figure>
+        <figure>
+          <div class="spar-beta-placeholder" role="img" aria-label="Rear padded spar support mount with strap">
+            <span>Photo placeholder: rear support mount</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="content content-wide support-cta-panel insiders-signup-panel">
     <h2>Join the List</h2>
-    <p>Insiders hear first when we release new products or test ideas.<br>If you're interested in early access or want to help shape future designs, add your email below.</p>
+    <p>Insiders hear first when we release new products or test ideas. If you're interested in early access or want to help shape future designs, add your email below.</p>
 
     <div class="center-text">
-      <form id="email-form" style="display: inline-block;" action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit(this);">
-        <input type="email" name="email" placeholder="Your email" required><br>
-        <button type="submit">Join the List</button>
+      <form id="email-form" class="inline-signup-form" action="https://script.google.com/macros/s/AKfycbw8cWwcApeErdldFj8dGmgpAgNd7cO0QqSP068WRdZmvYy2dJmSpeTODJ7FXn-yP7V3/exec" method="POST" target="hidden_iframe" onsubmit="handleFormSubmit(this);">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit" class="button button--primary">Join the List</button>
       </form>
     </div>
 
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <p id="thank-you-message" style="display:none; margin-top: 1em; color: green;">Thanks! You're on the list.</p>
+    <iframe name="hidden_iframe" class="hidden-iframe"></iframe>
+    <p id="thank-you-message" class="signup-thanks">Thanks! You're on the list.</p>
 
     <h2>Have a Problem Worth Solving?</h2>
-    <p>We build solutions that come from real needs. If you have an idea—or something you wish existed—email us at <a href="mailto:marinerxtech@gmail.com">marinerxtech@gmail.com</a>. We read every note.</p>
+    <p>We build solutions that come from real needs. If you have an idea or something you wish existed, email us at <a href="mailto:marinerxtech@gmail.com">marinerxtech@gmail.com</a>. We read every note.</p>
   </section>
+  </main>
 
   <footer>
     <p>&copy; 2026 MarinerX. All rights reserved.</p>
     <p><small>Campbell Tech Ventures LLC</small></p>
     <p>
       <a href="https://instagram.com/marinerxtech" target="_blank">Instagram</a> |
-      <a href="https://youtube.com/shorts/NVr3YrbPimQ?si=3C2wXnGvvarrgLvy" target="_blank">YouTube</a>
+      <a href="https://youtube.com/shorts/NVr3YrbPimQ?si=3C2wXnGvvarrgLvy" target="_blank">YouTube</a> |
+      <a href="returns.html">Return Policy</a>
     </p>
   </footer>
   <script src="script.js"></script>

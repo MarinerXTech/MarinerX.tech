@@ -293,7 +293,7 @@ class ShoppingCart {
           </div>
           ${buildVacationCheckoutMarkup()}
           <div class="paypal-separator">Checkout</div>
-          <p class="shipping-note"><strong>U.S. shipping only.</strong> Website orders must ship to a U.S. address.</p>
+          <p class="shipping-note"><strong>Online checkout currently ships to U.S. addresses only.</strong> For other destinations, <a href="contact.html">contact MarinerX about shipping options</a>.</p>
           <div id="paypal-buttons" class="paypal-buttons-wrapper"></div>
           <button class="checkout-btn" hidden>Checkout</button>
         </div>
@@ -485,7 +485,7 @@ class ShoppingCart {
           onShippingChange: (data, actions) => {
             const countryCode = String(data?.shipping_address?.country_code || '').toUpperCase();
             if (countryCode && countryCode !== 'US') {
-              alert('MarinerX website orders ship to U.S. addresses only. Please choose a U.S. shipping address.');
+              alert('Online checkout currently ships to U.S. addresses only. For another destination, please contact MarinerX about shipping options.');
               return actions.reject();
             }
 

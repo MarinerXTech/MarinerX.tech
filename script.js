@@ -54,6 +54,7 @@ function buildSharedNavMarkup() {
             <a href="products.html">All Products</a>
             <a href="hull-dryer.html">Hull Dryer</a>
             <a href="sail-rings-hanger.html">Sail Rings + Mainsheet Hanger</a>
+            <a href="spar-mount.html">Spar Mount <span aria-label="in development">(In Development)</span></a>
           </div>
         </div>
         <div class="nav-item has-submenu" data-nav-group="guides">
@@ -105,6 +106,7 @@ function applyNavCurrentState(navRoot) {
     'hull-dryer.html',
     'sail-rings-hanger.html',
     'sail-rings.html',
+    'spar-mount.html',
     'rig-nest.html',
     'clipon-hanger.html',
     'beta-tester-info.html'
@@ -291,6 +293,7 @@ class ShoppingCart {
           </div>
           ${buildVacationCheckoutMarkup()}
           <div class="paypal-separator">Checkout</div>
+          <p class="shipping-note"><strong>U.S. shipping only.</strong> Website orders must ship to a U.S. address.</p>
           <div id="paypal-buttons" class="paypal-buttons-wrapper"></div>
           <button class="checkout-btn" hidden>Checkout</button>
         </div>
@@ -480,6 +483,12 @@ class ShoppingCart {
             });
           },
           onShippingChange: (data, actions) => {
+            const countryCode = String(data?.shipping_address?.country_code || '').toUpperCase();
+            if (countryCode && countryCode !== 'US') {
+              alert('MarinerX website orders ship to U.S. addresses only. Please choose a U.S. shipping address.');
+              return actions.reject();
+            }
+
             return fetch(this.SERVER_ENDPOINT + '/update-order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },

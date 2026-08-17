@@ -7,9 +7,8 @@ function getCurrentPageName() {
 // Vacation shipping notice toggle.
 // Set enabled to false when normal shipping resumes, then update shipDateLabel for future trips.
 const VACATION_NOTICE = {
-  enabled: false, // Change back to true and update shipDateLabel for a future trip.
-  // shipDateLabel: 'Monday, April 20, 2026'
-  shipDateLabel: ''
+  enabled: true, // Change back to false when normal shipping resumes.
+  shipDateLabel: 'Monday, August 24, 2026'
 };
 
 function hasVacationNotice() {

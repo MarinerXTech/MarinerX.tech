@@ -72,7 +72,7 @@ window.PRODUCT_CATALOG = {
     name: '1.5" Extension Ring for Hull Dryer',
     price: 3.95,
     category: 'Hull Dryer Accessory',
-    image: { src: 'images/extension_ring.jpg', alt: '1.5\" Extension Ring for Hull Dryer' }
+    image: { src: 'images/Extension_Ring.jpg', alt: '1.5\" Extension Ring for Hull Dryer' }
   },
   'adapter-4-rwo': {
     name: 'Adapter for 4" RWO screw-in inspection port',

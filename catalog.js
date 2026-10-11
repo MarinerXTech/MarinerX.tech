@@ -48,6 +48,20 @@ window.PRODUCT_CATALOG = {
     category: 'Hull Dryer Accessory',
     image: { src: 'images/adapter_seaflo_6in.jpg', alt: 'Adapter for 6\" Seaflo screw-in inspection port' }
   },
+  'adapter-6-th-marine-quarter-turn': {
+    name: 'Adapter for 6" TH Marine quarter-turn inspection port',
+    price: 3.95,
+    category: 'Hull Dryer Accessory',
+    image: { src: 'images/adapter_THMarine_6in.jpg', alt: 'Adapter for 6" TH Marine quarter-turn inspection port' },
+    description: 'Fits the Standard Hull Dryer to a TH Marine 6" quarter-turn inspection port.'
+  },
+  'adapter-6-th-marine-screw-in': {
+    name: 'Adapter for 6" TH Marine screw-in inspection port',
+    price: 3.95,
+    category: 'Hull Dryer Accessory',
+    image: { src: 'images/adapter_THMarine_6in.jpg', alt: 'TH Marine quarter-turn adapter shown as a representative photo for the screw-in adapter' },
+    description: 'Fits the Standard Hull Dryer to a TH Marine 6" screw-in inspection port. Photo shows the quarter-turn adapter; the screw-in adapter has a different port interface.'
+  },
   'adapter-8-beckson-west': {
     name: 'Adapter for 8" Beckson / West Marine screw-in inspection port',
     price: 3.95,

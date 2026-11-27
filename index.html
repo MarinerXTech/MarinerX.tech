@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarinerX - Innovative Gear for Sailors</title>
-  <meta name="description" content="Discover performance-focused sailing accessories, including the MarinerX Hull Dryer. Simplify your boating experience.">
-  <link rel="stylesheet" href="styles.css" />
+  <title>MarinerX | Practical Gear for Small Boats</title>
+  <meta name="description" content="Dry a damp hull, keep the mainsheet clear, and strap down your spars. Explore MarinerX gear for small boats.">
+  <link rel="stylesheet" href="styles.css?v=20261127-home" />
   <link rel="icon" type="image/svg+xml" href="images/MarinerX_Logo_No_Text.svg" />
 
   <!-- Meta -->
   <meta property="og:title" content="MarinerX" />
-  <meta property="og:description" content="Engineering smarter sailing solutions." />
+  <meta property="og:description" content="Hull Dryers, sail rings with mainsheet hangers, and a Sunfish Spar Mount in development." />
   <meta property="og:image" content="https://marinerx.tech/images/hero.jpg" />
   <meta property="og:url" content="https://marinerx.tech/" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@
 
 <body>
   <!-- Hero -->
-  <div class="hero">
+  <div class="hero home-masthead">
     <div class="hero-content">
       <h1>MarinerX</h1>
       <p>Clever Tools for Smooth Sailing</p>
@@ -45,73 +45,52 @@
   <div data-shared-nav></div>
 
   <main>
-    <section class="section home-feature">
-      <div class="container-shop">
-        <div class="section-heading">
-          <p class="eyebrow">Purpose-built small-boat gear</p>
-          <h2>Practical Gear for Small Boats</h2>
-          <p class="lead">MarinerX builds focused tools for everyday small-boat jobs: drying trapped hull moisture, keeping rigging cleaner and easier to manage, and transporting spars more consistently.</p>
-        </div>
-        <div class="product-grid">
-          <a href="hull-dryer.html" class="product-card">
-            <img src="images/hull_dryer_standard_and_mini.jpg" alt="MarinerX Hull Dryer Standard and Mini boat dryers" />
-            <h3>Boat Hull Dryers</h3>
-            <p>Purpose-built airflow tools for removing trapped moisture from small-boat hulls through common inspection ports.</p>
-            <span class="cta-button">Explore Hull Dryers</span>
-          </a>
-          <a href="sail-rings-hanger.html" class="product-card">
-            <img src="images/rings_hanger_combo_1.jpg" alt="Sail Rings with built-in Mainsheet Hanger" />
-            <h3>Sail Rings + Mainsheet Hanger</h3>
-            <p>Durable sail rings for 1.5-inch spars with integrated mainsheet management for Sunfish and similar small sailboats.</p>
-            <span class="cta-button">Explore Sail Rings + Mainsheet Hanger</span>
-          </a>
-          <a href="spar-mount.html" class="product-card">
-            <img src="images/spar-mount-beta-full-setup.jpg" alt="MarinerX Spar Mount development setup on a trailered Sunfish" />
-            <span class="product-badge beta">In Development</span>
-            <h3>Spar Mount</h3>
-            <p>A padded mounting system in development for positioning and supporting Sunfish spars during storage and transport.</p>
-            <span class="cta-button">Explore Spar Mount Development</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--soft">
+    <section class="section section--soft home-catalog" aria-labelledby="home-products">
       <div class="container-wide">
-        <div class="section-heading">
-          <h2>Built around real small-boat problems</h2>
-          <p class="lead">MarinerX gear is designed for the practical jobs that make boat ownership easier: moisture control, clean rigging, reliable fit, and less improvising at the ramp.</p>
-        </div>
-        <div class="proof-grid home-proof-grid">
-          <article class="proof-card">
-            <img src="images/icon_dry.png" alt="" aria-hidden="true" />
-            <h3>Moisture control</h3>
-            <p>Purpose-built airflow for drying trapped hull spaces through existing access points.</p>
-          </article>
-          <article class="proof-card">
-            <img src="images/icon_engineering.png" alt="" aria-hidden="true" />
-            <h3>Inspection-port interface</h3>
-            <p>Designed around common screw-in inspection ports, with adapter support for additional brands and styles.</p>
-          </article>
-          <article class="proof-card">
-            <img src="images/icon_iteration.png" alt="" aria-hidden="true" />
-            <h3>Tested performance</h3>
-            <p>Hull Dryer airflow and drying performance have been tested and refined through practical iteration.</p>
-          </article>
+        <h2 id="home-products">Practical gear for small boats</h2>
+        <div class="home-products">
+          <a class="home-card" href="hull-dryer.html">
+            <div class="home-card-photo">
+              <img src="images/hull_dryer_standard_and_mini.jpg" alt="Standard and Mini Hull Dryers beside an inspection port" />
+            </div>
+            <h3>Dry out a damp hull</h3>
+            <p class="home-product-name">Hull Dryer</p>
+            <p>Twist the fan into a compatible inspection port and plug it in. It sends fresh air into the hull and lets damp air out through the same opening.</p>
+            <span class="cta-button">Compare the two dryers</span>
+          </a>
+          <a class="home-card" href="sail-rings-hanger.html">
+            <div class="home-card-photo home-ring-photo">
+              <img src="images/rings_hanger_combo_1.jpg" alt="Teal sail ring holding the sail to the boom, with the mainsheet running through the hanger underneath" />
+            </div>
+            <h3>Keep the mainsheet clear</h3>
+            <p class="home-product-name">Sail Rings with Mainsheet Hangers</p>
+            <p>Each ring holds the sail to the boom and carries the mainsheet just underneath. That keeps the line up as you duck under the boom to tack.</p>
+            <span class="cta-button">See the sail rings</span>
+          </a>
+          <a class="home-card" href="spar-mount.html">
+            <div class="home-card-photo home-spar-photo">
+              <img src="images/spar-mount-beta-full-setup.jpg" alt="Sunfish on its trailer with the bundled sail and spars strapped on deck" />
+              <img class="home-spar-detail" src="images/spar-mount-beta-rear-support.jpg" alt="Detail of the padded rear support and strap" />
+              <span class="product-badge beta">In development</span>
+            </div>
+            <h3>Strap down the spars</h3>
+            <p class="home-product-name">Spar Mount</p>
+            <p>A mount in the Sunfish mast step and a padded rear support hold the spars and rolled sail in place while you tighten the straps.</p>
+            <span class="cta-button">See the prototype</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section--compact" aria-labelledby="port-guide-title">
       <div class="container-wide home-split-panel">
         <div>
-          <p class="eyebrow">Fit confidence</p>
-          <h2>Not sure which inspection port you have?</h2>
-          <p>Use the Inspection Port Guide to compare size, engagement type, brand cues, and adapter notes before choosing a base unit or adapter.</p>
+          <h2 id="port-guide-title">Which inspection port do I have?</h2>
+          <p>Measure the opening and compare your lid with the photos in the guide. Once you’ve found a match, you can see which Hull Dryer fits and whether you need an adapter.</p>
         </div>
         <div class="home-split-actions">
-          <a class="button button--primary" href="inspection-port-guide.html">Identify Your Inspection Port</a>
-          <a class="button button--secondary" href="faq.html">Read the FAQ</a>
+          <a class="button button--primary" href="inspection-port-guide.html">Open the port guide</a>
+          <a class="button button--secondary" href="faq.html">Hull Dryer FAQ</a>
         </div>
       </div>
     </section>
@@ -119,7 +98,7 @@
     <section class="section section--soft">
       <div class="container-wide">
         <div class="section-heading">
-          <h2>What Boaters Are Saying</h2>
+          <h2>What sailors say about the sail rings</h2>
         </div>
         <div class="card-grid testimonial-grid">
           <blockquote>
